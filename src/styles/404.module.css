@@ -1,0 +1,80 @@
+.notfound_main_box {
+    position: relative;
+    height: 100vh;
+}
+
+.notfound_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    max-width: 520px;
+    width: 100%;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.notfound_info_box {
+    position: relative;
+    height: 240px;
+}
+
+.notfound_info_box h1 {
+    font-family: "Montserrat", sans-serif;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 252px;
+    font-weight: 900;
+    margin: 0 0 0 -20px;
+    text-transform: uppercase;
+    letter-spacing: -40px;
+}
+
+.notfound_info_box h3 {
+    font-family: "Cabin", sans-serif;
+    position: relative;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 3px;
+    padding-left: 6px;
+}
+
+.notfound_info_box h2 {
+    font-family: "Cabin", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.notfound_text_shadow_light {
+    text-shadow: -8px 0 0 #27272A;
+}
+
+.notfound_text_shadow_dark {
+    text-shadow: -8px 0 0 #D8D8D5;
+}
+
+.notfound_description_color_dark {
+    color: rgb(0, 0, 0);
+}
+
+.notfound_description_color_light {
+    color: rgb(255, 255, 255);
+}
+
+.notfound_title_color_dark {
+    color: rgb(38, 38, 38);
+}
+
+.notfound_title_color_light {
+    color: rgb(212, 212, 212);
+}
