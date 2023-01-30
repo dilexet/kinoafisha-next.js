@@ -1,11 +1,9 @@
-import { Box, Container, Link as LinkMaterial, Typography, useTheme } from "@mui/material";
+import { Box, Container, Link as LinkMaterial, Typography } from "@mui/material";
 import { APP_NAME, APP_DESCRIPTION, APP_MAIL } from "@/shared/constants/app-constants";
 import Copyright from "./copyright";
 import Link from "next/link";
 
 const Footer = () => {
-  const theme = useTheme();
-
   return (
     <Box
       component="footer"

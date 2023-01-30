@@ -1,18 +1,43 @@
-import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
-import { loginActionAsync } from "@/authorize/action";
 import Head from "next/head";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
+import { googleAuthorizeAsync, loginActionAsync } from "@/authorize/action";
+import LoginComponent from "@/authorize/component/login";
+import loginValidationSchema from "@/authorize/utils/login-validation-schema";
+import { LoginFieldValues } from "@/authorize/constants/login-field-values";
+import { clearErrors } from "@/authorize/reducer";
 
-export default function Login() {
+export default function LoginPage() {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const authState = useAppSelector((x) => x.authorize_reducer);
 
-  const onLoginClick = async () => {
-    await dispatch(loginActionAsync({ email: "admin@gmail.com", password: "root" }));
-  };
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const onLogin2Click = async () => {
-    await dispatch(loginActionAsync({ email: "test@gmail.com", password: "test" }));
-  };
+  function handleNavigateToSignUp() {
+    router.push("/authorize/register");
+  }
+
+  async function handleSubmitForm(values: typeof LoginFieldValues) {
+    if (await loginValidationSchema.isValid(values)) {
+      await dispatch(loginActionAsync({ data: values, rememberMe: rememberMe }));
+    }
+  }
+
+  async function handleGoogleAuthorize() {
+    await dispatch(googleAuthorizeAsync());
+  }
+
+  useEffect(() => {
+    if (isLoading === true && (authState?.errorInfo?.message || authState?.errorInfo?.error)) {
+      dispatch(clearErrors());
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+  }, [authState?.errorInfo?.error, authState?.errorInfo?.message, dispatch, isLoading]);
 
   return (
     <>
@@ -20,9 +45,11 @@ export default function Login() {
         <title>Login page</title>
       </Head>
       <main>
-        <div>Login page</div>
-        <button onClick={onLoginClick}>Success</button>
-        <button onClick={onLogin2Click}>Error</button>
+        <LoginComponent authorizeState={authState}
+                        rememberMe={rememberMe} setRememberMe={setRememberMe}
+                        handleNavigateToSignUp={handleNavigateToSignUp}
+                        handleSubmitForm={handleSubmitForm}
+                        handleGoogleAuthorize={handleGoogleAuthorize} />
       </main>
     </>
   );

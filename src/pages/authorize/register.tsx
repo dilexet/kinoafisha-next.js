@@ -1,18 +1,43 @@
 import Head from "next/head";
 import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
-import { registerActionAsync } from "@/authorize/action";
+import { googleAuthorizeAsync, registerActionAsync } from "@/authorize/action";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import RegisterComponent from "@/authorize/component/register";
+import { RegisterFieldValues } from "@/authorize/constants/register-field-values";
+import registerValidationSchema from "@/authorize/utils/register-validation-schema";
+import { clearErrors } from "@/authorize/reducer";
 
-export default function Register() {
+export default function RegisterPage() {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const authState = useAppSelector((x) => x.authorize_reducer);
 
-  const onRegisterClick = async () => {
-    await dispatch(registerActionAsync({ name: "test", email: "test@gmail.com", password: "test" }));
-  };
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const onRegisterErrorClick = async () => {
-    await dispatch(registerActionAsync({ name: "admin", email: "admin@gmail.com", password: "root" }));
-  };
+  function handleNavigateToSignIn() {
+    router.push("/authorize");
+  }
+
+  async function handleSubmitForm(values: typeof RegisterFieldValues) {
+    if (await registerValidationSchema.isValid(values)) {
+      await dispatch(registerActionAsync({ data: values, rememberMe: rememberMe }));
+    }
+  }
+
+  async function handleGoogleAuthorize() {
+    await dispatch(googleAuthorizeAsync());
+  }
+
+  useEffect(() => {
+    if (isLoading === true && (authState?.errorInfo?.message || authState?.errorInfo?.error)) {
+      dispatch(clearErrors());
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+  }, [authState?.errorInfo?.error, authState?.errorInfo?.message, dispatch, isLoading]);
 
   return (
     <>
@@ -20,9 +45,12 @@ export default function Register() {
         <title>Register page</title>
       </Head>
       <main>
-        <div>Register page</div>
-        <button onClick={onRegisterClick}>Success</button>
-        <button onClick={onRegisterErrorClick}>Error</button>
+        <RegisterComponent
+          handleSubmitForm={handleSubmitForm}
+          handleNavigateToSignIn={handleNavigateToSignIn}
+          rememberMe={rememberMe} setRememberMe={setRememberMe}
+          authorizeState={authState} handleGoogleAuthorize={handleGoogleAuthorize}
+        />
       </main>
     </>
   );
