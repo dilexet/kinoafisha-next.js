@@ -1,12 +1,12 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
-import { googleAuthorizeAsync, loginActionAsync } from "@/authorize/action";
-import LoginComponent from "@/authorize/component/login";
-import loginValidationSchema from "@/authorize/utils/login-validation-schema";
-import { LoginFieldValues } from "@/authorize/constants/login-field-values";
-import { clearErrors } from "@/authorize/reducer";
+import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
+import { googleAuthorizeAsync, loginActionAsync } from "@/modules/authorize/action";
+import LoginComponent from "@/modules/authorize/component/login";
+import loginValidationSchema from "@/modules/authorize/utils/login-validation-schema";
+import { LoginFieldValues } from "@/modules/authorize/constants/login-field-values";
+import { clearErrors } from "@/modules/authorize/reducer";
 
 export default function LoginPage() {
   const router = useRouter();

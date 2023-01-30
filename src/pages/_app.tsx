@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
-import { wrapper } from "@/shared/redux/store";
-import LayoutContainer from "@/layout/container";
+import { wrapper } from "@/modules/shared/redux/store";
+import LayoutContainer from "@/modules/layout/container";
 import "@/styles/globals.css";
 
 export default function App({ Component, ...rest }: AppProps) {

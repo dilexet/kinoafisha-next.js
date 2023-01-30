@@ -1,12 +1,12 @@
 import Head from "next/head";
-import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
-import { googleAuthorizeAsync, registerActionAsync } from "@/authorize/action";
+import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
+import { googleAuthorizeAsync, registerActionAsync } from "@/modules/authorize/action";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import RegisterComponent from "@/authorize/component/register";
-import { RegisterFieldValues } from "@/authorize/constants/register-field-values";
-import registerValidationSchema from "@/authorize/utils/register-validation-schema";
-import { clearErrors } from "@/authorize/reducer";
+import RegisterComponent from "@/modules/authorize/component/register";
+import { RegisterFieldValues } from "@/modules/authorize/constants/register-field-values";
+import registerValidationSchema from "@/modules/authorize/utils/register-validation-schema";
+import { clearErrors } from "@/modules/authorize/reducer";
 
 export default function RegisterPage() {
   const router = useRouter();
