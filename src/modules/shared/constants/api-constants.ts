@@ -10,4 +10,4 @@ export const LOGOUT_ENDPOINT = AUTHORIZE + "/logout";
 
 export const REFRESH_ENDPOINT = AUTHORIZE + "/refresh";
 
-export const GOOGLE_AUTHORIZE_ENDPOINT = AUTHORIZE + "/google/callback";
+export const GOOGLE_AUTHORIZE_ENDPOINT = AUTHORIZE + "/google";

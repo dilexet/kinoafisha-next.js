@@ -7,6 +7,5 @@ export type LoginComponentProps = {
   rememberMe: boolean,
   setRememberMe: React.Dispatch<React.SetStateAction<boolean>>,
   handleSubmitForm: (values: typeof LoginFieldValues) => void,
-  handleGoogleAuthorize: () => void,
   handleNavigateToSignUp: () => void,
 }

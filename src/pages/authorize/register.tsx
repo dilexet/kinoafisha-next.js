@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
-import { googleAuthorizeAsync, registerActionAsync } from "@/modules/authorize/action";
+import { registerActionAsync } from "@/modules/authorize/action";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import RegisterComponent from "@/modules/authorize/component/register";
@@ -26,10 +26,6 @@ export default function RegisterPage() {
     }
   }
 
-  async function handleGoogleAuthorize() {
-    await dispatch(googleAuthorizeAsync());
-  }
-
   useEffect(() => {
     if (isLoading === true && (authState?.errorInfo?.message || authState?.errorInfo?.error)) {
       dispatch(clearErrors());
@@ -49,7 +45,7 @@ export default function RegisterPage() {
           handleSubmitForm={handleSubmitForm}
           handleNavigateToSignIn={handleNavigateToSignIn}
           rememberMe={rememberMe} setRememberMe={setRememberMe}
-          authorizeState={authState} handleGoogleAuthorize={handleGoogleAuthorize}
+          authorizeState={authState}
         />
       </main>
     </>

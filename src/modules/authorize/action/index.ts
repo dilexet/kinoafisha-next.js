@@ -79,10 +79,12 @@ export const refreshTokensAsync = createAsyncThunk(
 
 export const googleAuthorizeAsync = createAsyncThunk(
   "authorize/google",
-  async (arg, thunkAPI) => {
+  async (token: string, thunkAPI) => {
     try {
-      const response = await axiosInstance.get(GOOGLE_AUTHORIZE_ENDPOINT);
-
+      const response =
+        await axiosInstance.post(
+          GOOGLE_AUTHORIZE_ENDPOINT,
+          { token: token });
       saveTokens(true, response?.data);
       return response?.data;
     } catch (err) {

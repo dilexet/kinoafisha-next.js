@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
-import { googleAuthorizeAsync, loginActionAsync } from "@/modules/authorize/action";
+import { loginActionAsync } from "@/modules/authorize/action";
 import LoginComponent from "@/modules/authorize/component/login";
 import loginValidationSchema from "@/modules/authorize/utils/login-validation-schema";
 import { LoginFieldValues } from "@/modules/authorize/constants/login-field-values";
@@ -26,10 +26,6 @@ export default function LoginPage() {
     }
   }
 
-  async function handleGoogleAuthorize() {
-    await dispatch(googleAuthorizeAsync());
-  }
-
   useEffect(() => {
     if (isLoading === true && (authState?.errorInfo?.message || authState?.errorInfo?.error)) {
       dispatch(clearErrors());
@@ -48,8 +44,7 @@ export default function LoginPage() {
         <LoginComponent authorizeState={authState}
                         rememberMe={rememberMe} setRememberMe={setRememberMe}
                         handleNavigateToSignUp={handleNavigateToSignUp}
-                        handleSubmitForm={handleSubmitForm}
-                        handleGoogleAuthorize={handleGoogleAuthorize} />
+                        handleSubmitForm={handleSubmitForm} />
       </main>
     </>
   );

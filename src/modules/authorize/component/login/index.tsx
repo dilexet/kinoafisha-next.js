@@ -10,7 +10,6 @@ import {
   Container,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { AuthorizeButton } from "@/modules/authorize/component/authorize-button";
 import { LoginFieldValues } from "@/modules/authorize/constants/login-field-values";
 import FormTextField from "@/modules/shared/component/form-text-field";
 import PasswordFormTextField from "@/modules/authorize/component/password-form-text-field";
@@ -18,9 +17,10 @@ import loginValidationSchema from "@/modules/authorize/utils/login-validation-sc
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { LoginComponentProps } from "@/modules/authorize/types/login/login-component-props";
 import { handleErrors } from "@/modules/shared/utils/handle-errors";
+import AuthorizeButtonContainer from "@/modules/authorize/container/authorize-button-container";
 
 export default function LoginComponent({
-                                         authorizeState, handleGoogleAuthorize,
+                                         authorizeState,
                                          rememberMe, setRememberMe,
                                          handleSubmitForm, handleNavigateToSignUp,
                                        }: LoginComponentProps) {
@@ -98,8 +98,8 @@ export default function LoginComponent({
                   control={<Checkbox value={rememberMe} color="primary" />}
                   label="Remember me"
                 />
-                <AuthorizeButton isLoading={authorizeState?.loadingStatus === LOADING_STATUSES.LOADING}
-                                 buttonText="Sign in" handleGoogleAuthorize={handleGoogleAuthorize} />
+                <AuthorizeButtonContainer isLoading={authorizeState?.loadingStatus === LOADING_STATUSES.LOADING}
+                                          buttonText="Sign in" />
                 <Grid container>
                   <Grid item xs>
                     <LinkMaterial color="inherit" variant="body2" style={{ cursor: "pointer" }}

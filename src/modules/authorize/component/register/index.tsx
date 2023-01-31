@@ -10,7 +10,6 @@ import {
   Container,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { AuthorizeButton } from "@/modules/authorize/component/authorize-button";
 import FormTextField from "@/modules/shared/component/form-text-field";
 import PasswordFormTextField from "@/modules/authorize/component/password-form-text-field";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
@@ -18,9 +17,10 @@ import { handleErrors } from "@/modules/shared/utils/handle-errors";
 import { RegisterComponentProps } from "@/modules/authorize/types/register/register-component-props";
 import { RegisterFieldValues } from "@/modules/authorize/constants/register-field-values";
 import registerValidationSchema from "@/modules/authorize/utils/register-validation-schema";
+import AuthorizeButtonContainer from "@/modules/authorize/container/authorize-button-container";
 
 export default function RegisterComponent({
-                                            authorizeState, handleGoogleAuthorize,
+                                            authorizeState,
                                             rememberMe, setRememberMe,
                                             handleSubmitForm, handleNavigateToSignIn,
                                           }: RegisterComponentProps) {
@@ -124,8 +124,8 @@ export default function RegisterComponent({
                   control={<Checkbox value={rememberMe} color="primary" />}
                   label="Remember me"
                 />
-                <AuthorizeButton isLoading={authorizeState?.loadingStatus === LOADING_STATUSES.LOADING}
-                                 buttonText="Sign up" handleGoogleAuthorize={handleGoogleAuthorize} />
+                <AuthorizeButtonContainer isLoading={authorizeState?.loadingStatus === LOADING_STATUSES.LOADING}
+                                          buttonText="Sign up" />
                 <Grid container>
                   <Grid item xs>
                     <LinkMaterial color="inherit" variant="body2" style={{ cursor: "pointer" }}

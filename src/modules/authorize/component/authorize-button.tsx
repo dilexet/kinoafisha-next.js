@@ -1,6 +1,6 @@
 import LoadingButton from "@mui/lab/LoadingButton";
-import { Button, Box, Link as LinkMaterial } from "@mui/material";
-import GoogleIcon from "@mui/icons-material/Google";
+import { Box, Typography } from "@mui/material";
+import { GoogleLogin } from "@react-oauth/google";
 
 export function AuthorizeButton({
                                   isLoading,
@@ -8,9 +8,8 @@ export function AuthorizeButton({
                                   handleGoogleAuthorize,
                                   ...props
                                 }) {
-
   return (
-    <Box>
+    <Box style={{ margin: "10px 0 30px" }}>
       <LoadingButton
         fullWidth
         type="submit"
@@ -24,20 +23,20 @@ export function AuthorizeButton({
       >
         {buttonText}
       </LoadingButton>
-      <Button
-        fullWidth
-        style={{ borderRadius: "20px" }}
-        onClick={handleGoogleAuthorize}
-        size="large"
-        sx={{ mt: 3, mb: 2 }}
-        variant="outlined"
-        startIcon={<GoogleIcon />}>
-        {buttonText + " with google"}
-      </Button>
-      <LinkMaterial color="inherit" variant="body2" style={{ cursor: "pointer" }}
-                    href="http://localhost:3001/authorize/google">
-        {"Google"}
-      </LinkMaterial>
+      <Box style={{
+        width: "100%",
+        borderTop: "1px solid #3c3c3c",
+        borderBottom: "1px solid #3c3c3c",
+        margin: "10px 0 20px"
+      }}>
+        <Typography style={{ textAlign: "center" }}>
+          or
+        </Typography>
+      </Box>
+      <GoogleLogin
+        onSuccess={async (credentialResponse) => await handleGoogleAuthorize(credentialResponse.credential)}
+        onError={() => console.log("Login failed")}
+        shape="pill" auto_select={false} type="icon" size="large" />
     </Box>
   );
 }
