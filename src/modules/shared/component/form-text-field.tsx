@@ -3,7 +3,7 @@ import { FormControl, FormHelperText, InputLabel, OutlinedInput } from "@mui/mat
 export default function FormTextField({
                                         error, helperText,
                                         value, onChange, onBlur,
-                                        variant, size, margin, style, inputProps,
+                                        variant, size, margin, inputProps,
                                         outlinedInputStyle, formControlStyle,
                                         ...props
                                       }: any) {

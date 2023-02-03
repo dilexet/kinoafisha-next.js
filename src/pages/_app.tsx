@@ -9,9 +9,7 @@ export default function App({ Component, ...rest }: AppProps) {
   const { pageProps } = props;
   return (
     <Provider store={store}>
-      <LayoutContainer>
-        <Component {...pageProps} />
-      </LayoutContainer>
+      <LayoutContainer Component={Component} pageProps={pageProps} />
     </Provider>
   );
 }

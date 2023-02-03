@@ -113,5 +113,6 @@ export default function LoginComponent({
           }
         </Formik>
       </Box>
-    </Container>);
+    </Container>
+  );
 }

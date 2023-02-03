@@ -1,11 +1,13 @@
-import { ReactNode } from "react";
+import { NextComponentType, NextPageContext } from "next/dist/shared/lib/utils";
 
 export type LayoutComponentProps = {
-  children: ReactNode;
+  Component: NextComponentType<NextPageContext, any, any>;
+  pageProps: any;
   isDarkModeEnabled: boolean,
   onChangeTheme: (isDark: boolean) => void,
 }
 
 export type LayoutContainerProps = {
-  children: ReactNode;
+  Component: NextComponentType<NextPageContext, any, any>;
+  pageProps: any;
 }

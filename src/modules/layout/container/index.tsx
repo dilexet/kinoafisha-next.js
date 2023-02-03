@@ -2,8 +2,9 @@ import { getCookie, setCookie } from "cookies-next";
 import { useCallback, useEffect, useState } from "react";
 import Layout from "@/modules/layout/component";
 import { LayoutContainerProps } from "@/modules/layout/type/layout-container-props";
+import Loading from "@/modules/shared/component/loading";
 
-const LayoutContainer = ({ children }: LayoutContainerProps) => {
+const LayoutContainer = ({ Component, pageProps }: LayoutContainerProps) => {
   const [isDarkModeEnabled, setIsDarkModeEnabled] = useState<boolean | undefined>(undefined);
 
   const onChangeTheme = useCallback((isDark: boolean) => {
@@ -23,8 +24,13 @@ const LayoutContainer = ({ children }: LayoutContainerProps) => {
       onChangeTheme(Boolean(JSON.parse(cookie.toString())));
     }
   }, [onChangeTheme]);
-
-  return <Layout children={children} isDarkModeEnabled={isDarkModeEnabled} onChangeTheme={onChangeTheme} />;
+  if (!isDarkModeEnabled) {
+    return (
+      <Loading />
+    );
+  }
+  return <Layout Component={Component} pageProps={pageProps} isDarkModeEnabled={isDarkModeEnabled}
+                 onChangeTheme={onChangeTheme} />;
 };
 
 export default LayoutContainer;

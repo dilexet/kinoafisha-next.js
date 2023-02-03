@@ -6,7 +6,7 @@ import { darkTheme, lightTheme } from "@/modules/layout/theme/mui-theme";
 import { googleOptions } from "@/modules/shared/constants/google-constants";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
-const Layout = ({ children, isDarkModeEnabled, onChangeTheme }: LayoutComponentProps) => {
+const Layout = ({ Component, pageProps, isDarkModeEnabled, onChangeTheme }: LayoutComponentProps) => {
   return (
     <GoogleOAuthProvider clientId={googleOptions.GOOGLE_ID}>
       <ThemeProvider theme={isDarkModeEnabled ? darkTheme : lightTheme}>
@@ -19,15 +19,23 @@ const Layout = ({ children, isDarkModeEnabled, onChangeTheme }: LayoutComponentP
         >
           <CssBaseline>
             <HeaderContainer isDarkModeEnabled={isDarkModeEnabled} onChangeTheme={onChangeTheme} />
-            <main>
-              {children}
-            </main>
+            <section>
+              <MainLayout Component={Component} pageProps={pageProps}/>
+            </section>
             <Footer />
           </CssBaseline>
         </Box>
       </ThemeProvider>
     </GoogleOAuthProvider>
   );
+};
+
+const MainLayout = ({ Component, pageProps }) => {
+  if (Component.getLayout) {
+    return Component.getLayout(<Component {...pageProps} />);
+  } else {
+    return <Component {...pageProps} />;
+  }
 };
 
 export default Layout;
