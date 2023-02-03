@@ -18,3 +18,5 @@ export const GENRES = "/genres";
 export const COUNTRIES = "/countries";
 export const IMAGE_UPLOAD = "/image-upload";
 export const IMAGE_URL = (imageName) => API_URL + `/images/${imageName}`;
+
+export const USER_MANAGEMENT = "/user-management";

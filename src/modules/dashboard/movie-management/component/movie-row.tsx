@@ -5,6 +5,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { MovieRowComponentProps } from "@/modules/dashboard/movie-management/types/movie-row-props";
 import { convertMinutesToHoursWithMinutes, getYear } from "@/modules/dashboard/movie-management/utils/date-formater";
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
+import UtilsButtonGroup from "@/modules/dashboard/shared/component/utils-button-group";
 
 export default function MovieRow({
                                    theme,
@@ -38,57 +39,10 @@ export default function MovieRow({
       <TableCell component="th" scope="row" align="center">
         {convertMinutesToHoursWithMinutes(movie.durationInMinutes)}
       </TableCell>
-      {
-        // TODO: move to another component
-      }
       <TableCell component="th" scope="row" align="right">
-        <ButtonGroup>
-          <IconButton
-            aria-label="edit"
-            size="small"
-            onClick={handleGetDetails}
-            style={{
-              marginLeft: "5px",
-              marginRight: "5px",
-              border: "1px solid",
-              borderColor: theme.palette.grey["300"],
-              borderRadius: "11px",
-            }}>
-            <VisibilityIcon
-              fontSize="small"
-              style={{ fill: theme.palette.grey["300"] }} />
-          </IconButton>
-          <IconButton
-            aria-label="edit"
-            size="small"
-            onClick={handleUpdate}
-            style={{
-              marginLeft: "5px",
-              marginRight: "5px",
-              border: "1px solid",
-              borderColor: theme.palette.info.main,
-              borderRadius: "11px",
-            }}>
-            <BorderColorIcon
-              fontSize="small"
-              style={{ fill: theme.palette.info.main }} />
-          </IconButton>
-          <IconButton
-            onClick={handleRemove}
-            aria-label="delete"
-            size="small"
-            style={{
-              marginLeft: "5px",
-              marginRight: "5px",
-              border: "1px solid",
-              borderColor: theme.palette.error.main,
-              borderRadius: "11px",
-            }}>
-            <DeleteOutlineIcon
-              fontSize="small"
-              style={{ fill: theme.palette.error.main }} />
-          </IconButton>
-        </ButtonGroup>
+        <UtilsButtonGroup handleGetDetails={handleGetDetails}
+                          handleUpdate={handleUpdate}
+                          handleRemove={handleRemove} />
       </TableCell>
     </TableRow>
   );

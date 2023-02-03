@@ -11,6 +11,11 @@ import { useRouter } from "next/router";
 export default function PanelItemsList() {
   const panelItem = [
     {
+      name: "User management",
+      href: "/dashboard/users",
+      icon: <ManageAccountsIcon />,
+    },
+    {
       name: "Movie management",
       href: "/dashboard/movies",
       icon: <MovieCreationIcon />,
@@ -29,11 +34,6 @@ export default function PanelItemsList() {
       name: "Session management (dev)",
       href: "/dashboard/test1",
       icon: <SmartDisplayIcon />,
-    },
-    {
-      name: "User management (dev)",
-      href: "/dashboard/test2",
-      icon: <ManageAccountsIcon />,
     },
   ];
 
