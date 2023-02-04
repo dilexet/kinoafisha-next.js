@@ -1,5 +1,4 @@
 import MovieForm from "@/modules/dashboard/movie-management/component/movie-form";
-import { useTheme } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
 import { useEffect, useState } from "react";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
@@ -9,10 +8,8 @@ import movieValidationSchema from "@/modules/dashboard/movie-management/utils/mo
 import moment from "moment/moment";
 
 export default function MovieUpdateContainer({ handleCloseModal, textFields }) {
-  const theme = useTheme();
   const dispatch = useAppDispatch();
   const movieState = useAppSelector((x) => x.movie_management_reducer);
-  const imageState = useAppSelector((x) => x.upload_image_reducer);
 
   const [initialValues, setInitialValues] = useState<MovieFieldType>(null);
   const [wasUpdated, setWasUpdated] = useState(false);
@@ -47,12 +44,11 @@ export default function MovieUpdateContainer({ handleCloseModal, textFields }) {
 
 
   return (
-    <MovieForm theme={theme} title="Update movie"
+    <MovieForm title="Update movie"
                initialValues={initialValues}
                handleSubmit={handleSubmit}
                handleCancel={handleCloseModal}
                movieState={movieState}
-               imageState={imageState}
                textFields={textFields}
     />
   );

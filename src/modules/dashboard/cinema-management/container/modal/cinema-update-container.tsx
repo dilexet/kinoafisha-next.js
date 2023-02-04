@@ -41,7 +41,7 @@ export default function CinemaUpdateContainer({ handleCloseModal, textFields }) 
   }, [cinemaState?.cinema?.city, cinemaState?.cinema?.country, cinemaState?.cinema?.houseNumber, cinemaState?.cinema?.id, cinemaState?.cinema?.name, cinemaState?.cinema?.street, cinemaState?.loadingStatusGetOne, initialValues]);
 
   return (
-    <CinemaForm theme={theme} title="Update cinema" initialValues={initialValues} handleSubmit={handleSubmit}
+    <CinemaForm title="Update cinema" initialValues={initialValues} handleSubmit={handleSubmit}
                 initializeTextField={textFields} handleCancel={handleCloseModal} cinemaState={cinemaState} />
   );
 }

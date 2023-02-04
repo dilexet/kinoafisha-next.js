@@ -14,4 +14,6 @@ export interface UserRowComponentProps {
   handleGetDetails: () => void;
   handleUpdate: () => void;
   handleRemove: () => void;
+  handleBlock: () => void;
+  handleClearErrors: () => void;
 }

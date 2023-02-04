@@ -15,7 +15,13 @@ const Footer = () => {
       }}
     >
       <Container maxWidth="sm">
-        <Typography variant="body1" align="center" gutterBottom>
+        <Typography component="h6" align="center" gutterBottom
+                    style={{
+                      fontSize: "26px",
+                      textTransform: "uppercase",
+                      letterSpacing: "7px",
+                    }}
+        >
           {APP_NAME}
         </Typography>
         <Typography

@@ -1,7 +1,4 @@
-import { TableCell, TableRow, ButtonGroup, IconButton } from "@mui/material";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { TableCell, TableRow } from "@mui/material";
 import { CinemaRowComponentProps } from "@/modules/dashboard/cinema-management/types/cinema-row-props";
 import UtilsButtonGroup from "@/modules/dashboard/shared/component/utils-button-group";
 
@@ -12,6 +9,7 @@ export default function CinemaRow({
                                     handleGetDetails,
                                     handleUpdate,
                                     handleRemove,
+                                    handleClearErrors,
                                   }: CinemaRowComponentProps) {
   return (
     <TableRow
@@ -32,7 +30,9 @@ export default function CinemaRow({
       <TableCell component="th" scope="row" align="right">
         <UtilsButtonGroup handleGetDetails={handleGetDetails}
                           handleUpdate={handleUpdate}
-                          handleRemove={handleRemove} />
+                          handleRemove={handleRemove}
+                          clearErrors={handleClearErrors}
+        />
       </TableCell>
     </TableRow>
   );

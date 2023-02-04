@@ -11,7 +11,6 @@ import {
 import SearchInputContainer from "@/modules/dashboard/shared/container/search-input-container";
 import { ModalActionTypes } from "@/modules/shared/constants/modal-action-types";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import React from "react";
 import { TableManagementContainerProps } from "@/modules/dashboard/shared/types/table-management-container-props";
 
@@ -60,18 +59,18 @@ export default function TableManagementContainer({
               </Button>
             </Box>
           </Box>
-          <Box>
-            <Typography component="h1" variant="h5" color="secondary"
+          <Box style={{
+            width: "100%",
+            margin: "15px 0",
+          }}>
+            <Typography component="h1" variant="h6" color="secondary"
                         style={{
-                          display: "block",
                           textAlign: "center",
                         }}
                         fontStyle={{ color: theme.palette.error.dark }}
             >
               {
-                loadingStatus === LOADING_STATUSES.FAILED
-                  ? errorMessage
-                  : ""
+                typeof errorMessage === "string" && errorMessage ? errorMessage : ""
               }
             </Typography>
           </Box>

@@ -14,4 +14,5 @@ export interface CinemaRowComponentProps {
   handleGetDetails: () => void;
   handleUpdate: () => void;
   handleRemove: () => void;
+  handleClearErrors: () => void;
 }

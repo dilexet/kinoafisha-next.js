@@ -4,6 +4,7 @@ import { movieDeleteAsync, movieGetOneActionAsync } from "@/modules/dashboard/mo
 import { ModalActionTypes } from "@/modules/shared/constants/modal-action-types";
 import { MovieRowContainerProps } from "@/modules/dashboard/movie-management/types/movie-row-props";
 import MovieRow from "@/modules/dashboard/movie-management/component/movie-row";
+import { clearErrors } from "@/modules/dashboard/movie-management/reducer";
 
 export default function MovieRowContainer({ movie, index, handleOpenModal }: MovieRowContainerProps) {
   const theme = useTheme();
@@ -22,9 +23,13 @@ export default function MovieRowContainer({ movie, index, handleOpenModal }: Mov
   const handleRemove = async () => {
     await dispatch(movieDeleteAsync(movie.id));
   };
+  
+  const handleClearErrors = async () => {
+    await dispatch(clearErrors());
+  };
 
   return (
     <MovieRow theme={theme} movie={movie} index={index} handleGetDetails={handleGetDetails}
-               handleUpdate={handleUpdate} handleRemove={handleRemove}/>
+              handleUpdate={handleUpdate} handleRemove={handleRemove} handleClearErrors={handleClearErrors} />
   );
 }

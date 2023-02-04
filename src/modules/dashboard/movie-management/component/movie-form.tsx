@@ -1,30 +1,29 @@
 import { Form, Formik } from "formik";
 import {
-  Box, Grid, Button, Avatar,
-  FormHelperText,
+  Box, Grid, Avatar,
+  FormHelperText, useTheme,
 } from "@mui/material";
 import FormTextField from "@/modules/shared/component/form-text-field";
 import { handleErrors } from "@/modules/shared/utils/handle-errors";
 import ModalLayout from "@/modules/dashboard/shared/component/modal-layout";
-import SaveIcon from "@mui/icons-material/Save";
-import CancelIcon from "@mui/icons-material/Cancel";
 import movieValidationSchema from "@/modules/dashboard/movie-management/utils/movie-validation-schema";
 import { MovieFormProps } from "@/modules/dashboard/movie-management/types/movie-form-props";
 import UploadImageContainer from "@/modules/upload-image/container";
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
 import GenresContainer from "@/modules/genres/container";
 import CountriesContainer from "@/modules/countries/container";
+import FormButtonGroup from "@/modules/dashboard/shared/component/form-button-group";
+import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 
 export default function MovieForm({
-                                    theme,
                                     title,
                                     initialValues,
                                     handleSubmit,
                                     handleCancel,
                                     movieState,
-                                    imageState,
                                     textFields,
                                   }: MovieFormProps) {
+  const theme = useTheme();
   if (initialValues && textFields) {
     return (
       <ModalLayout title={title} error={movieState?.errorInfo?.message}>
@@ -99,38 +98,10 @@ export default function MovieForm({
                     <CountriesContainer values={values} setFieldValue={setFieldValue} />
                   </Grid>
                 </Grid>
-                <Box
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginTop: "20px",
-                  }}>
-                  <Button
-                    variant="outlined"
-                    type="submit"
-                    style={{
-                      color: theme.palette.success.light,
-                      borderColor: theme.palette.success.dark,
-                      borderRadius: "11px",
-                      padding: "7px 14px",
-                    }}
-                    startIcon={<SaveIcon style={{ fill: theme.palette.success.dark }} />}>
-                    Save
-                  </Button>
-                  <Button
-                    onClick={handleCancel}
-                    variant="outlined"
-                    style={{
-                      color: theme.palette.error.light,
-                      borderColor: theme.palette.error.dark,
-                      borderRadius: "11px",
-                      padding: "7px 14px",
-                    }}
-                    startIcon={<CancelIcon style={{ fill: theme.palette.error.dark }} />}>
-                    Cancel
-                  </Button>
-                </Box>
+                <FormButtonGroup handleCancel={handleCancel} isLoading={
+                  movieState?.loadingStatusCreate === LOADING_STATUSES.LOADING ||
+                  movieState?.loadingStatusUpdate === LOADING_STATUSES.LOADING
+                } />
               </Box>
             )
           }

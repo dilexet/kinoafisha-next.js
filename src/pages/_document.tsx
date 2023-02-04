@@ -12,6 +12,10 @@ export default function Document() {
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
+        <link href="https://diegoddox.github.io/react-redux-toastr/7.1/react-redux-toastr.min.css"
+              rel="stylesheet"
+              type="text/css"
+        />
         <meta name="description" content="Web application for booking cinema tickets" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

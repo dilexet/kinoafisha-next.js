@@ -1,7 +1,4 @@
-import { TableCell, TableRow, ButtonGroup, IconButton, Avatar, Box } from "@mui/material";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { TableCell, TableRow, Avatar, Box } from "@mui/material";
 import { MovieRowComponentProps } from "@/modules/dashboard/movie-management/types/movie-row-props";
 import { convertMinutesToHoursWithMinutes, getYear } from "@/modules/dashboard/movie-management/utils/date-formater";
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
@@ -14,6 +11,7 @@ export default function MovieRow({
                                    handleGetDetails,
                                    handleUpdate,
                                    handleRemove,
+                                   handleClearErrors,
                                  }: MovieRowComponentProps) {
   return (
     <TableRow
@@ -42,7 +40,9 @@ export default function MovieRow({
       <TableCell component="th" scope="row" align="right">
         <UtilsButtonGroup handleGetDetails={handleGetDetails}
                           handleUpdate={handleUpdate}
-                          handleRemove={handleRemove} />
+                          handleRemove={handleRemove}
+                          clearErrors={handleClearErrors}
+        />
       </TableCell>
     </TableRow>
   );

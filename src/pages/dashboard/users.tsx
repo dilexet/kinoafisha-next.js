@@ -8,6 +8,8 @@ import { userGetAllActionAsync } from "@/modules/dashboard/user-management/actio
 import TableManagementContainer from "@/modules/dashboard/shared/component/table-management-container";
 import UserTableHead from "@/modules/dashboard/user-management/component/user-table-head";
 import UserTableBody from "@/modules/dashboard/user-management/component/user-table-body";
+import Modal from "@/modules/dashboard/shared/component/modal";
+import UserModalContainer from "@/modules/dashboard/user-management/container/modal/user-modal-container";
 
 function Users() {
   const dispatch = useAppDispatch();
@@ -62,6 +64,11 @@ function Users() {
           TableHead={<UserTableHead />}
           TableBody={<UserTableBody users={users} handleOpenModal={handleOpenModal} />}
         />
+        <Modal
+          openModal={openModal}
+          handleCloseModal={handleCloseModal}>
+          <UserModalContainer modalType={modalType} handleCloseModal={handleCloseModal} />
+        </Modal>
       </main>
     </>
   );

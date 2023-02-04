@@ -12,6 +12,8 @@ export default function UserRow({
                                   handleGetDetails,
                                   handleUpdate,
                                   handleRemove,
+                                  handleBlock,
+                                  handleClearErrors
                                 }: UserRowComponentProps) {
   return (
     <TableRow
@@ -58,10 +60,12 @@ export default function UserRow({
       <TableCell component="th" scope="row" align="right">
         <UtilsButtonGroup handleGetDetails={handleGetDetails}
                           handleUpdate={handleUpdate}
-                          handleRemove={handleRemove}>
+                          handleRemove={handleRemove}
+                          clearErrors={handleClearErrors}
+        >
           <IconButton
-            onClick={() => console.log()}
-            aria-label="delete"
+            onClick={handleBlock}
+            aria-label="block/unlock"
             size="small"
             style={{
               marginLeft: "5px",

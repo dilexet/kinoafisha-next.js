@@ -1,10 +1,38 @@
+import { useState } from "react";
 import { ButtonGroup, IconButton, useTheme } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import DoneIcon from "@mui/icons-material/Done";
+import CloseIcon from "@mui/icons-material/Close";
 
-export default function UtilsButtonGroup({ handleGetDetails, handleUpdate, handleRemove, children = null }) {
+export default function UtilsButtonGroup({
+                                           handleGetDetails,
+                                           handleUpdate,
+                                           handleRemove,
+                                           clearErrors,
+                                           children = null,
+                                         }) {
   const theme = useTheme();
+  const [openDelete, setOpenDelete] = useState(false);
+
+  if (openDelete) {
+    return (
+      <ButtonGroup>
+        <IconButton aria-label="confirm" onClick={handleRemove}
+                    style={{ marginLeft: "5px", marginRight: "5px" }}>
+          <DoneIcon style={{ fill: theme.palette.success.dark }} />
+        </IconButton>
+        <IconButton aria-label="close" onClick={() => {
+          clearErrors();
+          setOpenDelete(false);
+        }}
+                    style={{ marginLeft: "5px", marginRight: "5px" }}>
+          <CloseIcon style={{ fill: theme.palette.error.dark }} />
+        </IconButton>
+      </ButtonGroup>
+    );
+  }
   return (
     <ButtonGroup>
       <IconButton
@@ -39,7 +67,7 @@ export default function UtilsButtonGroup({ handleGetDetails, handleUpdate, handl
           style={{ fill: theme.palette.info.main }} />
       </IconButton>
       <IconButton
-        onClick={handleRemove}
+        onClick={() => setOpenDelete(true)}
         aria-label="delete"
         size="small"
         style={{

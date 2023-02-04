@@ -5,14 +5,10 @@ import { useCallback, useEffect, useState } from "react";
 import { genresGetAllAsync } from "@/modules/genres/action";
 import { countriesGetAllAsync } from "@/modules/countries/action";
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
-import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import MovieDetailsContainer from "@/modules/dashboard/movie-management/container/modal/movie-details-container";
 
 export default function MovieModalContainer({ modalType, handleCloseModal }) {
   const dispatch = useAppDispatch();
-  const movieState = useAppSelector((x) => x.movie_management_reducer);
-  const countryState = useAppSelector((x) => x.countries_reducer);
-  const genreState = useAppSelector((x) => x.genres_reducer);
   const [loadData, setLoadData] = useState(true);
 
   const fetchData = useCallback(
@@ -34,12 +30,7 @@ export default function MovieModalContainer({ modalType, handleCloseModal }) {
 
 
   //TODO: skeleton
-  if (
-    movieState?.loadingStatusGetOne === LOADING_STATUSES.LOADING ||
-    movieState?.loadingStatusGetOne === LOADING_STATUSES.PENDING ||
-    countryState?.loadingStatus === LOADING_STATUSES.LOADING ||
-    genreState?.loadingStatus === LOADING_STATUSES.LOADING
-  ) {
+  if (loadData) {
     return <div></div>;
   }
   if (modalType === ModalActionTypes.DETAILS) {

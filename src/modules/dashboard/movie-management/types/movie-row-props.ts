@@ -14,4 +14,5 @@ export interface MovieRowComponentProps {
   handleGetDetails: () => void;
   handleUpdate: () => void;
   handleRemove: () => void;
+  handleClearErrors: () => void;
 }

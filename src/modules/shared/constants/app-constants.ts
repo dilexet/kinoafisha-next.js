@@ -1,4 +1,8 @@
-export const APP_NAME = "Kinoafisha";
+export const APP_NAME = "kinoafisha";
+export const APP_LOGO = {
+  start: "kino",
+  end: "afisha",
+};
 
 export const APP_MAIL = "cinema.ticket.reservation@gmail.com";
 

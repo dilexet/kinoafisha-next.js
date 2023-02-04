@@ -30,7 +30,7 @@ export default function CinemaCreateContainer({ handleCloseModal, textFields }) 
   }, [cinemaState?.loadingStatusCreate, handleCloseModal, wasCreated]);
 
   return (
-    <CinemaForm theme={theme} title="Create cinema" initialValues={CinemaFieldValues}
+    <CinemaForm title="Create cinema" initialValues={CinemaFieldValues}
                 handleSubmit={handleSubmit}
                 initializeTextField={textFields}
                 handleCancel={handleCloseModal} cinemaState={cinemaState} />

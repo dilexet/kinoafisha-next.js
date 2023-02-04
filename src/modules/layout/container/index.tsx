@@ -24,7 +24,7 @@ const LayoutContainer = ({ Component, pageProps }: LayoutContainerProps) => {
       onChangeTheme(Boolean(JSON.parse(cookie.toString())));
     }
   }, [onChangeTheme]);
-  if (!isDarkModeEnabled) {
+  if (isDarkModeEnabled === undefined) {
     return (
       <Loading />
     );

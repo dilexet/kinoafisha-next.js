@@ -11,7 +11,11 @@ const Copyright = () => {
           color="inherit"
           component={Link}
           href="/"
-          style={{ textDecoration: "none", borderBottom: '1px solid' }}>
+          style={{
+            textDecoration: "none", borderBottom: "1px solid",
+            textTransform: "uppercase",
+            letterSpacing: "3px",
+          }}>
           {APP_NAME}
         </LinkMaterial>
         {" "}
