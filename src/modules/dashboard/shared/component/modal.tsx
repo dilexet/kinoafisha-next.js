@@ -1,5 +1,6 @@
 import { Box, IconButton, Modal as MuiModal, useTheme } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import styles from "@/styles/modal.module.css";
 
 export default function Modal({ openModal, handleCloseModal, children }) {
   const theme = useTheme();
@@ -8,7 +9,7 @@ export default function Modal({ openModal, handleCloseModal, children }) {
       open={openModal}
       onClose={handleCloseModal}
     >
-      <Box style={{
+      <Box className={styles.modal} style={{
         position: "absolute",
         top: "50%",
         left: "50%",
@@ -21,7 +22,6 @@ export default function Modal({ openModal, handleCloseModal, children }) {
         border: "none",
         padding: "20px",
         borderRadius: "22px",
-        overflow: "hidden",
       }}>
         <Box style={{
           display: "flex",

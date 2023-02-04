@@ -5,36 +5,33 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-  SelectChangeEvent,
-  useTheme,
+  SelectChangeEvent, useTheme,
 } from "@mui/material";
-import {
-  UserFieldCreateType,
-  UserFieldUpdateType,
-} from "@/modules/dashboard/user-management/constants/user-field-values";
-import { RolesState } from "@/modules/roles/reducer";
+import { CinemaState } from "@/modules/cinemas/reducer";
+import { HallFieldsType } from "@/modules/dashboard/hall-management/types/hall-field-types";
 
-export interface RolesComponentProps {
-  values: UserFieldCreateType | UserFieldUpdateType;
+export interface CinemasComponentProps {
+  values: HallFieldsType;
   handleChange: (event: SelectChangeEvent) => void;
-  rolesState: RolesState;
+  cinemasState: CinemaState;
 }
 
-export default function RolesComponent({ values, handleChange, rolesState }: RolesComponentProps) {
+export default function CinemasComponent({ values, handleChange, cinemasState }: CinemasComponentProps) {
   const theme = useTheme();
+  console.log(cinemasState.cinemas)
   return (
     <FormControl
       variant="outlined"
       margin="normal"
-      error={!values?.roleId}
+      error={!values?.cinemaId}
       style={{
         width: "350px",
       }}>
-      <InputLabel id="demo-simple-select-error-label">Role</InputLabel>
+      <InputLabel id="demo-simple-select-error-label">Cinema</InputLabel>
       <Select
         labelId="demo-simple-select-error-label"
         id="demo-simple-select-error"
-        value={values.roleId}
+        value={values?.cinemaId}
         label="Role"
         onChange={handleChange}
         input={<OutlinedInput label="Roles" style={{
@@ -45,14 +42,14 @@ export default function RolesComponent({ values, handleChange, rolesState }: Rol
           <em>None</em>
         </MenuItem>
         {
-          rolesState?.roles?.map((value) => (
+          cinemasState?.cinemas?.map((value) => (
             <MenuItem value={value.id} key={value.id}>{value.name}</MenuItem>
           ))
         }
       </Select>
       <FormHelperText
         style={{ minWidth: "150px", minHeight: "20px", color: theme.palette.error.main }}>
-        {!values?.roleId ? "Please select role" : ""}
+        {!values?.cinemaId ? "Please select cinema" : ""}
       </FormHelperText>
     </FormControl>
   );

@@ -3,44 +3,40 @@ import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { RootState } from "@/modules/shared/redux/store";
 import { HYDRATE } from "next-redux-wrapper";
 import { ManagementState } from "@/modules/shared/types/management-state";
-import { UserType } from "@/modules/dashboard/user-management/types/user-type";
+import { HallDetailsType, HallType } from "@/modules/dashboard/hall-management/types/hall-type";
 import {
-  userGetAllActionAsync,
-  userGetOneActionAsync,
-  userCreateAsync,
-  userUpdateAsync,
-  userDeleteAsync,
-  userChangeBlockStatusAsync,
-} from "@/modules/dashboard/user-management/action";
+  hallCreateAsync,
+  hallDeleteAsync,
+  hallGetAllActionAsync, hallGetOneActionAsync,
+  hallUpdateAsync,
+} from "@/modules/dashboard/hall-management/action";
 
-export interface UserManagementState extends ManagementState {
-  loadingStatusChangeLockStatus: string;
-  user: UserType | null;
+export interface HallManagementState extends ManagementState {
+  hall: HallDetailsType | null;
 }
 
-const initialState: UserManagementState = {
+const initialState: HallManagementState = {
   loadingStatusGetAll: LOADING_STATUSES.PENDING,
   loadingStatusGetOne: LOADING_STATUSES.PENDING,
   loadingStatusUpdate: LOADING_STATUSES.PENDING,
   loadingStatusCreate: LOADING_STATUSES.PENDING,
   loadingStatusDelete: LOADING_STATUSES.PENDING,
-  loadingStatusChangeLockStatus: LOADING_STATUSES.PENDING,
   errorInfo: {
     message: "",
     error: "",
   },
-  user: null,
+  hall: null,
 };
 
-export const userEntityAdapter = createEntityAdapter<UserType>({
+export const hallManagementAdapter = createEntityAdapter<HallType>({
     selectId: model => model?.id,
   },
 );
 
-const initialAdapterState = userEntityAdapter.getInitialState(initialState);
+const initialAdapterState = hallManagementAdapter.getInitialState(initialState);
 
-const userManagementSlice = createSlice({
-  name: "user-management",
+const hallManagementSlice = createSlice({
+  name: "hall-management",
   initialState: initialAdapterState,
   reducers: {
     clearErrors(state) {
@@ -49,18 +45,18 @@ const userManagementSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(userGetAllActionAsync.pending.type,
+      .addCase(hallGetAllActionAsync.pending.type,
         (state) => {
           state.loadingStatusGetAll = LOADING_STATUSES.LOADING;
           state.errorInfo = null;
         })
-      .addCase(userGetAllActionAsync.fulfilled.type,
-        (state, action: PayloadAction<UserType[]>) => {
+      .addCase(hallGetAllActionAsync.fulfilled.type,
+        (state, action: PayloadAction<HallType[]>) => {
           state.loadingStatusGetAll = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
-          userEntityAdapter.setAll(state, action.payload);
+          hallManagementAdapter.setAll(state, action.payload);
         })
-      .addCase(userGetAllActionAsync.rejected.type,
+      .addCase(hallGetAllActionAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatusGetAll = LOADING_STATUSES.FAILED;
           state.errorInfo = {
@@ -69,18 +65,18 @@ const userManagementSlice = createSlice({
           };
         })
 
-      .addCase(userGetOneActionAsync.pending.type,
+      .addCase(hallGetOneActionAsync.pending.type,
         (state) => {
           state.loadingStatusGetOne = LOADING_STATUSES.LOADING;
           state.errorInfo = null;
         })
-      .addCase(userGetOneActionAsync.fulfilled.type,
-        (state, action: PayloadAction<UserType>) => {
+      .addCase(hallGetOneActionAsync.fulfilled.type,
+        (state, action: PayloadAction<HallDetailsType>) => {
           state.loadingStatusGetOne = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
-          state.user = action.payload;
+          state.hall = action.payload;
         })
-      .addCase(userGetOneActionAsync.rejected.type,
+      .addCase(hallGetOneActionAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatusGetOne = LOADING_STATUSES.FAILED;
           state.errorInfo = {
@@ -89,18 +85,18 @@ const userManagementSlice = createSlice({
           };
         })
 
-      .addCase(userUpdateAsync.pending.type,
+      .addCase(hallUpdateAsync.pending.type,
         (state) => {
           state.loadingStatusUpdate = LOADING_STATUSES.LOADING;
           state.errorInfo = null;
         })
-      .addCase(userUpdateAsync.fulfilled.type,
-        (state, action: PayloadAction<UserType>) => {
+      .addCase(hallUpdateAsync.fulfilled.type,
+        (state, action: PayloadAction<HallType>) => {
           state.loadingStatusUpdate = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
-          userEntityAdapter.updateOne(state, { id: action?.payload?.id, changes: action?.payload });
+          hallManagementAdapter.updateOne(state, { id: action?.payload?.id, changes: action?.payload });
         })
-      .addCase(userUpdateAsync.rejected.type,
+      .addCase(hallUpdateAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatusUpdate = LOADING_STATUSES.FAILED;
           state.errorInfo = {
@@ -109,38 +105,18 @@ const userManagementSlice = createSlice({
           };
         })
 
-      .addCase(userChangeBlockStatusAsync.pending.type,
-        (state) => {
-          state.loadingStatusUpdate = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(userChangeBlockStatusAsync.fulfilled.type,
-        (state, action: PayloadAction<UserType>) => {
-          state.loadingStatusUpdate = LOADING_STATUSES.IDLE;
-          state.errorInfo = null;
-          userEntityAdapter.updateOne(state, { id: action?.payload?.id, changes: action?.payload });
-        })
-      .addCase(userChangeBlockStatusAsync.rejected.type,
-        (state, action: PayloadAction<any>) => {
-          state.loadingStatusUpdate = LOADING_STATUSES.FAILED;
-          state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
-          };
-        })
-
-      .addCase(userCreateAsync.pending.type,
+      .addCase(hallCreateAsync.pending.type,
         (state) => {
           state.loadingStatusCreate = LOADING_STATUSES.LOADING;
           state.errorInfo = null;
         })
-      .addCase(userCreateAsync.fulfilled.type,
-        (state, action: PayloadAction<UserType>) => {
+      .addCase(hallCreateAsync.fulfilled.type,
+        (state, action: PayloadAction<HallType>) => {
           state.loadingStatusCreate = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
-          userEntityAdapter.addOne(state, action?.payload);
+          hallManagementAdapter.addOne(state, action?.payload);
         })
-      .addCase(userCreateAsync.rejected.type,
+      .addCase(hallCreateAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatusCreate = LOADING_STATUSES.FAILED;
           state.errorInfo = {
@@ -149,18 +125,18 @@ const userManagementSlice = createSlice({
           };
         })
 
-      .addCase(userDeleteAsync.pending.type,
+      .addCase(hallDeleteAsync.pending.type,
         (state) => {
           state.loadingStatusDelete = LOADING_STATUSES.LOADING;
           state.errorInfo = null;
         })
-      .addCase(userDeleteAsync.fulfilled.type,
+      .addCase(hallDeleteAsync.fulfilled.type,
         (state, action: PayloadAction<string>) => {
           state.loadingStatusDelete = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
-          userEntityAdapter.removeOne(state, action?.payload);
+          hallManagementAdapter.removeOne(state, action?.payload);
         })
-      .addCase(userDeleteAsync.rejected.type,
+      .addCase(hallDeleteAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatusDelete = LOADING_STATUSES.FAILED;
           state.errorInfo = {
@@ -170,29 +146,29 @@ const userManagementSlice = createSlice({
         })
 
       .addCase(HYDRATE, (state, action: AnyAction) => {
-        if (action.payload?.user_management_reducer?.errorInfo) {
+        if (action.payload?.hall_management_reducer?.errorInfo) {
           state.loadingStatusGetAll = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.user_management_reducer?.errorInfo?.message,
-            error: action.payload?.user_management_reducer?.errorInfo?.error,
+            message: action.payload?.hall_management_reducer?.errorInfo?.message,
+            error: action.payload?.hall_management_reducer?.errorInfo?.error,
           };
-          userEntityAdapter.setAll(state, []);
+          hallManagementAdapter.setAll(state, []);
         } else {
           state.loadingStatusGetAll = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
-          userEntityAdapter.setAll(state, action.payload.user_management_reducer?.entities);
+          hallManagementAdapter.setAll(state, action.payload.hall_management_reducer?.entities);
         }
       });
   },
 });
 
-export default userManagementSlice.reducer;
+export default hallManagementSlice.reducer;
 
-const userManagementSelectors = userEntityAdapter.getSelectors<RootState>(
-  state => state.user_management_reducer);
+const hallManagementSelectors = hallManagementAdapter.getSelectors<RootState>(
+  state => state.hall_management_reducer);
 
-export const { clearErrors } = userManagementSlice.actions;
+export const { clearErrors } = hallManagementSlice.actions;
 
 export const {
   selectAll,
-} = userManagementSelectors;
+} = hallManagementSelectors;

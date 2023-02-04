@@ -15,8 +15,6 @@ export default function RoleContainer({ values, setFieldValue }: RolesContainerP
   const rolesState = useAppSelector((x) => x.roles_reducer);
 
   const handleChange = (event: SelectChangeEvent) => {
-    console.log(event.target.value)
-    console.log(setFieldValue)
     setFieldValue("roleId", event.target.value);
   };
 

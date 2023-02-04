@@ -21,3 +21,7 @@ export const IMAGE_URL = (imageName) => API_URL + `/images/${imageName}`;
 
 export const USER_MANAGEMENT = "/user-management";
 export const ROLES = "/roles";
+
+export const HALL_MANAGEMENT = "/hall-management";
+export const CINEMAS = "/cinemas";
+export const SEAT_TYPES = "/seat-types";

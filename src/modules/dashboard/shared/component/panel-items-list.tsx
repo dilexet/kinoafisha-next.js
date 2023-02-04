@@ -26,8 +26,8 @@ export default function PanelItemsList() {
       icon: <TvIcon />,
     },
     {
-      name: "Hall management (dev)",
-      href: "/dashboard/test1",
+      name: "Hall management",
+      href: "/dashboard/halls",
       icon: <WeekendIcon />,
     },
     {

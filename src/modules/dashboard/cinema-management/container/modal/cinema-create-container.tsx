@@ -1,5 +1,4 @@
 import CinemaForm from "@/modules/dashboard/cinema-management/component/cinema-form";
-import { useTheme } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
 import { useEffect, useState } from "react";
 import {
@@ -11,7 +10,6 @@ import { cinemaCreateAsync } from "@/modules/dashboard/cinema-management/action"
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 
 export default function CinemaCreateContainer({ handleCloseModal, textFields }) {
-  const theme = useTheme();
   const dispatch = useAppDispatch();
   const cinemaState = useAppSelector((x) => x.cinema_management_reducer);
 
