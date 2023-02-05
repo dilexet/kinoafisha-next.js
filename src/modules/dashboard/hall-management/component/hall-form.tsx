@@ -8,6 +8,7 @@ import FormButtonGroup from "@/modules/dashboard/shared/component/form-button-gr
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import hallValidationSchema from "@/modules/dashboard/hall-management/utils/hall-validation-schema";
 import CinemasContainer from "@/modules/cinemas/container";
+import HallPlanFormContainer from "@/modules/dashboard/hall-management/container/hall-plan-form-container";
 
 export default function HallForm({
                                    title, hallState,
@@ -37,8 +38,11 @@ export default function HallForm({
                 <Grid
                   container
                   direction="column"
-                  justifyContent="center"
-                  alignItems="flex-start"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
                   <Grid item>
                     <FormTextField
@@ -59,6 +63,7 @@ export default function HallForm({
                   <Grid item>
                     <CinemasContainer values={values} setFieldValue={setFieldValue} />
                   </Grid>
+                  <HallPlanFormContainer values={values} setFieldValue={setFieldValue} />
                 </Grid>
                 <FormButtonGroup handleCancel={handleCancel} isLoading={
                   hallState?.loadingStatusCreate === LOADING_STATUSES.LOADING ||

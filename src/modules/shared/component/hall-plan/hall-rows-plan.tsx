@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import RowNumbers from "@/modules/shared/component/hall-plan/row-numbers";
 import React from "react";
 import HallSeatsPlan from "@/modules/shared/component/hall-plan/hall-seats-plan";
+import { calculateWidthBySeats } from "@/modules/shared/utils/calculate-width";
 
 export default function HallRowsPlan({ row }: { row: RowType }) {
   return (
@@ -11,6 +12,7 @@ export default function HallRowsPlan({ row }: { row: RowType }) {
       justifyContent: "center",
       alignItems: "center",
       margin: "20px 0",
+      minWidth: calculateWidthBySeats(row?.seats?.length),
     }}>
       <RowNumbers numberRow={row?.numberRow} />
       <Box

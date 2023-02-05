@@ -11,9 +11,9 @@ function normalize(r: number, g: number, b: number) {
 }
 
 export function generateColor(seatTypeId: string) {
-  const r_random = seedrandom(`red-${seatTypeId}-red-${seatTypeId}-red`);
-  const g_random = seedrandom(`green-${seatTypeId}-green-${seatTypeId}-green`);
-  const b_random = seedrandom(`blue-${seatTypeId}-blue-${seatTypeId}-blue`);
+  const r_random = seedrandom(`blue-${seatTypeId}-red-${seatTypeId}-green`);
+  const g_random = seedrandom(`red-${seatTypeId}-green-${seatTypeId}-blue`);
+  const b_random = seedrandom(`green-${seatTypeId}-blue-${seatTypeId}-red`);
 
   const { r_normalize, g_normalize, b_normalize } = normalize(r_random(), g_random(), b_random());
 

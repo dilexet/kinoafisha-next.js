@@ -18,7 +18,6 @@ export interface CinemasComponentProps {
 
 export default function CinemasComponent({ values, handleChange, cinemasState }: CinemasComponentProps) {
   const theme = useTheme();
-  console.log(cinemasState.cinemas)
   return (
     <FormControl
       variant="outlined"

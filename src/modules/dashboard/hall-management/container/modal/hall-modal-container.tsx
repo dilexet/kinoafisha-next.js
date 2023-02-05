@@ -5,6 +5,7 @@ import { useAppDispatch } from "@/modules/shared/redux/hooks";
 import { useCallback, useEffect, useState } from "react";
 import { cinemasGetAllAsync } from "@/modules/cinemas/action";
 import { seatTypesGetAllAsync } from "@/modules/seat-types/action";
+import HallUpdateContainer from "@/modules/dashboard/hall-management/container/modal/hall-update-container";
 
 export default function HallModalContainer({ modalType, handleCloseModal }) {
   const dispatch = useAppDispatch();
@@ -41,6 +42,11 @@ export default function HallModalContainer({ modalType, handleCloseModal }) {
   if (modalType === ModalActionTypes.CREATE) {
     return (
       <HallCreateContainer handleCloseModal={handleCloseModal} />
+    );
+  }
+  if (modalType === ModalActionTypes.UPDATE) {
+    return (
+      <HallUpdateContainer handleCloseModal={handleCloseModal} />
     );
   }
 }
