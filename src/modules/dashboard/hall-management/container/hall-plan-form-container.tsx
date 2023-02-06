@@ -5,6 +5,8 @@ import {
   SeatFieldsType, SeatTypePriceFieldsType,
 } from "@/modules/dashboard/hall-management/types/hall-field-types";
 import HallPlanForm from "@/modules/dashboard/hall-management/component/hall-plan-form";
+import { useAppSelector } from "@/modules/shared/redux/hooks";
+import { SeatTypeState } from "@/modules/seat-types/reducer";
 
 export default function HallPlanFormContainer({
                                                 values,
@@ -110,7 +112,7 @@ export default function HallPlanFormContainer({
       setFieldValue("seatTypePrices", seatTypeIds);
       setIsSeatChange(false);
     }
-  }, [isSeatChange, setFieldValue, values?.rows]);
+  }, [isSeatChange, setFieldValue, values?.rows, values?.seatTypePrices]);
 
   const handleChangeSeatTypePrices = (event, seatTypeId) => {
     const price = event?.target?.value == "" ? event?.target?.value : +event?.target?.value;
@@ -121,6 +123,17 @@ export default function HallPlanFormContainer({
     setFieldValue("seatTypePrices", seatTypeIds);
   };
 
+  const seatTypeState = useAppSelector<SeatTypeState>(x => x.seat_types_reducer);
+  const [maxWidth, setMaxWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.onresize = () => {
+      if (maxWidth - 240 > window.innerWidth || window.innerWidth > maxWidth + 240) {
+        setMaxWidth(window.innerWidth);
+      }
+    };
+  }, [maxWidth]);
+
   return (
     <HallPlanForm rows={values.rows} handleSelectSeatType={handleSelectSeatType}
                   selectedSeatType={selectedSeatType}
@@ -129,7 +142,8 @@ export default function HallPlanFormContainer({
                   numberOfRows={numberOfRows} numberOfSeats={numberOfSeats}
                   handleSeatClick={handleSeatClick}
                   handleChangeSeatTypePrices={handleChangeSeatTypePrices}
-                  seatTypePrices={values?.seatTypePrices}
+                  seatTypePrices={values?.seatTypePrices} seatTypeState={seatTypeState}
+                  maxWidth={maxWidth}
     />
   );
 }

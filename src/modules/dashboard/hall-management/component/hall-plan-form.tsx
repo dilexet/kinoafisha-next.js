@@ -6,8 +6,6 @@ import { calculateWidthBySeats } from "@/modules/shared/utils/calculate-width";
 import SeatsPlan from "@/modules/dashboard/hall-management/component/hall-plan/seats-plan";
 import SeatTypesPlan from "@/modules/dashboard/hall-management/component/hall-plan/seat-types-plan";
 import React from "react";
-import { useAppSelector } from "@/modules/shared/redux/hooks";
-import { SeatTypeState } from "@/modules/seat-types/reducer";
 
 export default function HallPlanForm({
                                        numberOfRows,
@@ -19,9 +17,9 @@ export default function HallPlanForm({
                                        handleSelectSeatType,
                                        handleSeatClick,
                                        handleChangeSeatTypePrices,
-                                       seatTypePrices,
+                                       seatTypePrices, maxWidth, seatTypeState,
                                      }) {
-  const seatTypeState = useAppSelector<SeatTypeState>(x => x.seat_types_reducer);
+
   return (
     <>
       <Grid item>
@@ -90,6 +88,7 @@ export default function HallPlanForm({
                         style={{
                           display: "flex",
                           width: calculateWidthBySeats(row?.seats?.length),
+                          maxWidth: `${maxWidth * 0.8}px`,
                           margin: "20px 0",
                         }}
                   >
