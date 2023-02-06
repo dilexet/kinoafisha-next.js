@@ -12,6 +12,8 @@ export default function HallPlanFormContainer({
                                                 values,
                                                 setFieldValue,
                                               }: { values: HallFieldsType, setFieldValue: any }) {
+  const seatTypeState = useAppSelector<SeatTypeState>(x => x.seat_types_reducer);
+
   const [numberOfRows, setNumberOfRows] = useState(values?.rows?.length);
   const [numberOfSeats, setNumberOfSeats] = useState([]);
 
@@ -19,6 +21,7 @@ export default function HallPlanFormContainer({
   const [isSeatChange, setIsSeatChange] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [maxWidth, setMaxWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     if (isLoading === true) {
@@ -77,6 +80,10 @@ export default function HallPlanFormContainer({
             return seat;
           }),
         } : row));
+      // const temp = values?.rows;
+      // const foundRow = temp.find(x => x.numberRow === rowNumber);
+      // const foundSeat = foundRow?.seats?.find(x => x.numberSeat === seatNumber);
+      // foundSeat.seatTypeId = selectedSeatType;
       setFieldValue("rows", newRows);
     } else {
       const newRows = values?.rows?.map((row) =>
@@ -97,6 +104,7 @@ export default function HallPlanFormContainer({
     setIsSeatChange(true);
   };
 
+  console.log(values);
 
   useEffect(() => {
     if (isSeatChange) {
@@ -105,7 +113,7 @@ export default function HallPlanFormContainer({
         if (seat.seatTypeId && !seatTypeIds.find(x => x.seatTypeId === seat?.seatTypeId)) {
           seatTypeIds.push({
             seatTypeId: seat?.seatTypeId,
-            price: values?.seatTypePrices?.find(x => x.seatTypeId === seat?.seatTypeId).price ?? 0,
+            price: values?.seatTypePrices?.find(x => x.seatTypeId === seat?.seatTypeId)?.price ?? 0,
           });
         }
       }));
@@ -122,9 +130,6 @@ export default function HallPlanFormContainer({
     } : el));
     setFieldValue("seatTypePrices", seatTypeIds);
   };
-
-  const seatTypeState = useAppSelector<SeatTypeState>(x => x.seat_types_reducer);
-  const [maxWidth, setMaxWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     window.onresize = () => {

@@ -1,10 +1,15 @@
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { seatTypesGetAllAsync } from "@/modules/seat-types/action";
+import { generateColor } from "@/modules/shared/utils/generate-color";
 
-export interface SeatTypeType {
+export interface SeatTypeTypeRequest {
   id: string;
   name: string;
+}
+
+export interface SeatTypeType extends SeatTypeTypeRequest {
+  color: string;
 }
 
 export interface SeatTypeState {
@@ -37,10 +42,17 @@ const seatTypesSlice = createSlice({
           state.errorInfo = null;
         })
       .addCase(seatTypesGetAllAsync.fulfilled.type,
-        (state, action: PayloadAction<SeatTypeType[]>) => {
+        (state, action: PayloadAction<SeatTypeTypeRequest[]>) => {
           state.loadingStatus = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
-          state.seatTypes = action?.payload;
+          state.seatTypes = action.payload?.map((value) => {
+            const seatType: SeatTypeType = {
+              id: value?.id,
+              name: value?.name,
+              color: generateColor(value?.id),
+            };
+            return seatType;
+          });
         })
       .addCase(seatTypesGetAllAsync.rejected.type,
         (state, action: PayloadAction<any>) => {

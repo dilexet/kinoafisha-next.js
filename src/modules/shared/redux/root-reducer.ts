@@ -5,6 +5,7 @@ import cinema_management_reducer from "@/modules/dashboard/cinema-management/red
 import movie_management_reducer from "@/modules/dashboard/movie-management/reducer";
 import user_management_reducer from "@/modules/dashboard/user-management/reducer";
 import hall_management_reducer from "@/modules/dashboard/hall-management/reducer";
+import session_management_reducer from "@/modules/dashboard/session-management/reducer";
 import upload_image_reducer from "@/modules/upload-image/reducer";
 import genres_reducer from "@/modules/genres/reducer";
 import countries_reducer from "@/modules/countries/reducer";
@@ -25,4 +26,5 @@ export const rootReducer = combineReducers({
   hall_management_reducer,
   cinemas_reducer,
   seat_types_reducer,
+  session_management_reducer,
 });

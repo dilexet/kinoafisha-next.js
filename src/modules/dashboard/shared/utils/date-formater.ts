@@ -4,6 +4,10 @@ export const getYear = (date) => {
   return moment(date).toDate().getFullYear();
 };
 
+export const convertDate = (date) => {
+  return moment(date).format("DD.MM.YYYY HH:mm");
+};
+
 export const convertMinutesToHoursWithMinutes = (minutesNumber: number): string => {
   const hours = Math.trunc(minutesNumber / 60);
   if (hours <= 0) {

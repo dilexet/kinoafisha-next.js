@@ -41,7 +41,7 @@ export default function SeatTypesPlan({ selectedSeatType, handleSelectSeatType }
                       width: selectedSeatType === seatType?.id ? "35px" : "30px",
                       height: selectedSeatType === seatType?.id ? "35px" : "30px",
                       border: "5px solid",
-                      borderColor: generateColor(seatType?.id),
+                      borderColor: seatType?.color,
                       borderRadius: "5px",
                       margin: "0 10px",
                       cursor: "pointer",

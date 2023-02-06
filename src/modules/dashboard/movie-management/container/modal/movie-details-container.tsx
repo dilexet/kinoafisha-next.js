@@ -4,7 +4,7 @@ import { GridItemsType } from "@/modules/dashboard/shared/types/grid-items-type"
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import MovieDetails from "@/modules/dashboard/movie-management/component/movie-details";
 import moment from "moment";
-import { convertMinutesToHoursWithMinutes } from "@/modules/dashboard/movie-management/utils/date-formater";
+import { convertMinutesToHoursWithMinutes } from "@/modules/dashboard/shared/utils/date-formater";
 
 export default function MovieDetailsContainer() {
   const movieState = useAppSelector((x) => x.movie_management_reducer);

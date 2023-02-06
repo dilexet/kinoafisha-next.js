@@ -1,6 +1,6 @@
 import { TableCell, TableRow, Avatar, Box } from "@mui/material";
 import { MovieRowComponentProps } from "@/modules/dashboard/movie-management/types/movie-row-props";
-import { convertMinutesToHoursWithMinutes, getYear } from "@/modules/dashboard/movie-management/utils/date-formater";
+import { convertMinutesToHoursWithMinutes, getYear } from "@/modules/dashboard/shared/utils/date-formater";
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
 import UtilsButtonGroup from "@/modules/dashboard/shared/component/utils-button-group";
 

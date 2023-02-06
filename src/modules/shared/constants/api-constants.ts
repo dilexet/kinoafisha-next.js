@@ -25,3 +25,5 @@ export const ROLES = "/roles";
 export const HALL_MANAGEMENT = "/hall-management";
 export const CINEMAS = "/cinemas";
 export const SEAT_TYPES = "/seat-types";
+
+export const SESSION_MANAGEMENT = "/session-management";

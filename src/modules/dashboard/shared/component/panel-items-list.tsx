@@ -31,8 +31,8 @@ export default function PanelItemsList() {
       icon: <WeekendIcon />,
     },
     {
-      name: "Session management (dev)",
-      href: "/dashboard/test1",
+      name: "Session management",
+      href: "/dashboard/sessions",
       icon: <SmartDisplayIcon />,
     },
   ];

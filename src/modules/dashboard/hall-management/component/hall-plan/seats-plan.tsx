@@ -1,7 +1,8 @@
 import { RowFieldsType } from "@/modules/dashboard/hall-management/types/hall-field-types";
 import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
-import { generateColor } from "@/modules/shared/utils/generate-color";
+import { useAppSelector } from "@/modules/shared/redux/hooks";
+import { SeatTypeState } from "@/modules/seat-types/reducer";
 
 export default function SeatsPlan({
                                     row,
@@ -12,6 +13,7 @@ export default function SeatsPlan({
   handleSeatClick: (rowNumber, seatNumber, selectedSeatType) => void,
   selectedSeatType: string
 }) {
+  const seatTypeState = useAppSelector<SeatTypeState>(x => x.seat_types_reducer);
   return (
     <Grid item
           style={{
@@ -40,7 +42,7 @@ export default function SeatsPlan({
                 justifyContent: "center",
                 textAlign: "center",
                 cursor: "pointer",
-                borderColor: seat?.seatTypeId ? generateColor(seat?.seatTypeId) : "",
+                borderColor: seat?.seatTypeId ? seatTypeState?.seatTypes?.find(x => x?.id === seat?.seatTypeId)?.color : "",
               }}>
               {seat?.numberSeat}
             </Box>
