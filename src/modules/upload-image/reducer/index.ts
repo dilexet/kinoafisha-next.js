@@ -1,5 +1,5 @@
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
-import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { uploadImageAsync } from "@/modules/upload-image/action";
 
 export interface ImageUploadState {
