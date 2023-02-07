@@ -1,17 +1,9 @@
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
 import { SelectChangeEvent } from "@mui/material";
-import { SessionFieldsType } from "@/modules/dashboard/session-management/types/session-field-types";
 import HallsComponent from "@/modules/halls/component";
 import { useCallback, useEffect, useState } from "react";
 import { hallsGetAllAsync } from "@/modules/halls/action";
-
-export interface HallContainerProps {
-  values: SessionFieldsType;
-  setFieldValue: any;
-  touched: any;
-  errors: any;
-  handleBlur: any;
-}
+import { HallContainerProps } from "@/modules/halls/types/hall-props";
 
 export default function HallsContainer({ values, setFieldValue, handleBlur, errors, touched }: HallContainerProps) {
   const hallsState = useAppSelector((x) => x.halls_reducer);

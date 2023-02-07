@@ -5,19 +5,9 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-  SelectChangeEvent, useTheme,
+  useTheme,
 } from "@mui/material";
-import { SessionFieldsType } from "@/modules/dashboard/session-management/types/session-field-types";
-import { HallState } from "@/modules/halls/reducer";
-
-export interface HallsComponentProps {
-  values: SessionFieldsType;
-  handleChange: (event: SelectChangeEvent) => void;
-  hallsState: HallState;
-  touched: any;
-  errors: any;
-  handleBlur: any;
-}
+import { HallsComponentProps } from "@/modules/halls/types/hall-props";
 
 export default function HallsComponent({
                                          values,

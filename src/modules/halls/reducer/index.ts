@@ -1,11 +1,7 @@
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { hallsGetAllAsync } from "@/modules/halls/action";
-
-export interface HallType {
-  id: string;
-  name: string;
-}
+import { HallType } from "@/modules/halls/types/hall-type";
 
 export interface HallState {
   loadingStatus: string;
