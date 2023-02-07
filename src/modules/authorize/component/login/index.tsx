@@ -18,6 +18,7 @@ import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { LoginComponentProps } from "@/modules/authorize/types/login/login-component-props";
 import { handleErrors } from "@/modules/shared/utils/handle-errors";
 import AuthorizeButtonContainer from "@/modules/authorize/container/authorize-button-container";
+import { login_messages } from "@/modules/authorize/constants/messages";
 
 export default function LoginComponent({
                                          authorizeState,
@@ -39,7 +40,7 @@ export default function LoginComponent({
         </Avatar>
 
         <Typography component="h1" variant="h5">
-          Sign in
+          {login_messages.title}
         </Typography>
         <Typography component="h1" variant="h5" fontStyle={{ color: "red" }}>
           {
@@ -104,7 +105,7 @@ export default function LoginComponent({
                   <Grid item xs>
                     <LinkMaterial color="inherit" variant="body2" style={{ cursor: "pointer" }}
                                   onClick={handleNavigateToSignUp}>
-                      {"Don't have an account? Sign Up"}
+                      {login_messages.thereAreAccount}
                     </LinkMaterial>
                   </Grid>
                 </Grid>

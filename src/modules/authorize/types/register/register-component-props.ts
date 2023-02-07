@@ -2,7 +2,7 @@ import React from "react";
 import { RegisterFieldValues } from "@/modules/authorize/constants/register-field-values";
 import { AuthorizeState } from "@/modules/authorize/reducer";
 
-export type RegisterComponentProps = {
+export interface RegisterComponentProps {
   authorizeState: AuthorizeState,
   rememberMe: boolean,
   setRememberMe: React.Dispatch<React.SetStateAction<boolean>>,

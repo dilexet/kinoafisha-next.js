@@ -9,7 +9,9 @@ import axiosInstance from "@/modules/shared/utils/axios-creater";
 import { LoginActionArgs } from "@/modules/authorize/types/login/login-action-args";
 import { RegisterActionArgs } from "@/modules/authorize/types/register/register-action-args";
 import { getTokens, removeTokens, saveTokens } from "@/modules/authorize/utils/token-service";
+import { toastr } from "react-redux-toastr";
 
+const title = "Authorize";
 export const loginActionAsync = createAsyncThunk(
   "authorize/login",
   async (loginActionArgs: LoginActionArgs, thunkAPI) => {
@@ -18,8 +20,10 @@ export const loginActionAsync = createAsyncThunk(
         LOGIN_ENDPOINT, loginActionArgs.data,
       );
       saveTokens(loginActionArgs.rememberMe, response?.data);
+      toastr.success(title, "Login completed successfully");
       return response?.data;
     } catch (err) {
+      toastr.error(title, "Login completed with error");
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },
@@ -33,8 +37,10 @@ export const registerActionAsync = createAsyncThunk(
         REGISTER_ENDPOINT, registerActionArgs.data,
       );
       saveTokens(registerActionArgs.rememberMe, response?.data);
+      toastr.success(title, "Register completed successfully");
       return response?.data;
     } catch (err) {
+      toastr.error(title, "Register completed with error");
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },
@@ -50,8 +56,10 @@ export const logoutActionAsync = createAsyncThunk(
       const response = await axiosInstance.post(
         LOGOUT_ENDPOINT, { refreshToken: tokens.refreshToken },
       );
+      toastr.success(title, "Logout completed successfully");
       return response?.data;
     } catch (err) {
+      toastr.error(title, "Logout completed with error");
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },
@@ -86,8 +94,10 @@ export const googleAuthorizeAsync = createAsyncThunk(
           GOOGLE_AUTHORIZE_ENDPOINT,
           { token: token });
       saveTokens(true, response?.data);
+      toastr.success(title, "Google authorize completed successfully");
       return response?.data;
     } catch (err) {
+      toastr.success(title, "Google authorize completed with error");
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   });

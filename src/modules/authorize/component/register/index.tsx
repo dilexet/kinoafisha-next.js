@@ -18,6 +18,7 @@ import { RegisterComponentProps } from "@/modules/authorize/types/register/regis
 import { RegisterFieldValues } from "@/modules/authorize/constants/register-field-values";
 import registerValidationSchema from "@/modules/authorize/utils/register-validation-schema";
 import AuthorizeButtonContainer from "@/modules/authorize/container/authorize-button-container";
+import { register_messages } from "@/modules/authorize/constants/messages";
 
 export default function RegisterComponent({
                                             authorizeState,
@@ -39,7 +40,7 @@ export default function RegisterComponent({
         </Avatar>
 
         <Typography component="h1" variant="h5">
-          Sign up
+          {register_messages.title}
         </Typography>
         <Typography component="h1" variant="h5" fontStyle={{ color: "red" }}>
           {
@@ -130,7 +131,7 @@ export default function RegisterComponent({
                   <Grid item xs>
                     <LinkMaterial color="inherit" variant="body2" style={{ cursor: "pointer" }}
                                   onClick={handleNavigateToSignIn}>
-                      Already have an account? Sign in
+                      {register_messages.thereAreNotAccount}
                     </LinkMaterial>
                   </Grid>
                 </Grid>

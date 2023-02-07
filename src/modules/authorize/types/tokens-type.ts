@@ -1,9 +1,9 @@
-export type TokensType = {
+export interface TokensType {
   accessToken: string,
   refreshToken: string
 }
 
-export type TokenResultType = {
+export interface TokenResultType {
   accessToken: string,
   refreshToken: string,
   rememberMe: boolean

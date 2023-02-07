@@ -1,4 +1,4 @@
-export type AuthorizeResponse = {
-  accessToken: string
-  refreshToken: string
+export interface AuthorizeResponse {
+  accessToken: string;
+  refreshToken: string;
 }
