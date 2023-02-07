@@ -1,11 +1,7 @@
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { countriesGetAllAsync } from "@/modules/countries/action";
-
-export interface CountryType {
-  id: string;
-  name: string;
-}
+import { CountryType } from "@/modules/countries/types/country-type";
 
 export interface CountryState {
   loadingStatus: string;
