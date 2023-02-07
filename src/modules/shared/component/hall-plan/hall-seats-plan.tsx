@@ -1,11 +1,11 @@
-import { SeatType } from "@/modules/dashboard/hall-management/types/hall-type";
 import { Box, Fade, Tooltip, useTheme } from "@mui/material";
 import ToolTipSeatMenu from "@/modules/shared/component/hall-plan/tool-tip-seat-menu";
 import CropSquareIcon from "@mui/icons-material/CropSquare";
 import React from "react";
 import { generateColor } from "@/modules/shared/utils/generate-color";
+import { HallSeatsPlanProps } from "@/modules/shared/types/hall-seats-plan-props";
 
-export default function HallSeatsPlan({ seat, numberRow }: { seat: SeatType, numberRow: number }) {
+export default function HallSeatsPlan({ seat, numberRow }: HallSeatsPlanProps) {
   const theme = useTheme();
   return (
     <Box key={seat.id}

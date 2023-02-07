@@ -1,6 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
+import { RowNumbersProps } from "@/modules/shared/types/row-numbers-props";
 
-export default function RowNumbers({ numberRow }: { numberRow: number }) {
+export default function RowNumbers({ numberRow }: RowNumbersProps) {
   const theme = useTheme();
   return (
     <Box

@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
-import { HallDetailsType } from "@/modules/dashboard/hall-management/types/hall-type";
 import React from "react";
 import HallRowsPlan from "@/modules/shared/component/hall-plan/hall-rows-plan";
+import { HallPlanProps } from "@/modules/shared/types/hall-plan-props";
 
-export default function HallPlan({ hall }: { hall: HallDetailsType }) {
+export default function HallPlan({ hall }: HallPlanProps) {
   return (
     <Box
       style={{

@@ -1,11 +1,11 @@
-import { RowType } from "@/modules/dashboard/hall-management/types/hall-type";
 import { Box } from "@mui/material";
 import RowNumbers from "@/modules/shared/component/hall-plan/row-numbers";
 import React from "react";
 import HallSeatsPlan from "@/modules/shared/component/hall-plan/hall-seats-plan";
 import { calculateWidthBySeats } from "@/modules/shared/utils/calculate-width";
+import { HallRowsPlanProps } from "@/modules/shared/types/hall-rows-plan-props";
 
-export default function HallRowsPlan({ row }: { row: RowType }) {
+export default function HallRowsPlan({ row }: HallRowsPlanProps) {
   return (
     <Box style={{
       display: "flex",
