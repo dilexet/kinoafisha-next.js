@@ -2,13 +2,16 @@ import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { seatTypesGetAllAsync } from "@/modules/seat-types/action";
 import { generateColor } from "@/modules/shared/utils/generate-color";
-import { SeatTypeType, SeatTypeTypeRequest } from "@/modules/seat-types/types/seat-type-type";
+import {
+  SeatTypeType,
+  SeatTypeTypeRequest,
+} from "@/modules/seat-types/types/seat-type-type";
 
 export interface SeatTypeState {
   loadingStatus: string;
   errorInfo: {
-    message: string,
-    error: string,
+    message: string;
+    error: string;
   };
   seatTypes: SeatTypeType[];
 }
@@ -26,14 +29,14 @@ const seatTypesSlice = createSlice({
   name: "seat-types",
   initialState: initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(seatTypesGetAllAsync.pending.type,
-        (state) => {
-          state.loadingStatus = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(seatTypesGetAllAsync.fulfilled.type,
+      .addCase(seatTypesGetAllAsync.pending.type, (state) => {
+        state.loadingStatus = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+      })
+      .addCase(
+        seatTypesGetAllAsync.fulfilled.type,
         (state, action: PayloadAction<SeatTypeTypeRequest[]>) => {
           state.loadingStatus = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
@@ -45,15 +48,18 @@ const seatTypesSlice = createSlice({
             };
             return seatType;
           });
-        })
-      .addCase(seatTypesGetAllAsync.rejected.type,
+        },
+      )
+      .addCase(
+        seatTypesGetAllAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message: action.payload?.message,
             error: action.payload?.error,
           };
-        });
+        },
+      );
   },
 });
 

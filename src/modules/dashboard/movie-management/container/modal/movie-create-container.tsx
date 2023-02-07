@@ -2,7 +2,10 @@ import MovieForm from "@/modules/dashboard/movie-management/component/movie-form
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
 import { useEffect, useState } from "react";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
-import { MovieFieldType, MovieFieldValues } from "@/modules/dashboard/movie-management/constants/movie-field-values";
+import {
+  MovieFieldType,
+  MovieFieldValues,
+} from "@/modules/dashboard/movie-management/constants/movie-field-values";
 import { movieCreateAsync } from "@/modules/dashboard/movie-management/action";
 import movieValidationSchema from "@/modules/dashboard/movie-management/utils/movie-validation-schema";
 import { textFields } from "@/modules/dashboard/movie-management/constants/fields";
@@ -20,18 +23,22 @@ export default function MovieCreateContainer({ handleCloseModal }) {
   };
 
   useEffect(() => {
-    if (movieState?.loadingStatusCreate === LOADING_STATUSES.IDLE && wasCreated) {
+    if (
+      movieState?.loadingStatusCreate === LOADING_STATUSES.IDLE &&
+      wasCreated
+    ) {
       handleCloseModal();
     }
   }, [movieState?.loadingStatusCreate, handleCloseModal, wasCreated]);
 
   return (
-    <MovieForm title="Create movie"
-               initialValues={MovieFieldValues}
-               handleSubmit={handleSubmit}
-               handleCancel={handleCloseModal}
-               movieState={movieState}
-               textFields={textFields}
+    <MovieForm
+      title='Create movie'
+      initialValues={MovieFieldValues}
+      handleSubmit={handleSubmit}
+      handleCancel={handleCloseModal}
+      movieState={movieState}
+      textFields={textFields}
     />
   );
 }

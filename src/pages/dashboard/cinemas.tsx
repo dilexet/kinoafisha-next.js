@@ -1,6 +1,9 @@
 import Head from "next/head";
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
-import { clearErrors, selectAll } from "@/modules/dashboard/cinema-management/reducer";
+import {
+  clearErrors,
+  selectAll,
+} from "@/modules/dashboard/cinema-management/reducer";
 import { cinemaGetAllActionAsync } from "@/modules/dashboard/cinema-management/action";
 import { DashboardPageLayout } from "@/pages/dashboard/index";
 import Modal from "@/modules/dashboard/shared/component/modal";
@@ -35,12 +38,9 @@ function Cinemas() {
     await dispatch(cinemaGetAllActionAsync(searchQuery));
   };
 
-  const fetchData = useCallback(
-    async () => {
-      await dispatch(cinemaGetAllActionAsync(null));
-    },
-    [dispatch],
-  );
+  const fetchData = useCallback(async () => {
+    await dispatch(cinemaGetAllActionAsync(null));
+  }, [dispatch]);
 
   useEffect(() => {
     if (isLoading === true) {
@@ -56,18 +56,24 @@ function Cinemas() {
       </Head>
       <main>
         <TableManagementComponent
-          title="Cinemas"
+          title='Cinemas'
           loadData={loadCinemas}
           handleOpenModal={handleOpenModal}
           loadingStatus={cinemaState?.loadingStatusGetAll}
           errorMessage={cinemaState?.errorInfo?.message}
           TableHead={<CinemaTableHead />}
-          TableBody={<CinemaTableBody cinemas={cinemas} handleOpenModal={handleOpenModal} />}
+          TableBody={
+            <CinemaTableBody
+              cinemas={cinemas}
+              handleOpenModal={handleOpenModal}
+            />
+          }
         />
-        <Modal
-          openModal={openModal}
-          handleCloseModal={handleCloseModal}>
-          <CinemaModalContainer modalType={modalType} handleCloseModal={handleCloseModal} />
+        <Modal openModal={openModal} handleCloseModal={handleCloseModal}>
+          <CinemaModalContainer
+            modalType={modalType}
+            handleCloseModal={handleCloseModal}
+          />
         </Modal>
       </main>
     </>

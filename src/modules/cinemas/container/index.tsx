@@ -3,7 +3,13 @@ import { useAppSelector } from "@/modules/shared/redux/hooks";
 import { SelectChangeEvent } from "@mui/material";
 import { CinemaContainerProps } from "@/modules/cinemas/types/cinemas-props";
 
-export default function CinemasContainer({ values, setFieldValue, touched, handleBlur, errors }: CinemaContainerProps) {
+export default function CinemasContainer({
+  values,
+  setFieldValue,
+  touched,
+  handleBlur,
+  errors,
+}: CinemaContainerProps) {
   const cinemasState = useAppSelector((x) => x.cinemas_reducer);
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -11,9 +17,13 @@ export default function CinemasContainer({ values, setFieldValue, touched, handl
   };
 
   return (
-    <CinemasComponent values={values} handleChange={handleChange} cinemasState={cinemasState}
-                      errors={errors} touched={touched}
-                      handleBlur={handleBlur}
+    <CinemasComponent
+      values={values}
+      handleChange={handleChange}
+      cinemasState={cinemasState}
+      errors={errors}
+      touched={touched}
+      handleBlur={handleBlur}
     />
   );
 }

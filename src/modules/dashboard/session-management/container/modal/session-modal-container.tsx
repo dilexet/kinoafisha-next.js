@@ -11,13 +11,10 @@ export default function SessionModalContainer({ modalType, handleCloseModal }) {
   const dispatch = useAppDispatch();
   const [loadData, setLoadData] = useState(true);
 
-  const fetchData = useCallback(
-    async () => {
-      await dispatch(moviesGetAllAsync());
-      await dispatch(cinemasGetAllAsync());
-    },
-    [dispatch],
-  );
+  const fetchData = useCallback(async () => {
+    await dispatch(moviesGetAllAsync());
+    await dispatch(cinemasGetAllAsync());
+  }, [dispatch]);
 
   useEffect(() => {
     if (loadData === true && modalType !== ModalActionTypes.DETAILS) {
@@ -28,25 +25,28 @@ export default function SessionModalContainer({ modalType, handleCloseModal }) {
     }
   }, [fetchData, loadData, modalType]);
 
-
   //TODO: skeleton
   if (loadData) {
     return <div></div>;
   }
   if (modalType === ModalActionTypes.DETAILS) {
-    return (
-      <SessionDetailsContainer />
-    );
+    return <SessionDetailsContainer />;
   } else {
     if (modalType === ModalActionTypes.CREATE) {
       return (
-        <SessionCreateContainer handleCloseModal={handleCloseModal} modalType={modalType} />
+        <SessionCreateContainer
+          handleCloseModal={handleCloseModal}
+          modalType={modalType}
+        />
       );
     }
 
     if (modalType === ModalActionTypes.UPDATE) {
       return (
-        <SessionUpdateContainer handleCloseModal={handleCloseModal} modalType={modalType} />
+        <SessionUpdateContainer
+          handleCloseModal={handleCloseModal}
+          modalType={modalType}
+        />
       );
     }
   }

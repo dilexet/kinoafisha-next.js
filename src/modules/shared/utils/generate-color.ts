@@ -15,7 +15,11 @@ export function generateColor(seatTypeId: string) {
   const g_random = seedrandom(`red-${seatTypeId}-green-${seatTypeId}-blue`);
   const b_random = seedrandom(`green-${seatTypeId}-blue-${seatTypeId}-red`);
 
-  const { r_normalize, g_normalize, b_normalize } = normalize(r_random(), g_random(), b_random());
+  const { r_normalize, g_normalize, b_normalize } = normalize(
+    r_random(),
+    g_random(),
+    b_random(),
+  );
 
   const r = Math.floor(r_normalize * 256);
   const g = Math.floor(g_normalize * 256);

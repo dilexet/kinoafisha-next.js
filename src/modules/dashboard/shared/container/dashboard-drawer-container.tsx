@@ -8,7 +8,5 @@ export default function DashboardDrawerContainer() {
     setOpen(!open);
   };
 
-  return (
-    <DashboardDrawer open={open} toggleDrawer={toggleDrawer} />
-  );
+  return <DashboardDrawer open={open} toggleDrawer={toggleDrawer} />;
 }

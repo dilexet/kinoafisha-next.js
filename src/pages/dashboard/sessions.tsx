@@ -4,7 +4,10 @@ import TableManagementComponent from "@/modules/dashboard/shared/component/table
 import React, { useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
 import { ModalActionTypes } from "@/modules/shared/constants/modal-action-types";
-import { clearErrors, selectAll } from "@/modules/dashboard/session-management/reducer";
+import {
+  clearErrors,
+  selectAll,
+} from "@/modules/dashboard/session-management/reducer";
 import { sessionGetAllActionAsync } from "@/modules/dashboard/session-management/action";
 import SessionTableHead from "@/modules/dashboard/session-management/component/session-table-head";
 import SessionTableBody from "@/modules/dashboard/session-management/component/session-table-body";
@@ -35,12 +38,9 @@ function Sessions() {
     await dispatch(sessionGetAllActionAsync(searchQuery));
   };
 
-  const fetchData = useCallback(
-    async () => {
-      await dispatch(sessionGetAllActionAsync(null));
-    },
-    [dispatch],
-  );
+  const fetchData = useCallback(async () => {
+    await dispatch(sessionGetAllActionAsync(null));
+  }, [dispatch]);
 
   useEffect(() => {
     if (isLoading === true) {
@@ -56,18 +56,24 @@ function Sessions() {
       </Head>
       <main>
         <TableManagementComponent
-          title="Sessions"
+          title='Sessions'
           loadData={loadUsers}
           handleOpenModal={handleOpenModal}
           loadingStatus={sessionState?.loadingStatusGetAll}
           errorMessage={sessionState?.errorInfo?.message}
           TableHead={<SessionTableHead />}
-          TableBody={<SessionTableBody sessions={sessions} handleOpenModal={handleOpenModal} />}
+          TableBody={
+            <SessionTableBody
+              sessions={sessions}
+              handleOpenModal={handleOpenModal}
+            />
+          }
         />
-        <Modal
-          openModal={openModal}
-          handleCloseModal={handleCloseModal}>
-          <SessionModalContainer modalType={modalType} handleCloseModal={handleCloseModal} />
+        <Modal openModal={openModal} handleCloseModal={handleCloseModal}>
+          <SessionModalContainer
+            modalType={modalType}
+            handleCloseModal={handleCloseModal}
+          />
         </Modal>
       </main>
     </>

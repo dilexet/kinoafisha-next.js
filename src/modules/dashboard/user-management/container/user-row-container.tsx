@@ -10,7 +10,11 @@ import {
 import { UserRowContainerProps } from "@/modules/dashboard/user-management/types/user-row-props";
 import { clearErrors } from "@/modules/dashboard/user-management/reducer";
 
-export default function UserRowContainer({ user, index, handleOpenModal }: UserRowContainerProps) {
+export default function UserRowContainer({
+  user,
+  index,
+  handleOpenModal,
+}: UserRowContainerProps) {
   const theme = useTheme();
   const dispatch = useAppDispatch();
 
@@ -37,7 +41,15 @@ export default function UserRowContainer({ user, index, handleOpenModal }: UserR
   };
 
   return (
-    <UserRow theme={theme} user={user} index={index} handleGetDetails={handleGetDetails} handleBlock={handleBlock}
-             handleUpdate={handleUpdate} handleRemove={handleRemove} handleClearErrors={handleClearErrors} />
+    <UserRow
+      theme={theme}
+      user={user}
+      index={index}
+      handleGetDetails={handleGetDetails}
+      handleBlock={handleBlock}
+      handleUpdate={handleUpdate}
+      handleRemove={handleRemove}
+      handleClearErrors={handleClearErrors}
+    />
   );
 }

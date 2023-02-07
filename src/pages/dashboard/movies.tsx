@@ -38,12 +38,9 @@ export function Movies() {
     await dispatch(movieGetAllActionAsync(searchQuery));
   };
 
-  const fetchData = useCallback(
-    async () => {
-      await dispatch(movieGetAllActionAsync(null));
-    },
-    [dispatch],
-  );
+  const fetchData = useCallback(async () => {
+    await dispatch(movieGetAllActionAsync(null));
+  }, [dispatch]);
 
   useEffect(() => {
     if (isLoading === true) {
@@ -59,24 +56,26 @@ export function Movies() {
       </Head>
       <main>
         <TableManagementComponent
-          title="Movies"
+          title='Movies'
           loadData={loadMovies}
           handleOpenModal={handleOpenModal}
           loadingStatus={movieState?.loadingStatusGetAll}
           errorMessage={movieState?.errorInfo?.message}
           TableHead={<MovieTableHead />}
-          TableBody={<MovieTableBody movies={movies} handleOpenModal={handleOpenModal} />}
+          TableBody={
+            <MovieTableBody movies={movies} handleOpenModal={handleOpenModal} />
+          }
         />
-        <Modal
-          openModal={openModal}
-          handleCloseModal={handleCloseModal}>
-          <MovieModalContainer modalType={modalType} handleCloseModal={handleCloseModal} />
+        <Modal openModal={openModal} handleCloseModal={handleCloseModal}>
+          <MovieModalContainer
+            modalType={modalType}
+            handleCloseModal={handleCloseModal}
+          />
         </Modal>
       </main>
     </>
   );
 }
-
 
 Movies.getLayout = DashboardPageLayout;
 

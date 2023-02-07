@@ -10,7 +10,10 @@ export default function HallDetailsContainer() {
   const [gridItems, setGridItems] = useState<GridItemsType[]>(null);
 
   useEffect(() => {
-    if (!gridItems && hallState?.loadingStatusGetOne === LOADING_STATUSES.IDLE) {
+    if (
+      !gridItems &&
+      hallState?.loadingStatusGetOne === LOADING_STATUSES.IDLE
+    ) {
       const newGridItems = [
         {
           property: "Name",
@@ -23,7 +26,12 @@ export default function HallDetailsContainer() {
       ];
       setGridItems(newGridItems);
     }
-  }, [gridItems, hallState?.hall?.cinemaName, hallState?.hall?.name, hallState?.loadingStatusGetOne]);
+  }, [
+    gridItems,
+    hallState?.hall?.cinemaName,
+    hallState?.hall?.name,
+    hallState?.loadingStatusGetOne,
+  ]);
 
   return <HallDetails gridItems={gridItems} hallState={hallState} />;
 }

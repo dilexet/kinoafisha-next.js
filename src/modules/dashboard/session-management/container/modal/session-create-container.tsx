@@ -7,7 +7,10 @@ import { sessionCreateAsync } from "@/modules/dashboard/session-management/actio
 import SessionForm from "@/modules/dashboard/session-management/component/session-form";
 import { SessionFieldValues } from "@/modules/dashboard/session-management/constants/session-field-values";
 
-export default function SessionCreateContainer({ handleCloseModal, modalType }) {
+export default function SessionCreateContainer({
+  handleCloseModal,
+  modalType,
+}) {
   const dispatch = useAppDispatch();
   const sessionState = useAppSelector((x) => x.session_management_reducer);
 
@@ -20,7 +23,10 @@ export default function SessionCreateContainer({ handleCloseModal, modalType }) 
   };
 
   useEffect(() => {
-    if (sessionState?.loadingStatusCreate === LOADING_STATUSES.IDLE && wasCreated) {
+    if (
+      sessionState?.loadingStatusCreate === LOADING_STATUSES.IDLE &&
+      wasCreated
+    ) {
       handleCloseModal();
     }
   }, [sessionState?.loadingStatusCreate, handleCloseModal, wasCreated]);
@@ -29,7 +35,7 @@ export default function SessionCreateContainer({ handleCloseModal, modalType }) 
 
   return (
     <SessionForm
-      title="Create sessions"
+      title='Create sessions'
       modalType={modalType}
       initialValues={initialValues}
       handleSubmit={handleSubmit}

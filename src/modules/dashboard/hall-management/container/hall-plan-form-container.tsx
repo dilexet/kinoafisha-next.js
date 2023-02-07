@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import {
   RowFieldsType,
-  SeatFieldsType, SeatTypePriceFieldsType,
+  SeatFieldsType,
+  SeatTypePriceFieldsType,
 } from "@/modules/dashboard/hall-management/types/hall-field-types";
 import HallPlanForm from "@/modules/dashboard/hall-management/component/hall-plan-form";
 import { useAppSelector } from "@/modules/shared/redux/hooks";
@@ -9,10 +10,12 @@ import { SeatTypeState } from "@/modules/seat-types/reducer";
 import { HallPlanFormContainerProps } from "@/modules/dashboard/hall-management/types/hall-plan-form-container-props";
 
 export default function HallPlanFormContainer({
-                                                values,
-                                                setFieldValue,
-                                              }: HallPlanFormContainerProps) {
-  const seatTypeState = useAppSelector<SeatTypeState>(x => x.seat_types_reducer);
+  values,
+  setFieldValue,
+}: HallPlanFormContainerProps) {
+  const seatTypeState = useAppSelector<SeatTypeState>(
+    (x) => x.seat_types_reducer,
+  );
 
   const [numberOfRows, setNumberOfRows] = useState(values?.rows?.length);
   const [numberOfSeats, setNumberOfSeats] = useState([]);
@@ -27,7 +30,7 @@ export default function HallPlanFormContainer({
     if (isLoading === true) {
       if (values?.rows?.length > 0) {
         const numberOfSeatsTemp = [];
-        values?.rows?.forEach(x => numberOfSeatsTemp.push(x.seats?.length));
+        values?.rows?.forEach((x) => numberOfSeatsTemp.push(x.seats?.length));
         setNumberOfSeats(numberOfSeatsTemp);
       }
       setIsLoading(false);
@@ -35,7 +38,9 @@ export default function HallPlanFormContainer({
   }, [isLoading, values?.rows]);
 
   const handleSelectSeatType = (seatTypeId: string) => {
-    setSelectedSeatType(prevState => prevState === seatTypeId ? "" : seatTypeId);
+    setSelectedSeatType((prevState) =>
+      prevState === seatTypeId ? "" : seatTypeId,
+    );
   };
 
   const handleChangeNumberOfRows = (e) => {
@@ -50,51 +55,65 @@ export default function HallPlanFormContainer({
   };
 
   const handleChangeNumberOfSeats = (e, indexValue) => {
-    const numberOfSeats = e?.target?.value == "" ? e?.target?.value : +e?.target?.value;
-    setNumberOfSeats(prevState => prevState.map((item, index) => (index === indexValue ? numberOfSeats : item)));
-
+    const numberOfSeats =
+      e?.target?.value == "" ? e?.target?.value : +e?.target?.value;
+    setNumberOfSeats((prevState) =>
+      prevState.map((item, index) =>
+        index === indexValue ? numberOfSeats : item,
+      ),
+    );
 
     const seatsArray: SeatFieldsType[] = [];
     for (let i = 0; i < numberOfSeats; i++) {
       seatsArray.push({ numberSeat: i + 1, seatTypeId: "" });
     }
-    const newRows = values?.rows?.map((item) => (item.numberRow === indexValue + 1 ? {
-      ...item,
-      seats: seatsArray,
-    } : item));
+    const newRows = values?.rows?.map((item) =>
+      item.numberRow === indexValue + 1
+        ? {
+            ...item,
+            seats: seatsArray,
+          }
+        : item,
+    );
     setFieldValue("rows", newRows);
   };
 
   const handleSeatClick = (rowNumber, seatNumber, selectedSeatType) => {
     if (selectedSeatType) {
       const newRows = values?.rows?.map((row) =>
-        (row.numberRow === rowNumber ? {
-          ...row,
-          seats: row.seats.map(seat => {
-            if (seat.numberSeat === seatNumber) {
-              return {
-                ...seat,
-                seatTypeId: selectedSeatType,
-              };
+        row.numberRow === rowNumber
+          ? {
+              ...row,
+              seats: row.seats.map((seat) => {
+                if (seat.numberSeat === seatNumber) {
+                  return {
+                    ...seat,
+                    seatTypeId: selectedSeatType,
+                  };
+                }
+                return seat;
+              }),
             }
-            return seat;
-          }),
-        } : row));
+          : row,
+      );
       setFieldValue("rows", newRows);
     } else {
       const newRows = values?.rows?.map((row) =>
-        (row.numberRow === rowNumber ? {
-          ...row,
-          seats: row.seats.map(seat => {
-            if (seat.numberSeat === seatNumber && seat.seatTypeId) {
-              return {
-                ...seat,
-                seatTypeId: "",
-              };
+        row.numberRow === rowNumber
+          ? {
+              ...row,
+              seats: row.seats.map((seat) => {
+                if (seat.numberSeat === seatNumber && seat.seatTypeId) {
+                  return {
+                    ...seat,
+                    seatTypeId: "",
+                  };
+                }
+                return seat;
+              }),
             }
-            return seat;
-          }),
-        } : row));
+          : row,
+      );
       setFieldValue("rows", newRows);
     }
     setIsSeatChange(true);
@@ -103,46 +122,66 @@ export default function HallPlanFormContainer({
   useEffect(() => {
     if (isSeatChange) {
       const seatTypeIds: SeatTypePriceFieldsType[] = [];
-      values?.rows?.forEach(row => row?.seats?.forEach(seat => {
-        if (seat.seatTypeId && !seatTypeIds.find(x => x.seatTypeId === seat?.seatTypeId)) {
-          seatTypeIds.push({
-            seatTypeId: seat?.seatTypeId,
-            price: values?.seatTypePrices?.find(x => x.seatTypeId === seat?.seatTypeId)?.price ?? 0,
-          });
-        }
-      }));
+      values?.rows?.forEach((row) =>
+        row?.seats?.forEach((seat) => {
+          if (
+            seat.seatTypeId &&
+            !seatTypeIds.find((x) => x.seatTypeId === seat?.seatTypeId)
+          ) {
+            seatTypeIds.push({
+              seatTypeId: seat?.seatTypeId,
+              price:
+                values?.seatTypePrices?.find(
+                  (x) => x.seatTypeId === seat?.seatTypeId,
+                )?.price ?? 0,
+            });
+          }
+        }),
+      );
       setFieldValue("seatTypePrices", seatTypeIds);
       setIsSeatChange(false);
     }
   }, [isSeatChange, setFieldValue, values?.rows, values?.seatTypePrices]);
 
   const handleChangeSeatTypePrices = (event, seatTypeId) => {
-    const price = event?.target?.value == "" ? event?.target?.value : +event?.target?.value;
-    const seatTypeIds = values?.seatTypePrices?.map(el => (el.seatTypeId === seatTypeId ? {
-      ...el,
-      price: price,
-    } : el));
+    const price =
+      event?.target?.value == "" ? event?.target?.value : +event?.target?.value;
+    const seatTypeIds = values?.seatTypePrices?.map((el) =>
+      el.seatTypeId === seatTypeId
+        ? {
+            ...el,
+            price: price,
+          }
+        : el,
+    );
     setFieldValue("seatTypePrices", seatTypeIds);
   };
 
   useEffect(() => {
     window.onresize = () => {
-      if (maxWidth - 240 > window.innerWidth || window.innerWidth > maxWidth + 240) {
+      if (
+        maxWidth - 240 > window.innerWidth ||
+        window.innerWidth > maxWidth + 240
+      ) {
         setMaxWidth(window.innerWidth);
       }
     };
   }, [maxWidth]);
 
   return (
-    <HallPlanForm rows={values.rows} handleSelectSeatType={handleSelectSeatType}
-                  selectedSeatType={selectedSeatType}
-                  handleChangeNumberOfRows={handleChangeNumberOfRows}
-                  handleChangeNumberOfSeats={handleChangeNumberOfSeats}
-                  numberOfRows={numberOfRows} numberOfSeats={numberOfSeats}
-                  handleSeatClick={handleSeatClick}
-                  handleChangeSeatTypePrices={handleChangeSeatTypePrices}
-                  seatTypePrices={values?.seatTypePrices} seatTypeState={seatTypeState}
-                  maxWidth={maxWidth}
+    <HallPlanForm
+      rows={values.rows}
+      handleSelectSeatType={handleSelectSeatType}
+      selectedSeatType={selectedSeatType}
+      handleChangeNumberOfRows={handleChangeNumberOfRows}
+      handleChangeNumberOfSeats={handleChangeNumberOfSeats}
+      numberOfRows={numberOfRows}
+      numberOfSeats={numberOfSeats}
+      handleSeatClick={handleSeatClick}
+      handleChangeSeatTypePrices={handleChangeSeatTypePrices}
+      seatTypePrices={values?.seatTypePrices}
+      seatTypeState={seatTypeState}
+      maxWidth={maxWidth}
     />
   );
 }

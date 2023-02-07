@@ -7,27 +7,33 @@ import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 
 export default function UtilsButtonGroup({
-                                           handleGetDetails,
-                                           handleUpdate,
-                                           handleRemove,
-                                           clearErrors,
-                                           children = null,
-                                         }) {
+  handleGetDetails,
+  handleUpdate,
+  handleRemove,
+  clearErrors,
+  children = null,
+}) {
   const theme = useTheme();
   const [openDelete, setOpenDelete] = useState(false);
 
   if (openDelete) {
     return (
       <ButtonGroup>
-        <IconButton aria-label="confirm" onClick={handleRemove}
-                    style={{ marginLeft: "5px", marginRight: "5px" }}>
+        <IconButton
+          aria-label='confirm'
+          onClick={handleRemove}
+          style={{ marginLeft: "5px", marginRight: "5px" }}
+        >
           <DoneIcon style={{ fill: theme.palette.success.dark }} />
         </IconButton>
-        <IconButton aria-label="close" onClick={() => {
-          clearErrors();
-          setOpenDelete(false);
-        }}
-                    style={{ marginLeft: "5px", marginRight: "5px" }}>
+        <IconButton
+          aria-label='close'
+          onClick={() => {
+            clearErrors();
+            setOpenDelete(false);
+          }}
+          style={{ marginLeft: "5px", marginRight: "5px" }}
+        >
           <CloseIcon style={{ fill: theme.palette.error.dark }} />
         </IconButton>
       </ButtonGroup>
@@ -36,8 +42,8 @@ export default function UtilsButtonGroup({
   return (
     <ButtonGroup>
       <IconButton
-        aria-label="edit"
-        size="small"
+        aria-label='edit'
+        size='small'
         onClick={handleGetDetails}
         style={{
           marginLeft: "5px",
@@ -45,15 +51,17 @@ export default function UtilsButtonGroup({
           border: "1px solid",
           borderColor: theme.palette.grey["300"],
           borderRadius: "11px",
-        }}>
+        }}
+      >
         <VisibilityIcon
-          fontSize="small"
-          style={{ fill: theme.palette.grey["300"] }} />
+          fontSize='small'
+          style={{ fill: theme.palette.grey["300"] }}
+        />
       </IconButton>
       {children}
       <IconButton
-        aria-label="edit"
-        size="small"
+        aria-label='edit'
+        size='small'
         onClick={handleUpdate}
         style={{
           marginLeft: "5px",
@@ -61,25 +69,29 @@ export default function UtilsButtonGroup({
           border: "1px solid",
           borderColor: theme.palette.info.main,
           borderRadius: "11px",
-        }}>
+        }}
+      >
         <BorderColorIcon
-          fontSize="small"
-          style={{ fill: theme.palette.info.main }} />
+          fontSize='small'
+          style={{ fill: theme.palette.info.main }}
+        />
       </IconButton>
       <IconButton
         onClick={() => setOpenDelete(true)}
-        aria-label="delete"
-        size="small"
+        aria-label='delete'
+        size='small'
         style={{
           marginLeft: "5px",
           marginRight: "5px",
           border: "1px solid",
           borderColor: theme.palette.error.main,
           borderRadius: "11px",
-        }}>
+        }}
+      >
         <DeleteOutlineIcon
-          fontSize="small"
-          style={{ fill: theme.palette.error.main }} />
+          fontSize='small'
+          style={{ fill: theme.palette.error.main }}
+        />
       </IconButton>
     </ButtonGroup>
   );

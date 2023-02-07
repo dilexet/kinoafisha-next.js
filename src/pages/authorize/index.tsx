@@ -23,18 +23,28 @@ export default function LoginPage() {
 
   async function handleSubmitForm(values: typeof LoginFieldValues) {
     if (await loginValidationSchema.isValid(values)) {
-      await dispatch(loginActionAsync({ data: values, rememberMe: rememberMe }));
+      await dispatch(
+        loginActionAsync({ data: values, rememberMe: rememberMe }),
+      );
     }
   }
 
   useEffect(() => {
-    if (isLoading === true && (authState?.errorInfo?.message || authState?.errorInfo?.error)) {
+    if (
+      isLoading === true &&
+      (authState?.errorInfo?.message || authState?.errorInfo?.error)
+    ) {
       dispatch(clearErrors());
       setIsLoading(false);
     } else {
       setIsLoading(false);
     }
-  }, [authState?.errorInfo?.error, authState?.errorInfo?.message, dispatch, isLoading]);
+  }, [
+    authState?.errorInfo?.error,
+    authState?.errorInfo?.message,
+    dispatch,
+    isLoading,
+  ]);
 
   return (
     <>
@@ -42,10 +52,13 @@ export default function LoginPage() {
         <title>Login page</title>
       </Head>
       <main>
-        <LoginComponent authorizeState={authState}
-                        rememberMe={rememberMe} setRememberMe={setRememberMe}
-                        handleNavigateToSignUp={handleNavigateToSignUp}
-                        handleSubmitForm={handleSubmitForm} />
+        <LoginComponent
+          authorizeState={authState}
+          rememberMe={rememberMe}
+          setRememberMe={setRememberMe}
+          handleNavigateToSignUp={handleNavigateToSignUp}
+          handleSubmitForm={handleSubmitForm}
+        />
       </main>
     </>
   );

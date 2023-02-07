@@ -11,7 +11,10 @@ export default function UserDetailsContainer() {
   const [gridItems, setGridItems] = useState<GridItemsType[]>(null);
 
   useEffect(() => {
-    if (!gridItems && userState?.loadingStatusGetOne === LOADING_STATUSES.IDLE) {
+    if (
+      !gridItems &&
+      userState?.loadingStatusGetOne === LOADING_STATUSES.IDLE
+    ) {
       const newGridItems = [
         {
           property: "Name",
@@ -31,7 +34,9 @@ export default function UserDetailsContainer() {
         },
         {
           property: "Block status",
-          value: userState?.user?.isBlocked ? LockStatus.BLOCK : LockStatus.UNLOCK,
+          value: userState?.user?.isBlocked
+            ? LockStatus.BLOCK
+            : LockStatus.UNLOCK,
         },
         {
           property: "Role",
@@ -40,10 +45,16 @@ export default function UserDetailsContainer() {
       ];
       setGridItems(newGridItems);
     }
-  }, [gridItems, userState?.loadingStatusGetOne, userState?.user?.email, userState?.user?.isActivated, userState?.user?.isBlocked, userState?.user?.name, userState?.user?.provider, userState?.user?.role?.name]);
+  }, [
+    gridItems,
+    userState?.loadingStatusGetOne,
+    userState?.user?.email,
+    userState?.user?.isActivated,
+    userState?.user?.isBlocked,
+    userState?.user?.name,
+    userState?.user?.provider,
+    userState?.user?.role?.name,
+  ]);
 
-
-  return (
-    <UserDetails gridItems={gridItems} userState={userState} />
-  );
+  return <UserDetails gridItems={gridItems} userState={userState} />;
 }

@@ -10,7 +10,10 @@ export default function CinemaDetailsContainer() {
   const [gridItems, setGridItems] = useState<GridItemsType[]>(null);
 
   useEffect(() => {
-    if (!gridItems && cinemaState?.loadingStatusGetOne === LOADING_STATUSES.IDLE) {
+    if (
+      !gridItems &&
+      cinemaState?.loadingStatusGetOne === LOADING_STATUSES.IDLE
+    ) {
       const newGridItems = [
         {
           property: "Name",
@@ -35,10 +38,15 @@ export default function CinemaDetailsContainer() {
       ];
       setGridItems(newGridItems);
     }
-  }, [cinemaState?.cinema?.city, cinemaState?.cinema?.country, cinemaState?.cinema?.houseNumber, cinemaState?.cinema?.name, cinemaState?.cinema?.street, cinemaState?.loadingStatusGetOne, gridItems]);
+  }, [
+    cinemaState?.cinema?.city,
+    cinemaState?.cinema?.country,
+    cinemaState?.cinema?.houseNumber,
+    cinemaState?.cinema?.name,
+    cinemaState?.cinema?.street,
+    cinemaState?.loadingStatusGetOne,
+    gridItems,
+  ]);
 
-
-  return (
-    <CinemaDetails gridItems={gridItems} cinemaState={cinemaState} />
-  );
+  return <CinemaDetails gridItems={gridItems} cinemaState={cinemaState} />;
 }

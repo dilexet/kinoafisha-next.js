@@ -29,11 +29,14 @@ export default function CountriesContainer({ values, setFieldValue }) {
 
   if (countryState?.loadingStatus === LOADING_STATUSES.IDLE) {
     return (
-      <CountriesComponent values={values}
-                          selectedCountries={selectedCountries} handleChange={handleChange}
-                          inputValue={inputValue} handleInputChange={handleInputChange}
-                          handleOnSubmit={handleOnSubmit}
-                          countries={countryState?.countries?.map((item) => item.name)}
+      <CountriesComponent
+        values={values}
+        selectedCountries={selectedCountries}
+        handleChange={handleChange}
+        inputValue={inputValue}
+        handleInputChange={handleInputChange}
+        handleOnSubmit={handleOnSubmit}
+        countries={countryState?.countries?.map((item) => item.name)}
       />
     );
   }

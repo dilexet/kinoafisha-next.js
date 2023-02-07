@@ -5,7 +5,7 @@ export interface ManagementState {
   loadingStatusCreate: string;
   loadingStatusDelete: string;
   errorInfo: {
-    message: string | undefined | null | []
-    error: string | undefined | null | []
+    message: string | undefined | null | [];
+    error: string | undefined | null | [];
   };
 }

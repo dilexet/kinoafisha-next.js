@@ -14,7 +14,7 @@ export type MovieType = {
   countries: CountryType[];
 
   posterURL: string;
-}
+};
 
 export interface GenreType {
   id: string;

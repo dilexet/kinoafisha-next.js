@@ -6,7 +6,7 @@ export default function DashboardLayout({ children }) {
     <Box sx={{ display: "flex" }}>
       <DashboardDrawerContainer />
       <Box
-        component="main"
+        component='main'
         sx={{
           backgroundColor: (theme) =>
             theme.palette.mode === "light"
@@ -18,7 +18,7 @@ export default function DashboardLayout({ children }) {
           overflow: "auto",
         }}
       >
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+        <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>
           {children}
         </Container>
       </Box>

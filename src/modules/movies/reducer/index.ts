@@ -6,8 +6,8 @@ import { MovieType } from "@/modules/movies/types/movie-type";
 export interface MovieState {
   loadingStatus: string;
   errorInfo: {
-    message: string,
-    error: string,
+    message: string;
+    error: string;
   };
   movies: MovieType[];
 }
@@ -25,27 +25,30 @@ const moviesSlice = createSlice({
   name: "movies",
   initialState: initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(moviesGetAllAsync.pending.type,
-        (state) => {
-          state.loadingStatus = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(moviesGetAllAsync.fulfilled.type,
+      .addCase(moviesGetAllAsync.pending.type, (state) => {
+        state.loadingStatus = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+      })
+      .addCase(
+        moviesGetAllAsync.fulfilled.type,
         (state, action: PayloadAction<MovieType[]>) => {
           state.loadingStatus = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           state.movies = action?.payload;
-        })
-      .addCase(moviesGetAllAsync.rejected.type,
+        },
+      )
+      .addCase(
+        moviesGetAllAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message: action.payload?.message,
             error: action.payload?.error,
           };
-        });
+        },
+      );
   },
 });
 

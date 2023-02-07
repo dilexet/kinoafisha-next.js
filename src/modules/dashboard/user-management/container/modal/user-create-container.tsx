@@ -23,15 +23,17 @@ export default function UserCreateContainer({ handleCloseModal }) {
   };
 
   useEffect(() => {
-    if (userState?.loadingStatusCreate === LOADING_STATUSES.IDLE && wasCreated) {
+    if (
+      userState?.loadingStatusCreate === LOADING_STATUSES.IDLE &&
+      wasCreated
+    ) {
       handleCloseModal();
     }
   }, [userState?.loadingStatusCreate, handleCloseModal, wasCreated]);
 
-
   return (
     <UserForm
-      title="Create user"
+      title='Create user'
       validationSchema={userCreateValidationSchema}
       initialValues={UserFieldCreateValues}
       handleSubmit={handleSubmit}

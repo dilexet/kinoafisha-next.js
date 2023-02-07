@@ -6,8 +6,8 @@ import { CinemaType } from "@/modules/cinemas/types/cinema-type";
 export interface CinemaState {
   loadingStatus: string;
   errorInfo: {
-    message: string,
-    error: string,
+    message: string;
+    error: string;
   };
   cinemas: CinemaType[];
 }
@@ -25,27 +25,30 @@ const cinemasSlice = createSlice({
   name: "cinemas",
   initialState: initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(cinemasGetAllAsync.pending.type,
-        (state) => {
-          state.loadingStatus = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(cinemasGetAllAsync.fulfilled.type,
+      .addCase(cinemasGetAllAsync.pending.type, (state) => {
+        state.loadingStatus = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+      })
+      .addCase(
+        cinemasGetAllAsync.fulfilled.type,
         (state, action: PayloadAction<CinemaType[]>) => {
           state.loadingStatus = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           state.cinemas = action?.payload;
-        })
-      .addCase(cinemasGetAllAsync.rejected.type,
+        },
+      )
+      .addCase(
+        cinemasGetAllAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message: action.payload?.message,
             error: action.payload?.error,
           };
-        });
+        },
+      );
   },
 });
 

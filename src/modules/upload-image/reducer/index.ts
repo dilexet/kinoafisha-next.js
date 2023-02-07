@@ -5,8 +5,8 @@ import { uploadImageAsync } from "@/modules/upload-image/action";
 export interface ImageUploadState {
   loadingStatus: string;
   errorInfo: {
-    message: string,
-    error: string,
+    message: string;
+    error: string;
   };
   imageName: string | null;
 }
@@ -29,27 +29,30 @@ const imageUploadSlice = createSlice({
       state.imageName = null;
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(uploadImageAsync.pending.type,
-        (state) => {
-          state.loadingStatus = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(uploadImageAsync.fulfilled.type,
+      .addCase(uploadImageAsync.pending.type, (state) => {
+        state.loadingStatus = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+      })
+      .addCase(
+        uploadImageAsync.fulfilled.type,
         (state, action: PayloadAction<string>) => {
           state.loadingStatus = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           state.imageName = action?.payload;
-        })
-      .addCase(uploadImageAsync.rejected.type,
+        },
+      )
+      .addCase(
+        uploadImageAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message: action.payload?.message,
             error: action.payload?.error,
           };
-        });
+        },
+      );
   },
 });
 

@@ -6,8 +6,8 @@ import { HallType } from "@/modules/halls/types/hall-type";
 export interface HallState {
   loadingStatus: string;
   errorInfo: {
-    message: string,
-    error: string,
+    message: string;
+    error: string;
   };
   halls: HallType[];
 }
@@ -25,27 +25,30 @@ const hallSlice = createSlice({
   name: "halls",
   initialState: initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(hallsGetAllAsync.pending.type,
-        (state) => {
-          state.loadingStatus = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(hallsGetAllAsync.fulfilled.type,
+      .addCase(hallsGetAllAsync.pending.type, (state) => {
+        state.loadingStatus = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+      })
+      .addCase(
+        hallsGetAllAsync.fulfilled.type,
         (state, action: PayloadAction<HallType[]>) => {
           state.loadingStatus = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           state.halls = action?.payload;
-        })
-      .addCase(hallsGetAllAsync.rejected.type,
+        },
+      )
+      .addCase(
+        hallsGetAllAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message: action.payload?.message,
             error: action.payload?.error,
           };
-        });
+        },
+      );
   },
 });
 

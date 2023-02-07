@@ -1,12 +1,24 @@
-import { FormControl, FormHelperText, InputLabel, OutlinedInput } from "@mui/material";
+import {
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  OutlinedInput,
+} from "@mui/material";
 
 export default function FormTextField({
-                                        error, helperText,
-                                        value, onChange, onBlur,
-                                        variant, size, margin, inputProps,
-                                        outlinedInputStyle, formControlStyle,
-                                        ...props
-                                      }: any) {
+  error,
+  helperText,
+  value,
+  onChange,
+  onBlur,
+  variant,
+  size,
+  margin,
+  inputProps,
+  outlinedInputStyle,
+  formControlStyle,
+  ...props
+}: any) {
   return (
     <FormControl
       variant={variant}
@@ -33,8 +45,9 @@ export default function FormTextField({
         onBlur={onBlur}
         {...props}
       />
-      <FormHelperText
-        style={{ minWidth: "150px", minHeight: "20px" }}>{helperText}</FormHelperText>
+      <FormHelperText style={{ minWidth: "150px", minHeight: "20px" }}>
+        {helperText}
+      </FormHelperText>
     </FormControl>
   );
 }

@@ -5,20 +5,21 @@ import { APP_NAME } from "@/modules/shared/constants/app-constants";
 const Copyright = () => {
   return (
     <Box style={{ marginTop: "20px" }}>
-      <Typography style={{ textAlign: "center" }} color="text.secondary">
+      <Typography style={{ textAlign: "center" }} color='text.secondary'>
         {"Copyright © "}
         <LinkMaterial
-          color="inherit"
+          color='inherit'
           component={Link}
-          href="/"
+          href='/'
           style={{
-            textDecoration: "none", borderBottom: "1px solid",
+            textDecoration: "none",
+            borderBottom: "1px solid",
             textTransform: "uppercase",
             letterSpacing: "3px",
-          }}>
+          }}
+        >
           {APP_NAME}
-        </LinkMaterial>
-        {" "}
+        </LinkMaterial>{" "}
         {new Date().getFullYear()}
         {"."}
       </Typography>

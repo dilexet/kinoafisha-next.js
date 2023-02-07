@@ -23,15 +23,22 @@ export default function CinemaCreateContainer({ handleCloseModal }) {
   };
 
   useEffect(() => {
-    if (cinemaState?.loadingStatusCreate === LOADING_STATUSES.IDLE && wasCreated) {
+    if (
+      cinemaState?.loadingStatusCreate === LOADING_STATUSES.IDLE &&
+      wasCreated
+    ) {
       handleCloseModal();
     }
   }, [cinemaState?.loadingStatusCreate, handleCloseModal, wasCreated]);
 
   return (
-    <CinemaForm title="Create cinema" initialValues={CinemaFieldValues}
-                handleSubmit={handleSubmit}
-                initializeTextField={textFields}
-                handleCancel={handleCloseModal} cinemaState={cinemaState} />
+    <CinemaForm
+      title='Create cinema'
+      initialValues={CinemaFieldValues}
+      handleSubmit={handleSubmit}
+      initializeTextField={textFields}
+      handleCancel={handleCloseModal}
+      cinemaState={cinemaState}
+    />
   );
 }

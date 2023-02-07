@@ -31,21 +31,23 @@ const authorizeSlice = createSlice({
       state.errorInfo = null;
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(loginActionAsync.pending.type,
-        (state) => {
-          state.loadingStatus = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-          state.tokens = null;
-        })
-      .addCase(loginActionAsync.fulfilled.type,
+      .addCase(loginActionAsync.pending.type, (state) => {
+        state.loadingStatus = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+        state.tokens = null;
+      })
+      .addCase(
+        loginActionAsync.fulfilled.type,
         (state, action: PayloadAction<AuthorizeResponse>) => {
           state.loadingStatus = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           state.tokens = action.payload;
-        })
-      .addCase(loginActionAsync.rejected.type,
+        },
+      )
+      .addCase(
+        loginActionAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
@@ -53,21 +55,24 @@ const authorizeSlice = createSlice({
             error: action.payload?.error,
           };
           state.tokens = null;
-        })
+        },
+      )
 
-      .addCase(registerActionAsync.pending.type,
-        (state) => {
-          state.loadingStatus = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-          state.tokens = null;
-        })
-      .addCase(registerActionAsync.fulfilled.type,
+      .addCase(registerActionAsync.pending.type, (state) => {
+        state.loadingStatus = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+        state.tokens = null;
+      })
+      .addCase(
+        registerActionAsync.fulfilled.type,
         (state, action: PayloadAction<AuthorizeResponse>) => {
           state.loadingStatus = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           state.tokens = action.payload;
-        })
-      .addCase(registerActionAsync.rejected.type,
+        },
+      )
+      .addCase(
+        registerActionAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
@@ -75,21 +80,21 @@ const authorizeSlice = createSlice({
             error: action.payload?.error,
           };
           state.tokens = null;
-        })
+        },
+      )
 
-      .addCase(logoutActionAsync.pending.type,
-        (state) => {
-          state.loadingStatus = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-          state.tokens = null;
-        })
-      .addCase(logoutActionAsync.fulfilled.type,
-        (state) => {
-          state.loadingStatus = LOADING_STATUSES.IDLE;
-          state.errorInfo = null;
-          state.tokens = null;
-        })
-      .addCase(logoutActionAsync.rejected.type,
+      .addCase(logoutActionAsync.pending.type, (state) => {
+        state.loadingStatus = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+        state.tokens = null;
+      })
+      .addCase(logoutActionAsync.fulfilled.type, (state) => {
+        state.loadingStatus = LOADING_STATUSES.IDLE;
+        state.errorInfo = null;
+        state.tokens = null;
+      })
+      .addCase(
+        logoutActionAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
@@ -97,21 +102,24 @@ const authorizeSlice = createSlice({
             error: action.payload?.error,
           };
           state.tokens = null;
-        })
+        },
+      )
 
-      .addCase(refreshTokensAsync.pending.type,
-        (state) => {
-          state.loadingStatus = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-          state.tokens = null;
-        })
-      .addCase(refreshTokensAsync.fulfilled.type,
+      .addCase(refreshTokensAsync.pending.type, (state) => {
+        state.loadingStatus = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+        state.tokens = null;
+      })
+      .addCase(
+        refreshTokensAsync.fulfilled.type,
         (state, action: PayloadAction<AuthorizeResponse>) => {
           state.loadingStatus = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           state.tokens = action.payload;
-        })
-      .addCase(refreshTokensAsync.rejected.type,
+        },
+      )
+      .addCase(
+        refreshTokensAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
@@ -119,21 +127,24 @@ const authorizeSlice = createSlice({
             error: action.payload?.error,
           };
           state.tokens = null;
-        })
+        },
+      )
 
-      .addCase(googleAuthorizeAsync.pending.type,
-        (state) => {
-          state.loadingStatus = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-          state.tokens = null;
-        })
-      .addCase(googleAuthorizeAsync.fulfilled.type,
+      .addCase(googleAuthorizeAsync.pending.type, (state) => {
+        state.loadingStatus = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+        state.tokens = null;
+      })
+      .addCase(
+        googleAuthorizeAsync.fulfilled.type,
         (state, action: PayloadAction<AuthorizeResponse>) => {
           state.loadingStatus = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           state.tokens = action.payload;
-        })
-      .addCase(googleAuthorizeAsync.rejected.type,
+        },
+      )
+      .addCase(
+        googleAuthorizeAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
@@ -141,7 +152,8 @@ const authorizeSlice = createSlice({
             error: action.payload?.error,
           };
           state.tokens = null;
-        });
+        },
+      );
   },
 });
 

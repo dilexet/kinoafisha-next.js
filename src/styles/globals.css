@@ -74,40 +74,40 @@
 /*}*/
 
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html,
 body {
-    height: 100%;
-    max-width: 100vw;
+  height: 100%;
+  max-width: 100vw;
 }
 
 html {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 body {
-    overflow: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #27272A #F1F1F1;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #27272a #f1f1f1;
 }
 
 body::-webkit-scrollbar {
-    height: 8px;
-    width: 8px;
+  height: 8px;
+  width: 8px;
 }
 
 body::-webkit-scrollbar-track {
-    background: rgb(220, 220, 220);
+  background: rgb(220, 220, 220);
 }
 
 body::-webkit-scrollbar-thumb {
-    background-color: rgb(130, 130, 130);
-    border-radius: 99px;
-    border: 2px solid rgb(220, 220, 220);
+  background-color: rgb(130, 130, 130);
+  border-radius: 99px;
+  border: 2px solid rgb(220, 220, 220);
 }
 
 /*body::-webkit-scrollbar {*/

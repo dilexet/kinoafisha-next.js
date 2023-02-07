@@ -16,7 +16,10 @@ export default function SessionDetailsContainer() {
   };
 
   useEffect(() => {
-    if (!gridItems && sessionState?.loadingStatusGetOne === LOADING_STATUSES.IDLE) {
+    if (
+      !gridItems &&
+      sessionState?.loadingStatusGetOne === LOADING_STATUSES.IDLE
+    ) {
       const newGridItems = [
         {
           property: "Movie name",
@@ -45,10 +48,22 @@ export default function SessionDetailsContainer() {
       ];
       setGridItems(newGridItems);
     }
-  }, [gridItems, sessionState?.loadingStatusGetOne, sessionState?.session?.sessionData?.cinemaName, sessionState?.session?.sessionData?.coefficient, sessionState?.session?.sessionData?.endDate, sessionState?.session?.sessionData?.hallName, sessionState?.session?.sessionData?.movieName, sessionState?.session?.sessionData?.startDate]);
+  }, [
+    gridItems,
+    sessionState?.loadingStatusGetOne,
+    sessionState?.session?.sessionData?.cinemaName,
+    sessionState?.session?.sessionData?.coefficient,
+    sessionState?.session?.sessionData?.endDate,
+    sessionState?.session?.sessionData?.hallName,
+    sessionState?.session?.sessionData?.movieName,
+    sessionState?.session?.sessionData?.startDate,
+  ]);
 
   return (
-    <SessionDetails gridItems={gridItems} sessionState={sessionState}
-                    handleRemoveFromBooking={handleRemoveFromBooking} />
+    <SessionDetails
+      gridItems={gridItems}
+      sessionState={sessionState}
+      handleRemoveFromBooking={handleRemoveFromBooking}
+    />
   );
 }

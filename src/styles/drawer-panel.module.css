@@ -1,19 +1,19 @@
 .panel_item_list:hover {
-    background: rgb(56, 56, 56);
+  background: rgb(56, 56, 56);
 }
 
 .panel_item_list:active {
-    background: rgb(115, 115, 115);
+  background: rgb(115, 115, 115);
 }
 
 .panel_item_list_selected {
-    background: rgb(69, 69, 69);
+  background: rgb(69, 69, 69);
 }
 
 .panel_item_list_selected:hover {
-    background: rgb(56, 56, 56);
+  background: rgb(56, 56, 56);
 }
 
 .panel_item_list_selected:active {
-    background: rgb(115, 115, 115);
+  background: rgb(115, 115, 115);
 }

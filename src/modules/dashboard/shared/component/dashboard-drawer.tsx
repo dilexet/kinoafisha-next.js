@@ -6,7 +6,7 @@ import PanelItemsList from "@/modules/dashboard/shared/component/panel-items-lis
 
 export default function DashboardDrawer({ open, toggleDrawer }) {
   return (
-    <Drawer variant="permanent" open={open}>
+    <Drawer variant='permanent' open={open}>
       <Toolbar
         sx={{
           display: "flex",
@@ -16,11 +16,7 @@ export default function DashboardDrawer({ open, toggleDrawer }) {
         }}
       >
         <IconButton onClick={toggleDrawer}>
-          {
-            open ?
-              <ChevronLeftIcon />
-              : <ChevronRightIcon />
-          }
+          {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
         </IconButton>
       </Toolbar>
       <Divider />

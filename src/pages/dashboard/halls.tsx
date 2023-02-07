@@ -7,7 +7,10 @@ import HallTableHead from "@/modules/dashboard/hall-management/component/hall-ta
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
 import { useCallback, useEffect, useState } from "react";
 import { ModalActionTypes } from "@/modules/shared/constants/modal-action-types";
-import { clearErrors, selectAll } from "@/modules/dashboard/hall-management/reducer";
+import {
+  clearErrors,
+  selectAll,
+} from "@/modules/dashboard/hall-management/reducer";
 import { hallGetAllActionAsync } from "@/modules/dashboard/hall-management/action";
 import HallModalContainer from "@/modules/dashboard/hall-management/container/modal/hall-modal-container";
 
@@ -35,12 +38,9 @@ function Halls() {
     await dispatch(hallGetAllActionAsync(searchQuery));
   };
 
-  const fetchData = useCallback(
-    async () => {
-      await dispatch(hallGetAllActionAsync(null));
-    },
-    [dispatch],
-  );
+  const fetchData = useCallback(async () => {
+    await dispatch(hallGetAllActionAsync(null));
+  }, [dispatch]);
 
   useEffect(() => {
     if (isLoading === true) {
@@ -56,18 +56,21 @@ function Halls() {
       </Head>
       <main>
         <TableManagementComponent
-          title="Halls"
+          title='Halls'
           loadData={loadHalls}
           handleOpenModal={handleOpenModal}
           loadingStatus={hallState?.loadingStatusGetAll}
           errorMessage={hallState?.errorInfo?.message}
           TableHead={<HallTableHead />}
-          TableBody={<HallTableBody halls={halls} handleOpenModal={handleOpenModal} />}
+          TableBody={
+            <HallTableBody halls={halls} handleOpenModal={handleOpenModal} />
+          }
         />
-        <Modal
-          openModal={openModal}
-          handleCloseModal={handleCloseModal}>
-          <HallModalContainer modalType={modalType} handleCloseModal={handleCloseModal} />
+        <Modal openModal={openModal} handleCloseModal={handleCloseModal}>
+          <HallModalContainer
+            modalType={modalType}
+            handleCloseModal={handleCloseModal}
+          />
         </Modal>
       </main>
     </>

@@ -7,25 +7,26 @@ import { HallRowsPlanProps } from "@/modules/shared/types/hall-rows-plan-props";
 
 export default function HallRowsPlan({ row }: HallRowsPlanProps) {
   return (
-    <Box style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      margin: "20px 0",
-      minWidth: calculateWidthBySeats(row?.seats?.length),
-    }}>
+    <Box
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "20px 0",
+        minWidth: calculateWidthBySeats(row?.seats?.length),
+      }}
+    >
       <RowNumbers numberRow={row?.numberRow} />
       <Box
         style={{
           margin: "0 10px",
-        }}>
-        {
-          row?.seats?.map((seat) => (
-            <React.Fragment key={seat.id}>
-              <HallSeatsPlan seat={seat} numberRow={row?.numberRow} />
-            </React.Fragment>
-          ))
-        }
+        }}
+      >
+        {row?.seats?.map((seat) => (
+          <React.Fragment key={seat.id}>
+            <HallSeatsPlan seat={seat} numberRow={row?.numberRow} />
+          </React.Fragment>
+        ))}
       </Box>
       <RowNumbers numberRow={row?.numberRow} />
     </Box>

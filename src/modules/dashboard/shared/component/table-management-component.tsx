@@ -6,7 +6,8 @@ import {
   Paper,
   Table,
   TableContainer,
-  Typography, useTheme,
+  Typography,
+  useTheme,
 } from "@mui/material";
 import SearchInputContainer from "@/modules/dashboard/shared/container/search-input-container";
 import { ModalActionTypes } from "@/modules/shared/constants/modal-action-types";
@@ -16,27 +17,43 @@ import { TableManagementContainerProps } from "@/modules/dashboard/shared/types/
 
 // TODO: skeleton
 export default function TableManagementComponent({
-                                                   title,
-                                                   loadData,
-                                                   handleOpenModal,
-                                                   loadingStatus, errorMessage,
-                                                   TableHead, TableBody,
-                                                 }: TableManagementContainerProps) {
+  title,
+  loadData,
+  handleOpenModal,
+  loadingStatus,
+  errorMessage,
+  TableHead,
+  TableBody,
+}: TableManagementContainerProps) {
   const theme = useTheme();
   return (
-    <Container component="main" sx={{ mt: 2, mb: 2 }} maxWidth="lg">
+    <Container component='main' sx={{ mt: 2, mb: 2 }} maxWidth='lg'>
       <Grid item>
-        <Paper sx={{ p: 2, display: "flex", flexDirection: "column", borderRadius: "10px" }}>
-          <Box style={{
+        <Paper
+          sx={{
+            p: 2,
             display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}>
+            flexDirection: "column",
+            borderRadius: "10px",
+          }}
+        >
+          <Box
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
             <Box>
-              <Typography component="h2" variant="h6" color="secondary" style={{
-                textAlign: "left",
-                float: "left",
-              }}>
+              <Typography
+                component='h2'
+                variant='h6'
+                color='secondary'
+                style={{
+                  textAlign: "left",
+                  float: "left",
+                }}
+              >
                 {title}
               </Typography>
             </Box>
@@ -45,9 +62,9 @@ export default function TableManagementComponent({
             </Box>
             <Box>
               <Button
-                size="small"
-                aria-label="create"
-                variant="outlined"
+                size='small'
+                aria-label='create'
+                variant='outlined'
                 onClick={() => handleOpenModal(ModalActionTypes.CREATE)}
                 style={{
                   color: theme.palette.grey["200"],
@@ -55,28 +72,36 @@ export default function TableManagementComponent({
                   borderRadius: "11px",
                   padding: "7px 14px",
                 }}
-                startIcon={<AddBoxIcon style={{ fill: theme.palette.success.dark }} />}>
+                startIcon={
+                  <AddBoxIcon style={{ fill: theme.palette.success.dark }} />
+                }
+              >
                 Create
               </Button>
             </Box>
           </Box>
-          <Box style={{
-            width: "100%",
-            margin: "15px 0",
-          }}>
-            <Typography component="h1" variant="h6" color="secondary"
-                        style={{
-                          textAlign: "center",
-                        }}
-                        fontStyle={{ color: theme.palette.error.dark }}
+          <Box
+            style={{
+              width: "100%",
+              margin: "15px 0",
+            }}
+          >
+            <Typography
+              component='h1'
+              variant='h6'
+              color='secondary'
+              style={{
+                textAlign: "center",
+              }}
+              fontStyle={{ color: theme.palette.error.dark }}
             >
-              {
-                typeof errorMessage === "string" && errorMessage ? errorMessage : ""
-              }
+              {typeof errorMessage === "string" && errorMessage
+                ? errorMessage
+                : ""}
             </Typography>
           </Box>
           <TableContainer>
-            <Table width="auto" aria-label="a dense table">
+            <Table width='auto' aria-label='a dense table'>
               {TableHead}
               {TableBody}
             </Table>

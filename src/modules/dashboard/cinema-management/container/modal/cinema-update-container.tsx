@@ -21,13 +21,19 @@ export default function CinemaUpdateContainer({ handleCloseModal }) {
   };
 
   useEffect(() => {
-    if (cinemaState?.loadingStatusUpdate === LOADING_STATUSES.IDLE && wasUpdated) {
+    if (
+      cinemaState?.loadingStatusUpdate === LOADING_STATUSES.IDLE &&
+      wasUpdated
+    ) {
       handleCloseModal();
     }
   }, [cinemaState?.loadingStatusUpdate, handleCloseModal, wasUpdated]);
 
   useEffect(() => {
-    if (!initialValues && cinemaState?.loadingStatusGetOne === LOADING_STATUSES.IDLE) {
+    if (
+      !initialValues &&
+      cinemaState?.loadingStatusGetOne === LOADING_STATUSES.IDLE
+    ) {
       setInitialValues({
         id: cinemaState?.cinema?.id,
         name: cinemaState?.cinema?.name,
@@ -37,10 +43,25 @@ export default function CinemaUpdateContainer({ handleCloseModal }) {
         houseNumber: cinemaState?.cinema?.houseNumber,
       });
     }
-  }, [cinemaState?.cinema?.city, cinemaState?.cinema?.country, cinemaState?.cinema?.houseNumber, cinemaState?.cinema?.id, cinemaState?.cinema?.name, cinemaState?.cinema?.street, cinemaState?.loadingStatusGetOne, initialValues]);
+  }, [
+    cinemaState?.cinema?.city,
+    cinemaState?.cinema?.country,
+    cinemaState?.cinema?.houseNumber,
+    cinemaState?.cinema?.id,
+    cinemaState?.cinema?.name,
+    cinemaState?.cinema?.street,
+    cinemaState?.loadingStatusGetOne,
+    initialValues,
+  ]);
 
   return (
-    <CinemaForm title="Update cinema" initialValues={initialValues} handleSubmit={handleSubmit}
-                initializeTextField={textFields} handleCancel={handleCloseModal} cinemaState={cinemaState} />
+    <CinemaForm
+      title='Update cinema'
+      initialValues={initialValues}
+      handleSubmit={handleSubmit}
+      initializeTextField={textFields}
+      handleCancel={handleCloseModal}
+      cinemaState={cinemaState}
+    />
   );
 }

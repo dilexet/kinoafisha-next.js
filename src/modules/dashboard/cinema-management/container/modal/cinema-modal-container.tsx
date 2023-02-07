@@ -4,23 +4,15 @@ import CinemaCreateContainer from "@/modules/dashboard/cinema-management/contain
 import CinemaUpdateContainer from "@/modules/dashboard/cinema-management/container/modal/cinema-update-container";
 
 export default function CinemaModalContainer({ modalType, handleCloseModal }) {
-
   if (modalType === ModalActionTypes.DETAILS) {
-    return (
-      <CinemaDetailsContainer />
-    );
+    return <CinemaDetailsContainer />;
   } else {
     if (modalType === ModalActionTypes.UPDATE) {
-      return (
-        <CinemaUpdateContainer handleCloseModal={handleCloseModal} />
-      );
+      return <CinemaUpdateContainer handleCloseModal={handleCloseModal} />;
     }
 
     if (modalType === ModalActionTypes.CREATE) {
-      return (
-        <CinemaCreateContainer handleCloseModal={handleCloseModal}  />
-      );
+      return <CinemaCreateContainer handleCloseModal={handleCloseModal} />;
     }
-
   }
 }

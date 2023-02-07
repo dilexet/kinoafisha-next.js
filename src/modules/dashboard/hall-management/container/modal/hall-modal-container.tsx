@@ -11,13 +11,10 @@ export default function HallModalContainer({ modalType, handleCloseModal }) {
   const dispatch = useAppDispatch();
   const [loadData, setLoadData] = useState(true);
 
-  const fetchData = useCallback(
-    async () => {
-      await dispatch(cinemasGetAllAsync());
-      await dispatch(seatTypesGetAllAsync());
-    },
-    [dispatch],
-  );
+  const fetchData = useCallback(async () => {
+    await dispatch(cinemasGetAllAsync());
+    await dispatch(seatTypesGetAllAsync());
+  }, [dispatch]);
 
   useEffect(() => {
     if (loadData === true && modalType !== ModalActionTypes.DETAILS) {
@@ -34,19 +31,13 @@ export default function HallModalContainer({ modalType, handleCloseModal }) {
   }
 
   if (modalType === ModalActionTypes.DETAILS) {
-    return (
-      <HallDetailsContainer />
-    );
+    return <HallDetailsContainer />;
   }
 
   if (modalType === ModalActionTypes.CREATE) {
-    return (
-      <HallCreateContainer handleCloseModal={handleCloseModal} />
-    );
+    return <HallCreateContainer handleCloseModal={handleCloseModal} />;
   }
   if (modalType === ModalActionTypes.UPDATE) {
-    return (
-      <HallUpdateContainer handleCloseModal={handleCloseModal} />
-    );
+    return <HallUpdateContainer handleCloseModal={handleCloseModal} />;
   }
 }

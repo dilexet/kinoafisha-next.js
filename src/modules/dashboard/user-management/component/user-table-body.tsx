@@ -4,18 +4,20 @@ import { UserTableBodyProps } from "@/modules/dashboard/user-management/types/us
 import UserRowContainer from "@/modules/dashboard/user-management/container/user-row-container";
 
 export default function UserTableBody({
-                                         users,
-                                         handleOpenModal,
-                                       }: UserTableBodyProps) {
+  users,
+  handleOpenModal,
+}: UserTableBodyProps) {
   return (
     <TableBody>
-      {
-        users.map((user, index) => (
-          <React.Fragment key={user.id}>
-            <UserRowContainer user={user} index={index} handleOpenModal={handleOpenModal} />
-          </React.Fragment>
-        ))
-      }
+      {users.map((user, index) => (
+        <React.Fragment key={user.id}>
+          <UserRowContainer
+            user={user}
+            index={index}
+            handleOpenModal={handleOpenModal}
+          />
+        </React.Fragment>
+      ))}
     </TableBody>
   );
 }

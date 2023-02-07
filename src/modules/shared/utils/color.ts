@@ -3,7 +3,6 @@ export default class Color {
   private g: number;
   private b: number;
 
-
   constructor(r: number, g: number, b: number) {
     this.r = r;
     this.g = g;
@@ -33,8 +32,6 @@ export default class Color {
     const gHex2 = `0${gHex1}`.slice(-2);
     const bHex2 = `0${bHex1}`.slice(-2);
 
-    return withNumberSign
-      ? `#${rHex2}${gHex2}${bHex2}`
-      : rHex2 + gHex2 + bHex2;
+    return withNumberSign ? `#${rHex2}${gHex2}${bHex2}` : rHex2 + gHex2 + bHex2;
   }
 }

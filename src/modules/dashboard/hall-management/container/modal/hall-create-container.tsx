@@ -20,14 +20,21 @@ export default function HallCreateContainer({ handleCloseModal }) {
   };
 
   useEffect(() => {
-    if (hallState?.loadingStatusCreate === LOADING_STATUSES.IDLE && wasCreated) {
+    if (
+      hallState?.loadingStatusCreate === LOADING_STATUSES.IDLE &&
+      wasCreated
+    ) {
       handleCloseModal();
     }
   }, [hallState?.loadingStatusCreate, handleCloseModal, wasCreated]);
 
   return (
-    <HallForm title="Create hall" initialValues={HallFields}
-              handleSubmit={handleSubmit}
-              handleCancel={handleCloseModal} hallState={hallState} />
+    <HallForm
+      title='Create hall'
+      initialValues={HallFields}
+      handleSubmit={handleSubmit}
+      handleCancel={handleCloseModal}
+      hallState={hallState}
+    />
   );
 }

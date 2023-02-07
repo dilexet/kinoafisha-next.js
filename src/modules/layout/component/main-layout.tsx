@@ -4,4 +4,4 @@ export default function MainLayout({ Component, pageProps }) {
   } else {
     return <Component {...pageProps} />;
   }
-};
+}

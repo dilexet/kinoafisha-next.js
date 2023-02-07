@@ -8,7 +8,6 @@ export const AuthorizeSessionStorageOptions = {
   refreshKey: "refresh-token",
 };
 
-
 export const RememberMeOption = {
   key: "rememberMe",
 };

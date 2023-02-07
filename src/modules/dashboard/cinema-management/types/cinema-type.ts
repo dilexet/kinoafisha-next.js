@@ -5,4 +5,4 @@ export type CinemaType = {
   city: string;
   street: string;
   houseNumber: number;
-}
+};

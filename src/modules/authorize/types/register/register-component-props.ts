@@ -3,9 +3,9 @@ import { RegisterFieldValues } from "@/modules/authorize/constants/register-fiel
 import { AuthorizeState } from "@/modules/authorize/reducer";
 
 export interface RegisterComponentProps {
-  authorizeState: AuthorizeState,
-  rememberMe: boolean,
-  setRememberMe: React.Dispatch<React.SetStateAction<boolean>>,
-  handleSubmitForm: (values: typeof RegisterFieldValues) => void,
-  handleNavigateToSignIn: () => void,
+  authorizeState: AuthorizeState;
+  rememberMe: boolean;
+  setRememberMe: React.Dispatch<React.SetStateAction<boolean>>;
+  handleSubmitForm: (values: typeof RegisterFieldValues) => void;
+  handleNavigateToSignIn: () => void;
 }

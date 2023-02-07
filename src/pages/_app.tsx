@@ -15,11 +15,12 @@ export default function App({ Component, ...rest }: AppProps) {
         timeOut={4000}
         newestOnTop={false}
         preventDuplicates
-        position="top-right"
-        transitionIn="fadeIn"
-        transitionOut="fadeOut"
+        position='top-right'
+        transitionIn='fadeIn'
+        transitionOut='fadeOut'
         progressBar
-        closeOnToastrClick />
+        closeOnToastrClick
+      />
     </Provider>
   );
 }

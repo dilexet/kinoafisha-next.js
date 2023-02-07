@@ -11,13 +11,10 @@ export default function MovieModalContainer({ modalType, handleCloseModal }) {
   const dispatch = useAppDispatch();
   const [loadData, setLoadData] = useState(true);
 
-  const fetchData = useCallback(
-    async () => {
-      await dispatch(genresGetAllAsync());
-      await dispatch(countriesGetAllAsync(null));
-    },
-    [dispatch],
-  );
+  const fetchData = useCallback(async () => {
+    await dispatch(genresGetAllAsync());
+    await dispatch(countriesGetAllAsync(null));
+  }, [dispatch]);
 
   useEffect(() => {
     if (loadData === true && modalType !== ModalActionTypes.DETAILS) {
@@ -28,27 +25,19 @@ export default function MovieModalContainer({ modalType, handleCloseModal }) {
     }
   }, [fetchData, loadData, modalType]);
 
-
   //TODO: skeleton
   if (loadData) {
     return <div></div>;
   }
   if (modalType === ModalActionTypes.DETAILS) {
-    return (
-      <MovieDetailsContainer />
-    );
+    return <MovieDetailsContainer />;
   } else {
     if (modalType === ModalActionTypes.UPDATE) {
-      return (
-        <MovieUpdateContainer handleCloseModal={handleCloseModal} />
-      );
+      return <MovieUpdateContainer handleCloseModal={handleCloseModal} />;
     }
 
     if (modalType === ModalActionTypes.CREATE) {
-      return (
-        <MovieCreateContainer handleCloseModal={handleCloseModal} />
-      );
+      return <MovieCreateContainer handleCloseModal={handleCloseModal} />;
     }
-
   }
 }

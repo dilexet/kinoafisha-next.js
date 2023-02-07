@@ -10,30 +10,33 @@ export default function HallPlan({ hall }: HallPlanProps) {
         textAlign: "center",
         margin: "25px 0",
         padding: "10px",
-      }}>
+      }}
+    >
       <Box
         style={{
           verticalAlign: "top",
           position: "relative",
           maxWidth: "100%",
-        }}>
-        <Box style={{
-          overflow: "hidden",
-          position: "relative",
-          maxWidth: "100%",
-        }}>
+        }}
+      >
+        <Box
+          style={{
+            overflow: "hidden",
+            position: "relative",
+            maxWidth: "100%",
+          }}
+        >
           <Box
             style={{
               margin: "auto",
-            }}>
+            }}
+          >
             <Box>
-              {
-                hall?.rows?.map((row) => (
-                  <React.Fragment key={row.id}>
-                    <HallRowsPlan row={row} />
-                  </React.Fragment>
-                ))
-              }
+              {hall?.rows?.map((row) => (
+                <React.Fragment key={row.id}>
+                  <HallRowsPlan row={row} />
+                </React.Fragment>
+              ))}
               <h1></h1>
             </Box>
           </Box>

@@ -9,11 +9,14 @@ import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { UserFormProps } from "@/modules/dashboard/user-management/types/user-form-props";
 
 export default function UserForm({
-                                   title, userState,
-                                   initialValues, handleSubmit,
-                                   handleCancel, textFields,
-                                   validationSchema,
-                                 }: UserFormProps) {
+  title,
+  userState,
+  initialValues,
+  handleSubmit,
+  handleCancel,
+  textFields,
+  validationSchema,
+}: UserFormProps) {
   if (initialValues && textFields) {
     return (
       <ModalLayout title={title} error={userState?.errorInfo?.message}>
@@ -24,57 +27,58 @@ export default function UserForm({
           validateOnBlur={true}
           onSubmit={handleSubmit}
         >
-          {
-            ({
-               values,
-               errors,
-               touched,
-               handleChange,
-               handleBlur,
-               handleSubmit,
-               setFieldValue,
-             }) => (
-              <Box component={Form} sx={{ mt: 3 }} onSubmit={handleSubmit}>
-                <Grid
-                  container
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="flex-start"
-                >
-                  {
-                    textFields?.map((value, index) => (
-                      <Grid item key={index}>
-                        <FormTextField
-                          id={value.id}
-                          type={value.type}
-                          label={value.label}
-                          name={value.name}
-                          value={values[value.name]}
-                          variant="outlined"
-                          margin="normal"
-                          outlinedInputStyle={{ borderRadius: "20px" }}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          formControlStyle={{ width: "350px" }}
-                          {...handleErrors(errors, touched, value?.name)}
-                        />
-                      </Grid>
-                    ))
-                  }
-                  <Grid item>
-                    <RoleContainer values={values} setFieldValue={setFieldValue} />
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            setFieldValue,
+          }) => (
+            <Box component={Form} sx={{ mt: 3 }} onSubmit={handleSubmit}>
+              <Grid
+                container
+                direction='column'
+                justifyContent='center'
+                alignItems='flex-start'
+              >
+                {textFields?.map((value, index) => (
+                  <Grid item key={index}>
+                    <FormTextField
+                      id={value.id}
+                      type={value.type}
+                      label={value.label}
+                      name={value.name}
+                      value={values[value.name]}
+                      variant='outlined'
+                      margin='normal'
+                      outlinedInputStyle={{ borderRadius: "20px" }}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      formControlStyle={{ width: "350px" }}
+                      {...handleErrors(errors, touched, value?.name)}
+                    />
                   </Grid>
+                ))}
+                <Grid item>
+                  <RoleContainer
+                    values={values}
+                    setFieldValue={setFieldValue}
+                  />
                 </Grid>
-                <FormButtonGroup handleCancel={handleCancel} isLoading={
+              </Grid>
+              <FormButtonGroup
+                handleCancel={handleCancel}
+                isLoading={
                   userState?.loadingStatusCreate === LOADING_STATUSES.LOADING ||
                   userState?.loadingStatusUpdate === LOADING_STATUSES.LOADING
-                } />
-              </Box>
-            )
-          }
+                }
+              />
+            </Box>
+          )}
         </Formik>
       </ModalLayout>
-
     );
   }
 }

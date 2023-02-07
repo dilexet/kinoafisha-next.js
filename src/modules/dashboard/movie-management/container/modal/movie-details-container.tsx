@@ -12,7 +12,10 @@ export default function MovieDetailsContainer() {
   const [gridItems, setGridItems] = useState<GridItemsType[]>(null);
 
   useEffect(() => {
-    if (!gridItems && movieState?.loadingStatusGetOne === LOADING_STATUSES.IDLE) {
+    if (
+      !gridItems &&
+      movieState?.loadingStatusGetOne === LOADING_STATUSES.IDLE
+    ) {
       const newGridItems = [
         {
           property: "Name",
@@ -28,15 +31,23 @@ export default function MovieDetailsContainer() {
         },
         {
           property: "Duration",
-          value: `${movieState.movie.durationInMinutes}m = ${convertMinutesToHoursWithMinutes(movieState.movie.durationInMinutes)}`,
+          value: `${
+            movieState.movie.durationInMinutes
+          }m = ${convertMinutesToHoursWithMinutes(
+            movieState.movie.durationInMinutes,
+          )}`,
         },
       ];
       setGridItems(newGridItems);
     }
-  }, [gridItems, movieState?.loadingStatusGetOne, movieState.movie?.description, movieState.movie.durationInMinutes, movieState.movie?.name, movieState.movie?.premiereDate]);
+  }, [
+    gridItems,
+    movieState?.loadingStatusGetOne,
+    movieState.movie?.description,
+    movieState.movie.durationInMinutes,
+    movieState.movie?.name,
+    movieState.movie?.premiereDate,
+  ]);
 
-
-  return (
-    <MovieDetails gridItems={gridItems} movieState={movieState} />
-  );
+  return <MovieDetails gridItems={gridItems} movieState={movieState} />;
 }

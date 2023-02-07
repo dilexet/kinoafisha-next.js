@@ -6,7 +6,9 @@ export const countriesGetAllAsync = createAsyncThunk(
   "countries/getAll",
   async (query: string, thunkAPI) => {
     try {
-      const response = await axiosInstance.get(COUNTRIES, {params: { countryName: query }});
+      const response = await axiosInstance.get(COUNTRIES, {
+        params: { countryName: query },
+      });
       return response?.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);

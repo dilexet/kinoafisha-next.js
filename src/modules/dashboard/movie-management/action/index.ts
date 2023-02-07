@@ -4,7 +4,10 @@ import { MOVIE_MANAGEMENT } from "@/modules/shared/constants/api-constants";
 import { UpdateArgsType } from "@/modules/dashboard/movie-management/types/update-args-type";
 import { MovieFieldType } from "@/modules/dashboard/movie-management/constants/movie-field-values";
 import toastrNotification from "@/modules/dashboard/shared/utils/toastr-notification";
-import { ActionSuccessMessages, ActionErrorMessages } from "@/modules/dashboard/shared/enums/action-messages";
+import {
+  ActionSuccessMessages,
+  ActionErrorMessages,
+} from "@/modules/dashboard/shared/enums/action-messages";
 import ActionStatuses from "@/modules/dashboard/shared/enums/action-statuses";
 
 const title = "Movie management";
@@ -13,7 +16,9 @@ export const movieGetAllActionAsync = createAsyncThunk(
   "movie-management/getAll",
   async (query: string, thunkAPI) => {
     try {
-      const response = await axiosInstance.get(MOVIE_MANAGEMENT, { params: { name: query } });
+      const response = await axiosInstance.get(MOVIE_MANAGEMENT, {
+        params: { name: query },
+      });
       return response?.data;
     } catch (err) {
       toastrNotification(title, ActionErrorMessages.GET, ActionStatuses.ERROR);
@@ -42,11 +47,20 @@ export const movieUpdateAsync = createAsyncThunk(
       const id = updateArgs.id;
       const response = await axiosInstance.put(
         MOVIE_MANAGEMENT + `/${id}`,
-        updateArgs.values);
-      toastrNotification(title, ActionSuccessMessages.UPDATE, ActionStatuses.SUCCESS);
+        updateArgs.values,
+      );
+      toastrNotification(
+        title,
+        ActionSuccessMessages.UPDATE,
+        ActionStatuses.SUCCESS,
+      );
       return response?.data;
     } catch (err) {
-      toastrNotification(title, ActionErrorMessages.UPDATE, ActionStatuses.ERROR);
+      toastrNotification(
+        title,
+        ActionErrorMessages.UPDATE,
+        ActionStatuses.ERROR,
+      );
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },
@@ -57,10 +71,18 @@ export const movieCreateAsync = createAsyncThunk(
   async (values: MovieFieldType, thunkAPI) => {
     try {
       const response = await axiosInstance.post(MOVIE_MANAGEMENT, values);
-      toastrNotification(title, ActionSuccessMessages.CREATE, ActionStatuses.SUCCESS);
+      toastrNotification(
+        title,
+        ActionSuccessMessages.CREATE,
+        ActionStatuses.SUCCESS,
+      );
       return response?.data;
     } catch (err) {
-      toastrNotification(title, ActionErrorMessages.CREATE, ActionStatuses.ERROR);
+      toastrNotification(
+        title,
+        ActionErrorMessages.CREATE,
+        ActionStatuses.ERROR,
+      );
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },
@@ -71,10 +93,18 @@ export const movieDeleteAsync = createAsyncThunk(
   async (id: string, thunkAPI) => {
     try {
       const response = await axiosInstance.delete(MOVIE_MANAGEMENT + `/${id}`);
-      toastrNotification(title, ActionSuccessMessages.DELETE, ActionStatuses.SUCCESS);
+      toastrNotification(
+        title,
+        ActionSuccessMessages.DELETE,
+        ActionStatuses.SUCCESS,
+      );
       return response?.data;
     } catch (err) {
-      toastrNotification(title, ActionErrorMessages.DELETE, ActionStatuses.ERROR);
+      toastrNotification(
+        title,
+        ActionErrorMessages.DELETE,
+        ActionStatuses.ERROR,
+      );
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },

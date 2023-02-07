@@ -6,6 +6,6 @@ export interface TableManagementContainerProps {
   handleOpenModal: (value: string) => void;
   loadingStatus: string;
   errorMessage: string | undefined | null | [];
-  TableHead: React.ReactElement,
-  TableBody: React.ReactElement,
+  TableHead: React.ReactElement;
+  TableBody: React.ReactElement;
 }

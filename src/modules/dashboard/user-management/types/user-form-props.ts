@@ -16,5 +16,7 @@ export interface UserFormProps {
   handleSubmit: (values: UserFieldCreateType | UserFieldUpdateType) => void;
   handleCancel: () => void;
   userState: UserManagementState;
-  validationSchema: userCreateValidationSchemaType | userUpdateValidationSchemaType;
+  validationSchema:
+    | userCreateValidationSchemaType
+    | userUpdateValidationSchemaType;
 }

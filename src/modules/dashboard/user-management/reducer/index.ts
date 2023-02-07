@@ -1,4 +1,9 @@
-import { AnyAction, createEntityAdapter, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  AnyAction,
+  createEntityAdapter,
+  createSlice,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { RootState } from "@/modules/shared/redux/store";
 import { HYDRATE } from "next-redux-wrapper";
@@ -33,9 +38,8 @@ const initialState: UserManagementState = {
 };
 
 export const userEntityAdapter = createEntityAdapter<UserType>({
-    selectId: model => model?.id,
-  },
-);
+  selectId: (model) => model?.id,
+});
 
 const initialAdapterState = userEntityAdapter.getInitialState(initialState);
 
@@ -47,140 +51,168 @@ const userManagementSlice = createSlice({
       state.errorInfo = null;
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(userGetAllActionAsync.pending.type,
-        (state) => {
-          state.loadingStatusGetAll = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(userGetAllActionAsync.fulfilled.type,
+      .addCase(userGetAllActionAsync.pending.type, (state) => {
+        state.loadingStatusGetAll = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+      })
+      .addCase(
+        userGetAllActionAsync.fulfilled.type,
         (state, action: PayloadAction<UserType[]>) => {
           state.loadingStatusGetAll = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           userEntityAdapter.setAll(state, action.payload);
-        })
-      .addCase(userGetAllActionAsync.rejected.type,
+        },
+      )
+      .addCase(
+        userGetAllActionAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatusGetAll = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message: action.payload?.message,
             error: action.payload?.error,
           };
-        })
+        },
+      )
 
-      .addCase(userGetOneActionAsync.pending.type,
-        (state) => {
-          state.loadingStatusGetOne = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(userGetOneActionAsync.fulfilled.type,
+      .addCase(userGetOneActionAsync.pending.type, (state) => {
+        state.loadingStatusGetOne = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+      })
+      .addCase(
+        userGetOneActionAsync.fulfilled.type,
         (state, action: PayloadAction<UserType>) => {
           state.loadingStatusGetOne = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           state.user = action.payload;
-        })
-      .addCase(userGetOneActionAsync.rejected.type,
+        },
+      )
+      .addCase(
+        userGetOneActionAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatusGetOne = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message: action.payload?.message,
             error: action.payload?.error,
           };
-        })
+        },
+      )
 
-      .addCase(userUpdateAsync.pending.type,
-        (state) => {
-          state.loadingStatusUpdate = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(userUpdateAsync.fulfilled.type,
+      .addCase(userUpdateAsync.pending.type, (state) => {
+        state.loadingStatusUpdate = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+      })
+      .addCase(
+        userUpdateAsync.fulfilled.type,
         (state, action: PayloadAction<UserType>) => {
           state.loadingStatusUpdate = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
-          userEntityAdapter.updateOne(state, { id: action?.payload?.id, changes: action?.payload });
-        })
-      .addCase(userUpdateAsync.rejected.type,
+          userEntityAdapter.updateOne(state, {
+            id: action?.payload?.id,
+            changes: action?.payload,
+          });
+        },
+      )
+      .addCase(
+        userUpdateAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatusUpdate = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message: action.payload?.message,
             error: action.payload?.error,
           };
-        })
+        },
+      )
 
-      .addCase(userChangeBlockStatusAsync.pending.type,
-        (state) => {
-          state.loadingStatusUpdate = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(userChangeBlockStatusAsync.fulfilled.type,
+      .addCase(userChangeBlockStatusAsync.pending.type, (state) => {
+        state.loadingStatusUpdate = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+      })
+      .addCase(
+        userChangeBlockStatusAsync.fulfilled.type,
         (state, action: PayloadAction<UserType>) => {
           state.loadingStatusUpdate = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
-          userEntityAdapter.updateOne(state, { id: action?.payload?.id, changes: action?.payload });
-        })
-      .addCase(userChangeBlockStatusAsync.rejected.type,
+          userEntityAdapter.updateOne(state, {
+            id: action?.payload?.id,
+            changes: action?.payload,
+          });
+        },
+      )
+      .addCase(
+        userChangeBlockStatusAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatusUpdate = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message: action.payload?.message,
             error: action.payload?.error,
           };
-        })
+        },
+      )
 
-      .addCase(userCreateAsync.pending.type,
-        (state) => {
-          state.loadingStatusCreate = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(userCreateAsync.fulfilled.type,
+      .addCase(userCreateAsync.pending.type, (state) => {
+        state.loadingStatusCreate = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+      })
+      .addCase(
+        userCreateAsync.fulfilled.type,
         (state, action: PayloadAction<UserType>) => {
           state.loadingStatusCreate = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           userEntityAdapter.addOne(state, action?.payload);
-        })
-      .addCase(userCreateAsync.rejected.type,
+        },
+      )
+      .addCase(
+        userCreateAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatusCreate = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message: action.payload?.message,
             error: action.payload?.error,
           };
-        })
+        },
+      )
 
-      .addCase(userDeleteAsync.pending.type,
-        (state) => {
-          state.loadingStatusDelete = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(userDeleteAsync.fulfilled.type,
+      .addCase(userDeleteAsync.pending.type, (state) => {
+        state.loadingStatusDelete = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+      })
+      .addCase(
+        userDeleteAsync.fulfilled.type,
         (state, action: PayloadAction<string>) => {
           state.loadingStatusDelete = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           userEntityAdapter.removeOne(state, action?.payload);
-        })
-      .addCase(userDeleteAsync.rejected.type,
+        },
+      )
+      .addCase(
+        userDeleteAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatusDelete = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message: action.payload?.message,
             error: action.payload?.error,
           };
-        })
+        },
+      )
 
       .addCase(HYDRATE, (state, action: AnyAction) => {
         if (action.payload?.user_management_reducer?.errorInfo) {
           state.loadingStatusGetAll = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.user_management_reducer?.errorInfo?.message,
+            message:
+              action.payload?.user_management_reducer?.errorInfo?.message,
             error: action.payload?.user_management_reducer?.errorInfo?.error,
           };
           userEntityAdapter.setAll(state, []);
         } else {
           state.loadingStatusGetAll = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
-          userEntityAdapter.setAll(state, action.payload.user_management_reducer?.entities);
+          userEntityAdapter.setAll(
+            state,
+            action.payload.user_management_reducer?.entities,
+          );
         }
       });
   },
@@ -189,10 +221,9 @@ const userManagementSlice = createSlice({
 export default userManagementSlice.reducer;
 
 const userManagementSelectors = userEntityAdapter.getSelectors<RootState>(
-  state => state.user_management_reducer);
+  (state) => state.user_management_reducer,
+);
 
 export const { clearErrors } = userManagementSlice.actions;
 
-export const {
-  selectAll,
-} = userManagementSelectors;
+export const { selectAll } = userManagementSelectors;

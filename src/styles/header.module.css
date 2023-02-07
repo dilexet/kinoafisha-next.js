@@ -1,15 +1,15 @@
 .logo_start {
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    background: -webkit-linear-gradient(#ee3d5a, #8B8B8E);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  background: -webkit-linear-gradient(#ee3d5a, #8b8b8e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .logo_end {
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    background: -webkit-linear-gradient(#8B8B8E, #ee3d5a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  background: -webkit-linear-gradient(#8b8b8e, #ee3d5a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

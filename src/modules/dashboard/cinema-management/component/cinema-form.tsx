@@ -10,13 +10,13 @@ import FormButtonGroup from "@/modules/dashboard/shared/component/form-button-gr
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 
 export default function CinemaForm({
-                                     title,
-                                     initialValues,
-                                     handleSubmit,
-                                     handleCancel,
-                                     initializeTextField,
-                                     cinemaState,
-                                   }: CinemaFormProps) {
+  title,
+  initialValues,
+  handleSubmit,
+  handleCancel,
+  initializeTextField,
+  cinemaState,
+}: CinemaFormProps) {
   if (initialValues && initializeTextField) {
     return (
       <ModalLayout title={title} error={cinemaState?.errorInfo?.message}>
@@ -27,50 +27,50 @@ export default function CinemaForm({
           validateOnBlur={true}
           onSubmit={handleSubmit}
         >
-          {
-            ({
-               values,
-               errors,
-               touched,
-               handleChange,
-               handleBlur,
-               handleSubmit,
-             }) => (
-              <Box component={Form} sx={{ mt: 3 }} onSubmit={handleSubmit}>
-                <Grid
-                  container
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="flex-start"
-                >
-                  {
-                    initializeTextField?.map((value, index) => (
-                      <Grid item key={index}>
-                        <FormTextField
-                          id={value.id}
-                          type={value.type}
-                          label={value.label}
-                          name={value.name}
-                          value={values[value.name]}
-                          variant="outlined"
-                          margin="normal"
-                          outlinedInputStyle={{ borderRadius: "20px" }}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          formControlStyle={{ width: "350px" }}
-                          {...handleErrors(errors, touched, value?.name)}
-                        />
-                      </Grid>
-                    ))
-                  }
-                </Grid>
-                <FormButtonGroup handleCancel={handleCancel} isLoading={
-                  cinemaState?.loadingStatusCreate === LOADING_STATUSES.LOADING ||
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+          }) => (
+            <Box component={Form} sx={{ mt: 3 }} onSubmit={handleSubmit}>
+              <Grid
+                container
+                direction='column'
+                justifyContent='center'
+                alignItems='flex-start'
+              >
+                {initializeTextField?.map((value, index) => (
+                  <Grid item key={index}>
+                    <FormTextField
+                      id={value.id}
+                      type={value.type}
+                      label={value.label}
+                      name={value.name}
+                      value={values[value.name]}
+                      variant='outlined'
+                      margin='normal'
+                      outlinedInputStyle={{ borderRadius: "20px" }}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      formControlStyle={{ width: "350px" }}
+                      {...handleErrors(errors, touched, value?.name)}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+              <FormButtonGroup
+                handleCancel={handleCancel}
+                isLoading={
+                  cinemaState?.loadingStatusCreate ===
+                    LOADING_STATUSES.LOADING ||
                   cinemaState?.loadingStatusUpdate === LOADING_STATUSES.LOADING
-                } />
-              </Box>
-            )
-          }
+                }
+              />
+            </Box>
+          )}
         </Formik>
       </ModalLayout>
     );

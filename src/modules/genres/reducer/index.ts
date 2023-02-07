@@ -6,8 +6,8 @@ import { GenresType } from "@/modules/genres/types/genre-type";
 export interface GenresState {
   loadingStatus: string;
   errorInfo: {
-    message: string,
-    error: string,
+    message: string;
+    error: string;
   };
   genres: GenresType[];
 }
@@ -25,27 +25,30 @@ const genresSlice = createSlice({
   name: "genres",
   initialState: initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(genresGetAllAsync.pending.type,
-        (state) => {
-          state.loadingStatus = LOADING_STATUSES.LOADING;
-          state.errorInfo = null;
-        })
-      .addCase(genresGetAllAsync.fulfilled.type,
+      .addCase(genresGetAllAsync.pending.type, (state) => {
+        state.loadingStatus = LOADING_STATUSES.LOADING;
+        state.errorInfo = null;
+      })
+      .addCase(
+        genresGetAllAsync.fulfilled.type,
         (state, action: PayloadAction<GenresType[]>) => {
           state.loadingStatus = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
           state.genres = action?.payload;
-        })
-      .addCase(genresGetAllAsync.rejected.type,
+        },
+      )
+      .addCase(
+        genresGetAllAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message: action.payload?.message,
             error: action.payload?.error,
           };
-        });
+        },
+      );
   },
 });
 

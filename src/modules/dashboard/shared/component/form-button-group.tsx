@@ -11,10 +11,11 @@ export default function FormButtonGroup({ handleCancel, isLoading }) {
         alignItems: "center",
         justifyContent: "space-between",
         marginTop: "20px",
-      }}>
+      }}
+    >
       <Button
-        variant="outlined"
-        type="submit"
+        variant='outlined'
+        type='submit'
         disabled={isLoading}
         style={{
           color: theme.palette.success.light,
@@ -22,20 +23,22 @@ export default function FormButtonGroup({ handleCancel, isLoading }) {
           borderRadius: "11px",
           padding: "7px 14px",
         }}
-        startIcon={<SaveIcon style={{ fill: theme.palette.success.dark }} />}>
+        startIcon={<SaveIcon style={{ fill: theme.palette.success.dark }} />}
+      >
         Save
       </Button>
       <Button
         onClick={handleCancel}
         disabled={isLoading}
-        variant="outlined"
+        variant='outlined'
         style={{
           color: theme.palette.error.light,
           borderColor: theme.palette.error.dark,
           borderRadius: "11px",
           padding: "7px 14px",
         }}
-        startIcon={<CancelIcon style={{ fill: theme.palette.error.dark }} />}>
+        startIcon={<CancelIcon style={{ fill: theme.palette.error.dark }} />}
+      >
         Cancel
       </Button>
     </Box>

@@ -7,7 +7,12 @@ import { googleOptions } from "@/modules/shared/constants/google-constants";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import MainLayout from "@/modules/layout/component/main-layout";
 
-const Layout = ({ Component, pageProps, isDarkModeEnabled, onChangeTheme }: LayoutComponentProps) => {
+const Layout = ({
+  Component,
+  pageProps,
+  isDarkModeEnabled,
+  onChangeTheme,
+}: LayoutComponentProps) => {
   return (
     <GoogleOAuthProvider clientId={googleOptions.GOOGLE_ID}>
       <ThemeProvider theme={isDarkModeEnabled ? darkTheme : lightTheme}>
@@ -19,9 +24,12 @@ const Layout = ({ Component, pageProps, isDarkModeEnabled, onChangeTheme }: Layo
           }}
         >
           <CssBaseline>
-            <HeaderContainer isDarkModeEnabled={isDarkModeEnabled} onChangeTheme={onChangeTheme} />
+            <HeaderContainer
+              isDarkModeEnabled={isDarkModeEnabled}
+              onChangeTheme={onChangeTheme}
+            />
             <section>
-              <MainLayout Component={Component} pageProps={pageProps}/>
+              <MainLayout Component={Component} pageProps={pageProps} />
             </section>
             <Footer />
           </CssBaseline>
@@ -30,7 +38,5 @@ const Layout = ({ Component, pageProps, isDarkModeEnabled, onChangeTheme }: Layo
     </GoogleOAuthProvider>
   );
 };
-
-
 
 export default Layout;

@@ -3,7 +3,10 @@ import Head from "next/head";
 import React, { useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
 import { ModalActionTypes } from "@/modules/shared/constants/modal-action-types";
-import { clearErrors, selectAll } from "@/modules/dashboard/user-management/reducer";
+import {
+  clearErrors,
+  selectAll,
+} from "@/modules/dashboard/user-management/reducer";
 import { userGetAllActionAsync } from "@/modules/dashboard/user-management/action";
 import TableManagementComponent from "@/modules/dashboard/shared/component/table-management-component";
 import UserTableHead from "@/modules/dashboard/user-management/component/user-table-head";
@@ -35,12 +38,9 @@ function Users() {
     await dispatch(userGetAllActionAsync(searchQuery));
   };
 
-  const fetchData = useCallback(
-    async () => {
-      await dispatch(userGetAllActionAsync(null));
-    },
-    [dispatch],
-  );
+  const fetchData = useCallback(async () => {
+    await dispatch(userGetAllActionAsync(null));
+  }, [dispatch]);
 
   useEffect(() => {
     if (isLoading === true) {
@@ -56,24 +56,26 @@ function Users() {
       </Head>
       <main>
         <TableManagementComponent
-          title="Users"
+          title='Users'
           loadData={loadUsers}
           handleOpenModal={handleOpenModal}
           loadingStatus={userState?.loadingStatusGetAll}
           errorMessage={userState?.errorInfo?.message}
           TableHead={<UserTableHead />}
-          TableBody={<UserTableBody users={users} handleOpenModal={handleOpenModal} />}
+          TableBody={
+            <UserTableBody users={users} handleOpenModal={handleOpenModal} />
+          }
         />
-        <Modal
-          openModal={openModal}
-          handleCloseModal={handleCloseModal}>
-          <UserModalContainer modalType={modalType} handleCloseModal={handleCloseModal} />
+        <Modal openModal={openModal} handleCloseModal={handleCloseModal}>
+          <UserModalContainer
+            modalType={modalType}
+            handleCloseModal={handleCloseModal}
+          />
         </Modal>
       </main>
     </>
   );
 }
-
 
 Users.getLayout = DashboardPageLayout;
 

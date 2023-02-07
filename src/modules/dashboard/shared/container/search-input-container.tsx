@@ -24,14 +24,14 @@ export default function SearchInputContainer({ loadData }) {
     setSearchInputOnFocused(isFocused);
   };
 
-
   return (
-    <SearchInput search={search}
-                 searchInputOnFocused={searchInputOnFocused}
-                 handleSearchInputFocused={handleSearchInputFocused}
-                 handleClearInput={handleClearInput}
-                 handleSubmitSearch={handleSubmitSearch}
-                 handleInputChange={handleInputChange}
+    <SearchInput
+      search={search}
+      searchInputOnFocused={searchInputOnFocused}
+      handleSearchInputFocused={handleSearchInputFocused}
+      handleClearInput={handleClearInput}
+      handleSubmitSearch={handleSubmitSearch}
+      handleInputChange={handleInputChange}
     />
   );
 }

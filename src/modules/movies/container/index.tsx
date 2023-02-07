@@ -3,9 +3,13 @@ import { SelectChangeEvent } from "@mui/material";
 import MoviesComponent from "@/modules/movies/component";
 import { MovieContainerProps } from "@/modules/movies/types/movie-props";
 
-
-
-export default function MoviesContainer({ values, setFieldValue, handleBlur, errors, touched }: MovieContainerProps) {
+export default function MoviesContainer({
+  values,
+  setFieldValue,
+  handleBlur,
+  errors,
+  touched,
+}: MovieContainerProps) {
   const moviesState = useAppSelector((x) => x.movies_reducer);
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -13,8 +17,13 @@ export default function MoviesContainer({ values, setFieldValue, handleBlur, err
   };
 
   return (
-    <MoviesComponent values={values} handleChange={handleChange} moviesState={moviesState}
-                     handleBlur={handleBlur} errors={errors} touched={touched}
+    <MoviesComponent
+      values={values}
+      handleChange={handleChange}
+      moviesState={moviesState}
+      handleBlur={handleBlur}
+      errors={errors}
+      touched={touched}
     />
   );
 }

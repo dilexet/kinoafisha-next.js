@@ -22,9 +22,12 @@ export default function UploadImageContainer({ setFieldValue }) {
       setFieldValue("posterURL", imageState?.imageName);
       setImageLoaded(false);
     }
-  }, [imageLoaded, imageState?.imageName, imageState?.loadingStatus, setFieldValue]);
+  }, [
+    imageLoaded,
+    imageState?.imageName,
+    imageState?.loadingStatus,
+    setFieldValue,
+  ]);
 
-  return (
-    <UploadImage handleUploadImage={handleUploadImage} />
-  );
+  return <UploadImage handleUploadImage={handleUploadImage} />;
 }

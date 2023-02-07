@@ -14,7 +14,9 @@ const DashboardPage = () => {
   );
 };
 
-export const DashboardPageLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
+export const DashboardPageLayout = (page) => (
+  <DashboardLayout>{page}</DashboardLayout>
+);
 
 DashboardPage.getLayout = DashboardPageLayout;
 
