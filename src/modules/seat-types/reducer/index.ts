@@ -2,15 +2,7 @@ import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { seatTypesGetAllAsync } from "@/modules/seat-types/action";
 import { generateColor } from "@/modules/shared/utils/generate-color";
-
-export interface SeatTypeTypeRequest {
-  id: string;
-  name: string;
-}
-
-export interface SeatTypeType extends SeatTypeTypeRequest {
-  color: string;
-}
+import { SeatTypeType, SeatTypeTypeRequest } from "@/modules/seat-types/types/seat-type-type";
 
 export interface SeatTypeState {
   loadingStatus: string;
