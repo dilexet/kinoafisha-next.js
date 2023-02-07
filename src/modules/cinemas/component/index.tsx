@@ -5,20 +5,9 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-  SelectChangeEvent, useTheme,
+  useTheme,
 } from "@mui/material";
-import { CinemaState } from "@/modules/cinemas/reducer";
-import { HallFieldsType } from "@/modules/dashboard/hall-management/types/hall-field-types";
-import { SessionFieldsType } from "@/modules/dashboard/session-management/types/session-field-types";
-
-export interface CinemasComponentProps {
-  values: HallFieldsType | SessionFieldsType;
-  handleChange: (event: SelectChangeEvent) => void;
-  cinemasState: CinemaState;
-  errors: any;
-  touched: any;
-  handleBlur: any;
-}
+import { CinemasComponentProps } from "@/modules/cinemas/types/cinemas-props";
 
 export default function CinemasComponent({
                                            values, handleChange, cinemasState,
