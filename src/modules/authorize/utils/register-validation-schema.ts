@@ -17,9 +17,11 @@ const registerValidationSchema = yup.object({
     .required("Please enter your password"),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password"), null], "The password and confirm password do not match")
+    .oneOf(
+      [yup.ref("password"), null],
+      "The password and confirm password do not match",
+    )
     .required("Please confirm your password"),
-
 });
 
 export default registerValidationSchema;

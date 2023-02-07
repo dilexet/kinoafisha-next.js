@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
+import ReduxToastr from "react-redux-toastr";
 import { wrapper } from "@/modules/shared/redux/store";
 import LayoutContainer from "@/modules/layout/container";
 import "@/styles/globals.css";
@@ -9,9 +10,17 @@ export default function App({ Component, ...rest }: AppProps) {
   const { pageProps } = props;
   return (
     <Provider store={store}>
-      <LayoutContainer>
-        <Component {...pageProps} />
-      </LayoutContainer>
+      <LayoutContainer Component={Component} pageProps={pageProps} />
+      <ReduxToastr
+        timeOut={4000}
+        newestOnTop={false}
+        preventDuplicates
+        position='top-right'
+        transitionIn='fadeIn'
+        transitionOut='fadeOut'
+        progressBar
+        closeOnToastrClick
+      />
     </Provider>
   );
 }

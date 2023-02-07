@@ -2,10 +2,7 @@ import { googleAuthorizeAsync } from "@/modules/authorize/action";
 import { AuthorizeButton } from "@/modules/authorize/component/authorize-button";
 import { useAppDispatch } from "@/modules/shared/redux/hooks";
 
-export default function AuthorizeButtonContainer({
-                                                   isLoading,
-                                                   buttonText,
-                                                 }) {
+export default function AuthorizeButtonContainer({ isLoading, buttonText }) {
   const dispatch = useAppDispatch();
 
   async function handleGoogleAuthorize(token: string) {
@@ -13,6 +10,10 @@ export default function AuthorizeButtonContainer({
   }
 
   return (
-    <AuthorizeButton buttonText={buttonText} isLoading={isLoading} handleGoogleAuthorize={handleGoogleAuthorize} />
+    <AuthorizeButton
+      buttonText={buttonText}
+      isLoading={isLoading}
+      handleGoogleAuthorize={handleGoogleAuthorize}
+    />
   );
 }

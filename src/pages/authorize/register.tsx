@@ -7,6 +7,7 @@ import RegisterComponent from "@/modules/authorize/component/register";
 import { RegisterFieldValues } from "@/modules/authorize/constants/register-field-values";
 import registerValidationSchema from "@/modules/authorize/utils/register-validation-schema";
 import { clearErrors } from "@/modules/authorize/reducer";
+import { authorize } from "@/modules/shared/constants/app-routes";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -17,23 +18,33 @@ export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   function handleNavigateToSignIn() {
-    router.push("/authorize");
+    router.push(authorize.Login);
   }
 
   async function handleSubmitForm(values: typeof RegisterFieldValues) {
     if (await registerValidationSchema.isValid(values)) {
-      await dispatch(registerActionAsync({ data: values, rememberMe: rememberMe }));
+      await dispatch(
+        registerActionAsync({ data: values, rememberMe: rememberMe }),
+      );
     }
   }
 
   useEffect(() => {
-    if (isLoading === true && (authState?.errorInfo?.message || authState?.errorInfo?.error)) {
+    if (
+      isLoading === true &&
+      (authState?.errorInfo?.message || authState?.errorInfo?.error)
+    ) {
       dispatch(clearErrors());
       setIsLoading(false);
     } else {
       setIsLoading(false);
     }
-  }, [authState?.errorInfo?.error, authState?.errorInfo?.message, dispatch, isLoading]);
+  }, [
+    authState?.errorInfo?.error,
+    authState?.errorInfo?.message,
+    dispatch,
+    isLoading,
+  ]);
 
   return (
     <>
@@ -44,7 +55,8 @@ export default function RegisterPage() {
         <RegisterComponent
           handleSubmitForm={handleSubmitForm}
           handleNavigateToSignIn={handleNavigateToSignIn}
-          rememberMe={rememberMe} setRememberMe={setRememberMe}
+          rememberMe={rememberMe}
+          setRememberMe={setRememberMe}
           authorizeState={authState}
         />
       </main>

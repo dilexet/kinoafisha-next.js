@@ -1,0 +1,22 @@
+.modal {
+  overflow-y: auto;
+  max-height: calc(100vh - 100px);
+  scrollbar-width: thin;
+  scrollbar-color: #323232 #969696;
+}
+
+.modal::-webkit-scrollbar {
+  width: 5px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: rgb(50, 50, 50);
+  margin: 20px 0;
+  border-radius: 99px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background-color: rgb(80, 80, 80);
+  border-radius: 99px;
+  border: 1px solid rgb(80, 80, 80);
+}

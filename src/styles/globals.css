@@ -92,7 +92,7 @@ html {
 body {
     overflow: auto;
     scrollbar-width: thin;
-    scrollbar-color: #27272A #F1F1F1;
+    scrollbar-color: #27272a #f1f1f1;
 }
 
 body::-webkit-scrollbar {
@@ -101,13 +101,13 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-    background: rgb(220, 220, 220);
+    background: rgb(33, 33, 33);
 }
 
 body::-webkit-scrollbar-thumb {
     background-color: rgb(130, 130, 130);
     border-radius: 99px;
-    border: 2px solid rgb(220, 220, 220);
+    border: 2px solid rgb(33, 33, 33);
 }
 
 /*body::-webkit-scrollbar {*/

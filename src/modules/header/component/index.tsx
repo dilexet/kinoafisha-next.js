@@ -11,14 +11,19 @@ import {
 } from "@mui/material";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { APP_NAME } from "@/modules/shared/constants/app-constants";
+import { APP_LOGO } from "@/modules/shared/constants/app-constants";
 import { HeaderComponentProps } from "@/modules/header/type/header-component-props";
+import styles from "@/styles/header.module.css";
 
-const Header = ({ theme, onChangeTheme, isDarkModeEnabled }: HeaderComponentProps) => {
+const Header = ({
+  theme,
+  onChangeTheme,
+  isDarkModeEnabled,
+}: HeaderComponentProps) => {
   return (
-    <Box component="header">
+    <Box component='header'>
       <AppBar
-        position="static"
+        position='static'
         elevation={0}
         sx={{
           borderBottom: `1px solid ${theme.palette.divider}`,
@@ -31,22 +36,25 @@ const Header = ({ theme, onChangeTheme, isDarkModeEnabled }: HeaderComponentProp
               width: "25%",
             }}
           >
-            <Link href="/" style={{
-              textDecoration: "none",
-            }}>
+            <Link
+              href='/'
+              style={{
+                textDecoration: "none",
+              }}
+            >
               <Typography
-                variant="h6"
+                component='h1'
                 style={{
-                  color: theme.palette.text.secondary,
                   textDecoration: "none",
                   textTransform: "none",
                   opacity: "0.9",
-                  fontSize: "1.2em",
-                  fontWeight: "600",
                   marginRight: "10px",
+                  fontSize: "1.625em",
+                  fontWeight: "900",
                 }}
               >
-                {APP_NAME}
+                <span className={styles.logo_start}>{APP_LOGO.start}</span>
+                <span className={styles.logo_end}>{APP_LOGO.end}</span>
               </Typography>
             </Link>
           </Box>
@@ -65,26 +73,35 @@ const Header = ({ theme, onChangeTheme, isDarkModeEnabled }: HeaderComponentProp
               }}
             >
               <Grid item>
-                <LinkMaterial sx={{ my: 1, mx: 1.5 }}
-                              variant="button"
-                              component={Link} href="/afisha"
-                              style={{
-                                color: theme.palette.text.secondary,
-                                textDecoration: "none",
-                                marginLeft: "20px",
-                                opacity: "0.9",
-                                fontSize: "1em",
-                                fontWeight: "400",
-                                textTransform: "none",
-                              }}>
+                <LinkMaterial
+                  sx={{ my: 1, mx: 1.5 }}
+                  variant='button'
+                  component={Link}
+                  href='/afisha'
+                  style={{
+                    color: theme.palette.text.secondary,
+                    textDecoration: "none",
+                    marginLeft: "20px",
+                    opacity: "0.9",
+                    fontSize: "1em",
+                    fontWeight: "400",
+                    textTransform: "none",
+                  }}
+                >
                   Afisha
                 </LinkMaterial>
               </Grid>
               <Grid item>
-                <ButtonGroup size="medium">
-                  <IconButton onClick={() => onChangeTheme(!isDarkModeEnabled)}
-                              color="inherit">
-                    {isDarkModeEnabled ? <Brightness7Icon /> : <Brightness4Icon />}
+                <ButtonGroup size='medium'>
+                  <IconButton
+                    onClick={() => onChangeTheme(!isDarkModeEnabled)}
+                    color='inherit'
+                  >
+                    {isDarkModeEnabled ? (
+                      <Brightness7Icon />
+                    ) : (
+                      <Brightness4Icon />
+                    )}
                   </IconButton>
                 </ButtonGroup>
               </Grid>
