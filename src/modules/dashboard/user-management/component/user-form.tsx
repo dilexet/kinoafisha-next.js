@@ -1,13 +1,3 @@
-import { GridTextFieldsType } from "@/modules/dashboard/shared/types/grid-items-type";
-import {
-  UserFieldCreateType,
-  UserFieldUpdateType,
-} from "@/modules/dashboard/user-management/constants/user-field-values";
-import { UserManagementState } from "@/modules/dashboard/user-management/reducer";
-import {
-  userCreateValidationSchemaType,
-  userUpdateValidationSchemaType,
-} from "@/modules/dashboard/user-management/utils/user-validation-schema";
 import ModalLayout from "@/modules/dashboard/shared/component/modal-layout";
 import { Form, Formik } from "formik";
 import { Box, Grid } from "@mui/material";
@@ -16,16 +6,7 @@ import { handleErrors } from "@/modules/shared/utils/handle-errors";
 import FormButtonGroup from "@/modules/dashboard/shared/component/form-button-group";
 import RoleContainer from "@/modules/roles/container";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
-
-export interface UserFormProps {
-  title: string;
-  initialValues: UserFieldCreateType | UserFieldUpdateType;
-  textFields: GridTextFieldsType[];
-  handleSubmit: (values: UserFieldCreateType | UserFieldUpdateType) => void;
-  handleCancel: () => void;
-  userState: UserManagementState;
-  validationSchema: userCreateValidationSchemaType | userUpdateValidationSchemaType;
-}
+import { UserFormProps } from "@/modules/dashboard/user-management/types/user-form-props";
 
 export default function UserForm({
                                    title, userState,

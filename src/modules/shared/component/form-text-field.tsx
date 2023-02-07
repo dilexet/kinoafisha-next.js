@@ -6,7 +6,7 @@ export default function FormTextField({
                                         variant, size, margin, inputProps,
                                         outlinedInputStyle, formControlStyle,
                                         ...props
-                                      }) {
+                                      }: any) {
   return (
     <FormControl
       variant={variant}

@@ -80,10 +80,6 @@ export default function HallPlanFormContainer({
             return seat;
           }),
         } : row));
-      // const temp = values?.rows;
-      // const foundRow = temp.find(x => x.numberRow === rowNumber);
-      // const foundSeat = foundRow?.seats?.find(x => x.numberSeat === seatNumber);
-      // foundSeat.seatTypeId = selectedSeatType;
       setFieldValue("rows", newRows);
     } else {
       const newRows = values?.rows?.map((row) =>

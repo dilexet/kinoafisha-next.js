@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
 import { ModalActionTypes } from "@/modules/shared/constants/modal-action-types";
 import { clearErrors, selectAll } from "@/modules/dashboard/user-management/reducer";
 import { userGetAllActionAsync } from "@/modules/dashboard/user-management/action";
-import TableManagementContainer from "@/modules/dashboard/shared/component/table-management-container";
+import TableManagementComponent from "@/modules/dashboard/shared/component/table-management-component";
 import UserTableHead from "@/modules/dashboard/user-management/component/user-table-head";
 import UserTableBody from "@/modules/dashboard/user-management/component/user-table-body";
 import Modal from "@/modules/dashboard/shared/component/modal";
@@ -55,7 +55,7 @@ function Users() {
         <title>Users</title>
       </Head>
       <main>
-        <TableManagementContainer
+        <TableManagementComponent
           title="Users"
           loadData={loadUsers}
           handleOpenModal={handleOpenModal}

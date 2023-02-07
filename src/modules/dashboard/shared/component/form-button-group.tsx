@@ -2,7 +2,7 @@ import { Box, Button, useTheme } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Cancel";
 
-export default function FormButtonGroup({ handleCancel, isLoading }: { handleCancel: () => void; isLoading: boolean }) {
+export default function FormButtonGroup({ handleCancel, isLoading }) {
   const theme = useTheme();
   return (
     <Box

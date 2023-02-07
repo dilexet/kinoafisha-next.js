@@ -1,6 +1,6 @@
 import { DashboardPageLayout } from "./";
 import Head from "next/head";
-import TableManagementContainer from "@/modules/dashboard/shared/component/table-management-container";
+import TableManagementComponent from "@/modules/dashboard/shared/component/table-management-component";
 import React, { useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
 import { ModalActionTypes } from "@/modules/shared/constants/modal-action-types";
@@ -55,7 +55,7 @@ function Sessions() {
         <title>Sessions</title>
       </Head>
       <main>
-        <TableManagementContainer
+        <TableManagementComponent
           title="Sessions"
           loadData={loadUsers}
           handleOpenModal={handleOpenModal}

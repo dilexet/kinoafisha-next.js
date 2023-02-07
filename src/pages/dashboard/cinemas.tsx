@@ -7,7 +7,7 @@ import Modal from "@/modules/dashboard/shared/component/modal";
 import React, { useCallback, useEffect, useState } from "react";
 import CinemaModalContainer from "@/modules/dashboard/cinema-management/container/modal/cinema-modal-container";
 import { ModalActionTypes } from "@/modules/shared/constants/modal-action-types";
-import TableManagementContainer from "@/modules/dashboard/shared/component/table-management-container";
+import TableManagementComponent from "@/modules/dashboard/shared/component/table-management-component";
 import CinemaTableHead from "@/modules/dashboard/cinema-management/component/cinema-table-head";
 import CinemaTableBody from "@/modules/dashboard/cinema-management/component/cinema-table-body";
 
@@ -55,7 +55,7 @@ function Cinemas() {
         <title>Cinemas</title>
       </Head>
       <main>
-        <TableManagementContainer
+        <TableManagementComponent
           title="Cinemas"
           loadData={loadCinemas}
           handleOpenModal={handleOpenModal}

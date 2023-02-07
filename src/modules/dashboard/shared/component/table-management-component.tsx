@@ -14,7 +14,8 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import React from "react";
 import { TableManagementContainerProps } from "@/modules/dashboard/shared/types/table-management-container-props";
 
-export default function TableManagementContainer({
+// TODO: skeleton
+export default function TableManagementComponent({
                                                    title,
                                                    loadData,
                                                    handleOpenModal,

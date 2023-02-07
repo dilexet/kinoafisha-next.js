@@ -9,8 +9,9 @@ import {
 } from "@/modules/dashboard/user-management/utils/user-validation-schema";
 import { userUpdateAsync } from "@/modules/dashboard/user-management/action";
 import UserForm from "@/modules/dashboard/user-management/component/user-form";
+import { userUpdateFields } from "@/modules/dashboard/user-management/constants/fields";
 
-export default function UserUpdateContainer({ handleCloseModal, userUpdateFields }) {
+export default function UserUpdateContainer({ handleCloseModal }) {
   const dispatch = useAppDispatch();
   const userState = useAppSelector((x) => x.user_management_reducer);
 

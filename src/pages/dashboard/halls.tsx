@@ -1,6 +1,6 @@
 import { DashboardPageLayout } from "@/pages/dashboard/index";
 import Head from "next/head";
-import TableManagementContainer from "@/modules/dashboard/shared/component/table-management-container";
+import TableManagementComponent from "@/modules/dashboard/shared/component/table-management-component";
 import Modal from "@/modules/dashboard/shared/component/modal";
 import HallTableBody from "@/modules/dashboard/hall-management/component/hall-table-body";
 import HallTableHead from "@/modules/dashboard/hall-management/component/hall-table-head";
@@ -55,7 +55,7 @@ function Halls() {
         <title>Halls</title>
       </Head>
       <main>
-        <TableManagementContainer
+        <TableManagementComponent
           title="Halls"
           loadData={loadHalls}
           handleOpenModal={handleOpenModal}

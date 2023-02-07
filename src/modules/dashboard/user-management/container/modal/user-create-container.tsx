@@ -8,8 +8,9 @@ import {
 import { userCreateValidationSchema } from "@/modules/dashboard/user-management/utils/user-validation-schema";
 import { userCreateAsync } from "@/modules/dashboard/user-management/action";
 import UserForm from "@/modules/dashboard/user-management/component/user-form";
+import { userCreateFields } from "@/modules/dashboard/user-management/constants/fields";
 
-export default function UserCreateContainer({ handleCloseModal, userCreateFields }) {
+export default function UserCreateContainer({ handleCloseModal }) {
   const dispatch = useAppDispatch();
   const userState = useAppSelector((x) => x.user_management_reducer);
 

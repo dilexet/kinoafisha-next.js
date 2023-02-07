@@ -5,6 +5,7 @@ import { useAppDispatch } from "@/modules/shared/redux/hooks";
 import { rolesGetAllAsync } from "@/modules/roles/action";
 import UserCreateContainer from "@/modules/dashboard/user-management/container/modal/user-create-container";
 import UserUpdateContainer from "@/modules/dashboard/user-management/container/modal/user-update-container";
+import { userCreateFields, userUpdateFields } from "@/modules/dashboard/user-management/constants/fields";
 
 export default function UserModalContainer({ modalType, handleCloseModal }) {
   const dispatch = useAppDispatch();
@@ -36,48 +37,16 @@ export default function UserModalContainer({ modalType, handleCloseModal }) {
     );
   } else {
     if (modalType === ModalActionTypes.UPDATE) {
-      const userUpdateFields = [
-        {
-          id: "name",
-          name: "name",
-          label: "Name",
-          type: "text",
-        },
-        {
-          id: "email",
-          name: "email",
-          label: "Email",
-          type: "text",
-        },
-      ];
+
       return (
-        <UserUpdateContainer handleCloseModal={handleCloseModal} userUpdateFields={userUpdateFields} />
+        <UserUpdateContainer handleCloseModal={handleCloseModal} />
       );
     }
     if (modalType === ModalActionTypes.CREATE) {
-      const userCreateFields = [
-        {
-          id: "name",
-          name: "name",
-          label: "Name",
-          type: "text",
-        },
-        {
-          id: "email",
-          name: "email",
-          label: "Email",
-          type: "text",
-        },
-        {
-          id: "password",
-          name: "password",
-          label: "Password",
-          type: "password",
-        },
-      ];
+
 
       return (
-        <UserCreateContainer handleCloseModal={handleCloseModal} userCreateFields={userCreateFields} />
+        <UserCreateContainer handleCloseModal={handleCloseModal} />
       );
     }
   }

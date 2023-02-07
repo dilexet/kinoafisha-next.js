@@ -6,7 +6,7 @@ import { ModalActionTypes } from "@/modules/shared/constants/modal-action-types"
 import { movieGetAllActionAsync } from "@/modules/dashboard/movie-management/action";
 import Head from "next/head";
 import { DashboardPageLayout } from "@/pages/dashboard/index";
-import TableManagementContainer from "@/modules/dashboard/shared/component/table-management-container";
+import TableManagementComponent from "@/modules/dashboard/shared/component/table-management-component";
 import MovieTableHead from "@/modules/dashboard/movie-management/component/movie-table-head";
 import MovieTableBody from "@/modules/dashboard/movie-management/component/movie-table-body";
 import Modal from "@/modules/dashboard/shared/component/modal";
@@ -58,7 +58,7 @@ export function Movies() {
         <title>Movies</title>
       </Head>
       <main>
-        <TableManagementContainer
+        <TableManagementComponent
           title="Movies"
           loadData={loadMovies}
           handleOpenModal={handleOpenModal}
