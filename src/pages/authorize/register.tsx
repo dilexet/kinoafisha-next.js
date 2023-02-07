@@ -7,6 +7,7 @@ import RegisterComponent from "@/modules/authorize/component/register";
 import { RegisterFieldValues } from "@/modules/authorize/constants/register-field-values";
 import registerValidationSchema from "@/modules/authorize/utils/register-validation-schema";
 import { clearErrors } from "@/modules/authorize/reducer";
+import { authorize } from "@/modules/shared/constants/app-routes";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   function handleNavigateToSignIn() {
-    router.push("/authorize");
+    router.push(authorize.Login);
   }
 
   async function handleSubmitForm(values: typeof RegisterFieldValues) {

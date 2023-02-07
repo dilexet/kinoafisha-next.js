@@ -3,21 +3,21 @@ import { useCallback, useEffect, useState } from "react";
 import Layout from "@/modules/layout/component";
 import { LayoutContainerProps } from "@/modules/layout/type/layout-container-props";
 import Loading from "@/modules/shared/component/loading";
+import { themeCookieAge, themeCookieKey } from "@/modules/layout/constants/theme-cookie";
 
 const LayoutContainer = ({ Component, pageProps }: LayoutContainerProps) => {
   const [isDarkModeEnabled, setIsDarkModeEnabled] = useState<boolean | undefined>(undefined);
 
   const onChangeTheme = useCallback((isDark: boolean) => {
-    setCookie("DarkMode", isDark, {
+    setCookie(themeCookieKey, isDark, {
       path: "/",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      maxAge: themeCookieAge,
     });
     setIsDarkModeEnabled(isDark);
   }, []);
 
-  // TODO: move key to constants
   useEffect(() => {
-    const cookie = getCookie("DarkMode");
+    const cookie = getCookie(themeCookieKey);
     if (cookie === undefined) {
       onChangeTheme(true);
     } else {

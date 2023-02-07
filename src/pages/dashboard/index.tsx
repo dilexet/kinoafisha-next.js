@@ -8,9 +8,7 @@ const DashboardPage = () => {
         <title>Dashboard</title>
       </Head>
       <main>
-        <div>
-          This is dashboard
-        </div>
+        <div />
       </main>
     </>
   );

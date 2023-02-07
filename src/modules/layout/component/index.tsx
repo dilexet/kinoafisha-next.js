@@ -5,6 +5,7 @@ import HeaderContainer from "@/modules/header/container";
 import { darkTheme, lightTheme } from "@/modules/layout/theme/mui-theme";
 import { googleOptions } from "@/modules/shared/constants/google-constants";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import MainLayout from "@/modules/layout/component/main-layout";
 
 const Layout = ({ Component, pageProps, isDarkModeEnabled, onChangeTheme }: LayoutComponentProps) => {
   return (
@@ -30,12 +31,6 @@ const Layout = ({ Component, pageProps, isDarkModeEnabled, onChangeTheme }: Layo
   );
 };
 
-const MainLayout = ({ Component, pageProps }) => {
-  if (Component.getLayout) {
-    return Component.getLayout(<Component {...pageProps} />);
-  } else {
-    return <Component {...pageProps} />;
-  }
-};
+
 
 export default Layout;

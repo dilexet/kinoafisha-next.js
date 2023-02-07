@@ -7,6 +7,7 @@ import LoginComponent from "@/modules/authorize/component/login";
 import loginValidationSchema from "@/modules/authorize/utils/login-validation-schema";
 import { LoginFieldValues } from "@/modules/authorize/constants/login-field-values";
 import { clearErrors } from "@/modules/authorize/reducer";
+import { authorize } from "@/modules/shared/constants/app-routes";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   function handleNavigateToSignUp() {
-    router.push("/authorize/register");
+    router.push(authorize.Register);
   }
 
   async function handleSubmitForm(values: typeof LoginFieldValues) {
