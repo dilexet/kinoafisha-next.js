@@ -117,10 +117,10 @@ const sessionManagementSlice = createSlice({
           state.errorInfo = null;
         })
       .addCase(sessionCreateAsync.fulfilled.type,
-        (state, action: PayloadAction<SessionType>) => {
+        (state, action: PayloadAction<SessionType[]>) => {
           state.loadingStatusCreate = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
-          sessionEntityAdapter.addOne(state, action?.payload);
+          sessionEntityAdapter.addMany(state, action?.payload);
         })
       .addCase(sessionCreateAsync.rejected.type,
         (state, action: PayloadAction<any>) => {

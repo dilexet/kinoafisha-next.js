@@ -16,6 +16,7 @@ export const hallGetAllActionAsync = createAsyncThunk(
       const response = await axiosInstance.get(HALL_MANAGEMENT, { params: { name: query } });
       return response?.data;
     } catch (err) {
+      toastrNotification(title, ActionErrorMessages.GET, ActionStatuses.ERROR);
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },
@@ -28,6 +29,7 @@ export const hallGetOneActionAsync = createAsyncThunk(
       const response = await axiosInstance.get(HALL_MANAGEMENT + `/${id}`);
       return response?.data;
     } catch (err) {
+      toastrNotification(title, ActionErrorMessages.GET, ActionStatuses.ERROR);
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },

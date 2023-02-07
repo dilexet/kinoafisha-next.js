@@ -17,6 +17,7 @@ export const userGetAllActionAsync = createAsyncThunk(
       const response = await axiosInstance.get(USER_MANAGEMENT, { params: { name: query } });
       return response?.data;
     } catch (err) {
+      toastrNotification(title, ActionErrorMessages.GET, ActionStatuses.ERROR);
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },
@@ -29,6 +30,7 @@ export const userGetOneActionAsync = createAsyncThunk(
       const response = await axiosInstance.get(USER_MANAGEMENT + `/${id}`);
       return response?.data;
     } catch (err) {
+      toastrNotification(title, ActionErrorMessages.GET, ActionStatuses.ERROR);
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },

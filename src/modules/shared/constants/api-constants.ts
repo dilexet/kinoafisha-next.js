@@ -27,3 +27,5 @@ export const CINEMAS = "/cinemas";
 export const SEAT_TYPES = "/seat-types";
 
 export const SESSION_MANAGEMENT = "/session-management";
+export const HALLS = "/halls";
+export const MOVIES = "/movies";

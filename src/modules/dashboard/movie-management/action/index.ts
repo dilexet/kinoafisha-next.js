@@ -16,6 +16,7 @@ export const movieGetAllActionAsync = createAsyncThunk(
       const response = await axiosInstance.get(MOVIE_MANAGEMENT, { params: { name: query } });
       return response?.data;
     } catch (err) {
+      toastrNotification(title, ActionErrorMessages.GET, ActionStatuses.ERROR);
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },
@@ -28,6 +29,7 @@ export const movieGetOneActionAsync = createAsyncThunk(
       const response = await axiosInstance.get(MOVIE_MANAGEMENT + `/${id}`);
       return response?.data;
     } catch (err) {
+      toastrNotification(title, ActionErrorMessages.GET, ActionStatuses.ERROR);
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },

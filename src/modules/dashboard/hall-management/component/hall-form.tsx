@@ -61,7 +61,10 @@ export default function HallForm({
                     />
                   </Grid>
                   <Grid item>
-                    <CinemasContainer values={values} setFieldValue={setFieldValue} />
+                    <CinemasContainer values={values} setFieldValue={setFieldValue}
+                                      errors={errors} touched={touched}
+                                      handleBlur={handleBlur}
+                    />
                   </Grid>
                   <HallPlanFormContainer values={values} setFieldValue={setFieldValue} />
                 </Grid>

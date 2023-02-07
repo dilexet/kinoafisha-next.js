@@ -17,6 +17,7 @@ export const sessionGetAllActionAsync = createAsyncThunk(
       const response = await axiosInstance.get(SESSION_MANAGEMENT, { params: { name: query } });
       return response?.data;
     } catch (err) {
+      toastrNotification(title, ActionErrorMessages.GET, ActionStatuses.ERROR);
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },
@@ -29,6 +30,7 @@ export const sessionGetOneActionAsync = createAsyncThunk(
       const response = await axiosInstance.get(SESSION_MANAGEMENT + `/${id}`);
       return response?.data;
     } catch (err) {
+      toastrNotification(title, ActionErrorMessages.GET, ActionStatuses.ERROR);
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },
@@ -84,10 +86,10 @@ export const sessionSeatRemoveFromBookingAsync = createAsyncThunk(
   async (seatId: string, thunkAPI) => {
     try {
       const response = await axiosInstance.patch(SESSION_MANAGEMENT + `/${seatId}`);
-      toastr.success(title, "Removed session seat from booking completed successfully");
+      toastr.success(title, "Session seat removed from booking completed successfully");
       return response?.data;
     } catch (err) {
-      toastr.error(title, "Removed session seat from booking completed with error");
+      toastr.error(title, "Session seat removed from booking completed with error");
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },

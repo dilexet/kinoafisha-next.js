@@ -8,6 +8,8 @@ import { clearErrors, selectAll } from "@/modules/dashboard/session-management/r
 import { sessionGetAllActionAsync } from "@/modules/dashboard/session-management/action";
 import SessionTableHead from "@/modules/dashboard/session-management/component/session-table-head";
 import SessionTableBody from "@/modules/dashboard/session-management/component/session-table-body";
+import SessionModalContainer from "@/modules/dashboard/session-management/container/modal/session-modal-container";
+import Modal from "@/modules/dashboard/shared/component/modal";
 
 function Sessions() {
   const dispatch = useAppDispatch();
@@ -62,11 +64,11 @@ function Sessions() {
           TableHead={<SessionTableHead />}
           TableBody={<SessionTableBody sessions={sessions} handleOpenModal={handleOpenModal} />}
         />
-        {/*<Modal*/}
-        {/*  openModal={openModal}*/}
-        {/*  handleCloseModal={handleCloseModal}>*/}
-        {/*  <UserModalContainer modalType={modalType} handleCloseModal={handleCloseModal} />*/}
-        {/*</Modal>*/}
+        <Modal
+          openModal={openModal}
+          handleCloseModal={handleCloseModal}>
+          <SessionModalContainer modalType={modalType} handleCloseModal={handleCloseModal} />
+        </Modal>
       </main>
     </>
   );

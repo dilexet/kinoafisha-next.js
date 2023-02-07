@@ -7,42 +7,44 @@ import {
   Select,
   SelectChangeEvent, useTheme,
 } from "@mui/material";
-import { CinemaState } from "@/modules/cinemas/reducer";
-import { HallFieldsType } from "@/modules/dashboard/hall-management/types/hall-field-types";
+import { MovieState } from "@/modules/movies/reducer";
 import { SessionFieldsType } from "@/modules/dashboard/session-management/types/session-field-types";
 
-export interface CinemasComponentProps {
-  values: HallFieldsType | SessionFieldsType;
+export interface MoviesComponentProps {
+  values: SessionFieldsType;
   handleChange: (event: SelectChangeEvent) => void;
-  cinemasState: CinemaState;
+  moviesState: MovieState;
   errors: any;
   touched: any;
   handleBlur: any;
 }
 
-export default function CinemasComponent({
-                                           values, handleChange, cinemasState,
-                                           errors, touched, handleBlur,
-                                         }: CinemasComponentProps) {
+export default function MoviesComponent({
+                                          values,
+                                          handleChange,
+                                          moviesState,
+                                          handleBlur,
+                                          errors, touched,
+                                        }: MoviesComponentProps) {
   const theme = useTheme();
   return (
     <FormControl
       variant="outlined"
       margin="normal"
-      error={errors?.cinemaId && touched?.cinemaId}
+      error={errors?.movieId && touched?.movieId}
       style={{
         width: "350px",
       }}>
-      <InputLabel id="demo-simple-select-error-label">Cinema</InputLabel>
+      <InputLabel id="demo-simple-select-error-label">Movies</InputLabel>
       <Select
         labelId="demo-simple-select-error-label"
-        id="cinemaId"
-        name="cinemaId"
-        value={values?.cinemaId}
-        label="Cinema"
+        id="movieId"
+        name="movieId"
+        value={values?.movieId}
+        label="Movies"
         onChange={handleChange}
         onBlur={handleBlur}
-        input={<OutlinedInput label="Cinemas" style={{
+        input={<OutlinedInput label="Movies" style={{
           borderRadius: "20px",
         }} />}
       >
@@ -50,14 +52,14 @@ export default function CinemasComponent({
           <em>None</em>
         </MenuItem>
         {
-          cinemasState?.cinemas?.map((value) => (
+          moviesState?.movies?.map((value) => (
             <MenuItem value={value.id} key={value.id}>{value.name}</MenuItem>
           ))
         }
       </Select>
       <FormHelperText
         style={{ minWidth: "150px", minHeight: "20px", color: theme.palette.error.main }}>
-        {errors?.cinemaId && touched?.cinemaId ? errors?.cinemaId : ""}
+        {errors?.movieId && touched?.movieId ? errors?.movieId : ""}
       </FormHelperText>
     </FormControl>
   );

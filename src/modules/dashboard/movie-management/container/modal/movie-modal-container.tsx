@@ -4,7 +4,7 @@ import MovieCreateContainer from "@/modules/dashboard/movie-management/container
 import { useCallback, useEffect, useState } from "react";
 import { genresGetAllAsync } from "@/modules/genres/action";
 import { countriesGetAllAsync } from "@/modules/countries/action";
-import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
+import { useAppDispatch } from "@/modules/shared/redux/hooks";
 import MovieDetailsContainer from "@/modules/dashboard/movie-management/container/modal/movie-details-container";
 
 export default function MovieModalContainer({ modalType, handleCloseModal }) {

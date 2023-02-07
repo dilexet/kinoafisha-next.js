@@ -1,7 +1,8 @@
-interface SessionFieldsType {
+export interface SessionFieldsType {
   id: string;
   movieId: string;
   cinemaId: string;
+  hallId: string;
 }
 
 export interface SessionUpdateFieldsType extends SessionFieldsType {
@@ -9,10 +10,10 @@ export interface SessionUpdateFieldsType extends SessionFieldsType {
 }
 
 export interface SessionCreateFieldsType extends SessionFieldsType {
-  sessionTime: SessionTimeFieldsType[];
+  sessionTimes: SessionTimeFieldsType[];
 }
 
 export interface SessionTimeFieldsType {
-  startDate: Date;
+  startDate: string;
   coefficient: number;
 }

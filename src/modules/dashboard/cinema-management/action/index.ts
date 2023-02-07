@@ -16,6 +16,7 @@ export const cinemaGetAllActionAsync = createAsyncThunk(
       const response = await axiosInstance.get(CINEMA_MANAGEMENT, { params: { name: query } });
       return response?.data;
     } catch (err) {
+      toastrNotification(title, ActionErrorMessages.GET, ActionStatuses.ERROR);
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },
@@ -28,6 +29,7 @@ export const cinemaGetOneActionAsync = createAsyncThunk(
       const response = await axiosInstance.get(CINEMA_MANAGEMENT + `/${id}`);
       return response?.data;
     } catch (err) {
+      toastrNotification(title, ActionErrorMessages.GET, ActionStatuses.ERROR);
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
     }
   },

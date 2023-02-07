@@ -104,8 +104,6 @@ export default function HallPlanFormContainer({
     setIsSeatChange(true);
   };
 
-  console.log(values);
-
   useEffect(() => {
     if (isSeatChange) {
       const seatTypeIds: SeatTypePriceFieldsType[] = [];
