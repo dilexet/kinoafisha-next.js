@@ -9,27 +9,8 @@ import {
   Select,
   useTheme,
 } from "@mui/material";
-import { Theme } from "@mui/material/styles";
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-function getStyles(id: string, ids: readonly string[], theme: Theme) {
-  const fontWeight = ids.indexOf(id) === -1
-    ? theme.typography.fontWeightRegular
-    : theme.typography.fontWeightMedium;
-  return {
-    fontWeight: fontWeight,
-  };
-}
+import getStyles from "@/modules/genres/utils/get-styles";
+import { MenuProps } from "@/modules/genres/constants/menu-props";
 
 export default function GenresComponent({ values, handleChange, genresState, selectedGenres }) {
   const theme = useTheme();

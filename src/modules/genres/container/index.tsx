@@ -1,15 +1,10 @@
 import GenresComponent from "@/modules/genres/component";
 import { SelectChangeEvent } from "@mui/material";
-import { MovieFieldType } from "@/modules/dashboard/movie-management/constants/movie-field-values";
 import { useAppSelector } from "@/modules/shared/redux/hooks";
 import { useEffect, useState } from "react";
 import { GenreType } from "@/modules/dashboard/movie-management/types/movie-type";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
-
-export interface GenresContainerProps {
-  values: MovieFieldType;
-  setFieldValue: any;
-}
+import { GenresContainerProps } from "@/modules/genres/types/genre-props";
 
 export default function GenresContainer({ values, setFieldValue }: GenresContainerProps) {
   const genresState = useAppSelector((x) => x.genres_reducer);

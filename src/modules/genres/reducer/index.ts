@@ -1,11 +1,7 @@
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { genresGetAllAsync } from "@/modules/genres/action";
-
-export interface GenresType {
-  id: string;
-  name: string;
-}
+import { GenresType } from "@/modules/genres/types/genre-type";
 
 export interface GenresState {
   loadingStatus: string;
