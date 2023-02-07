@@ -3,7 +3,6 @@ import ModalLayout from "@/modules/dashboard/shared/component/modal-layout";
 import { MovieDetailsProps } from "@/modules/dashboard/movie-management/types/movie-details-props";
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
 
-// TODO: skeleton
 export default function MovieDetails({
   gridItems,
   movieState,

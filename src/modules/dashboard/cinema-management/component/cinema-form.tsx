@@ -5,18 +5,17 @@ import FormTextField from "@/modules/shared/component/form-text-field";
 import cinemaValidationSchema from "@/modules/dashboard/cinema-management/utils/cinema-validation-schema";
 import { handleErrors } from "@/modules/shared/utils/handle-errors";
 import ModalLayout from "@/modules/dashboard/shared/component/modal-layout";
-import CinemaSkeleton from "@/modules/dashboard/cinema-management/component/cinema-skeleton";
 import FormButtonGroup from "@/modules/dashboard/shared/component/form-button-group";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 
 export default function CinemaForm({
-  title,
-  initialValues,
-  handleSubmit,
-  handleCancel,
-  initializeTextField,
-  cinemaState,
-}: CinemaFormProps) {
+                                     title,
+                                     initialValues,
+                                     handleSubmit,
+                                     handleCancel,
+                                     initializeTextField,
+                                     cinemaState,
+                                   }: CinemaFormProps) {
   if (initialValues && initializeTextField) {
     return (
       <ModalLayout title={title} error={cinemaState?.errorInfo?.message}>
@@ -28,19 +27,19 @@ export default function CinemaForm({
           onSubmit={handleSubmit}
         >
           {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-          }) => (
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+            }) => (
             <Box component={Form} sx={{ mt: 3 }} onSubmit={handleSubmit}>
               <Grid
                 container
-                direction='column'
-                justifyContent='center'
-                alignItems='flex-start'
+                direction="column"
+                justifyContent="center"
+                alignItems="flex-start"
               >
                 {initializeTextField?.map((value, index) => (
                   <Grid item key={index}>
@@ -50,8 +49,8 @@ export default function CinemaForm({
                       label={value.label}
                       name={value.name}
                       value={values[value.name]}
-                      variant='outlined'
-                      margin='normal'
+                      variant="outlined"
+                      margin="normal"
                       outlinedInputStyle={{ borderRadius: "20px" }}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -65,19 +64,13 @@ export default function CinemaForm({
                 handleCancel={handleCancel}
                 isLoading={
                   cinemaState?.loadingStatusCreate ===
-                    LOADING_STATUSES.LOADING ||
+                  LOADING_STATUSES.LOADING ||
                   cinemaState?.loadingStatusUpdate === LOADING_STATUSES.LOADING
                 }
               />
             </Box>
           )}
         </Formik>
-      </ModalLayout>
-    );
-  } else {
-    return (
-      <ModalLayout title={title} error={cinemaState?.errorInfo?.message}>
-        <CinemaSkeleton />
       </ModalLayout>
     );
   }

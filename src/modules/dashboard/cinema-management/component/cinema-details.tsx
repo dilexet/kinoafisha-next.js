@@ -1,24 +1,23 @@
 import { CinemaDetailsProps } from "@/modules/dashboard/cinema-management/types/cinema-details-props";
 import { Typography, Grid } from "@mui/material";
 import ModalLayout from "@/modules/dashboard/shared/component/modal-layout";
-import CinemaSkeleton from "@/modules/dashboard/cinema-management/component/cinema-skeleton";
 
 export default function CinemaDetails({
-  gridItems,
-  cinemaState,
-}: CinemaDetailsProps) {
+                                        gridItems,
+                                        cinemaState,
+                                      }: CinemaDetailsProps) {
   return (
     <ModalLayout
-      title='Show cinema details'
+      title="Show cinema details"
       error={cinemaState?.errorInfo?.message}
     >
       <Grid
         container
-        direction='column'
-        justifyContent='center'
-        alignItems='flex-start'
+        direction="column"
+        justifyContent="center"
+        alignItems="flex-start"
       >
-        {gridItems ? (
+        {
           gridItems?.map((item, index) => (
             <Grid
               item
@@ -49,9 +48,7 @@ export default function CinemaDetails({
               </Typography>
             </Grid>
           ))
-        ) : (
-          <CinemaSkeleton />
-        )}
+        }
       </Grid>
     </ModalLayout>
   );

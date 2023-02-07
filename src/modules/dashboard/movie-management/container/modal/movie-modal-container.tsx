@@ -4,11 +4,14 @@ import MovieCreateContainer from "@/modules/dashboard/movie-management/container
 import { useCallback, useEffect, useState } from "react";
 import { genresGetAllAsync } from "@/modules/genres/action";
 import { countriesGetAllAsync } from "@/modules/countries/action";
-import { useAppDispatch } from "@/modules/shared/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
 import MovieDetailsContainer from "@/modules/dashboard/movie-management/container/modal/movie-details-container";
+import Loading from "@/modules/loading";
+import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 
 export default function MovieModalContainer({ modalType, handleCloseModal }) {
   const dispatch = useAppDispatch();
+  const movieState = useAppSelector(x => x.movie_management_reducer);
   const [loadData, setLoadData] = useState(true);
 
   const fetchData = useCallback(async () => {
@@ -25,19 +28,19 @@ export default function MovieModalContainer({ modalType, handleCloseModal }) {
     }
   }, [fetchData, loadData, modalType]);
 
-  //TODO: skeleton
-  if (loadData) {
-    return <div></div>;
+  if (loadData || movieState?.loadingStatusGetOne === LOADING_STATUSES.LOADING) {
+    return <Loading />;
   }
+
   if (modalType === ModalActionTypes.DETAILS) {
     return <MovieDetailsContainer />;
-  } else {
-    if (modalType === ModalActionTypes.UPDATE) {
-      return <MovieUpdateContainer handleCloseModal={handleCloseModal} />;
-    }
+  }
 
-    if (modalType === ModalActionTypes.CREATE) {
-      return <MovieCreateContainer handleCloseModal={handleCloseModal} />;
-    }
+  if (modalType === ModalActionTypes.UPDATE) {
+    return <MovieUpdateContainer handleCloseModal={handleCloseModal} />;
+  }
+
+  if (modalType === ModalActionTypes.CREATE) {
+    return <MovieCreateContainer handleCloseModal={handleCloseModal} />;
   }
 }

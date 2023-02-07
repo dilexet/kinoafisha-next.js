@@ -2,7 +2,7 @@ import { getCookie, setCookie } from "cookies-next";
 import { useCallback, useEffect, useState } from "react";
 import Layout from "@/modules/layout/component";
 import { LayoutContainerProps } from "@/modules/layout/type/layout-container-props";
-import Loading from "@/modules/shared/component/loading";
+import Loading from "@/modules/loading";
 import {
   themeCookieAge,
   themeCookieKey,
