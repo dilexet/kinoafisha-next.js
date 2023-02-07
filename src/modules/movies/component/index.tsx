@@ -5,19 +5,10 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-  SelectChangeEvent, useTheme,
+  useTheme,
 } from "@mui/material";
-import { MovieState } from "@/modules/movies/reducer";
-import { SessionFieldsType } from "@/modules/dashboard/session-management/types/session-field-types";
+import { MoviesComponentProps } from "@/modules/movies/types/movie-props";
 
-export interface MoviesComponentProps {
-  values: SessionFieldsType;
-  handleChange: (event: SelectChangeEvent) => void;
-  moviesState: MovieState;
-  errors: any;
-  touched: any;
-  handleBlur: any;
-}
 
 export default function MoviesComponent({
                                           values,

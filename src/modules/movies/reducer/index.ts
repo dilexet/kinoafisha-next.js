@@ -1,11 +1,7 @@
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { moviesGetAllAsync } from "@/modules/movies/action";
-
-export interface MovieType {
-  id: string;
-  name: string;
-}
+import { MovieType } from "@/modules/movies/types/movie-type";
 
 export interface MovieState {
   loadingStatus: string;
