@@ -5,20 +5,10 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-  SelectChangeEvent,
   useTheme,
 } from "@mui/material";
-import {
-  UserFieldCreateType,
-  UserFieldUpdateType,
-} from "@/modules/dashboard/user-management/constants/user-field-values";
-import { RolesState } from "@/modules/roles/reducer";
+import { RolesComponentProps } from "@/modules/roles/types/role-props";
 
-export interface RolesComponentProps {
-  values: UserFieldCreateType | UserFieldUpdateType;
-  handleChange: (event: SelectChangeEvent) => void;
-  rolesState: RolesState;
-}
 
 export default function RolesComponent({ values, handleChange, rolesState }: RolesComponentProps) {
   const theme = useTheme();

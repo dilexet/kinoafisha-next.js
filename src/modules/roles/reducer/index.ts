@@ -1,11 +1,7 @@
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { rolesGetAllAsync } from "@/modules/roles/action";
-
-export interface RoleType {
-  id: string;
-  name: string;
-}
+import { RoleType } from "@/modules/roles/types/role-type";
 
 export interface RolesState {
   loadingStatus: string;

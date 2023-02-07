@@ -1,15 +1,7 @@
-import {
-  UserFieldCreateType,
-  UserFieldUpdateType,
-} from "@/modules/dashboard/user-management/constants/user-field-values";
 import { useAppSelector } from "@/modules/shared/redux/hooks";
 import RolesComponent from "@/modules/roles/component";
 import { SelectChangeEvent } from "@mui/material";
-
-export interface RolesContainerProps {
-  values: UserFieldCreateType | UserFieldUpdateType;
-  setFieldValue: any;
-}
+import { RolesContainerProps } from "@/modules/roles/types/role-props";
 
 export default function RoleContainer({ values, setFieldValue }: RolesContainerProps) {
   const rolesState = useAppSelector((x) => x.roles_reducer);
