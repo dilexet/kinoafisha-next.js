@@ -5,8 +5,9 @@ import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { MovieFieldType, MovieFieldValues } from "@/modules/dashboard/movie-management/constants/movie-field-values";
 import { movieCreateAsync } from "@/modules/dashboard/movie-management/action";
 import movieValidationSchema from "@/modules/dashboard/movie-management/utils/movie-validation-schema";
+import { textFields } from "@/modules/dashboard/movie-management/constants/fields";
 
-export default function MovieCreateContainer({ handleCloseModal, textFields }) {
+export default function MovieCreateContainer({ handleCloseModal }) {
   const dispatch = useAppDispatch();
   const movieState = useAppSelector((x) => x.movie_management_reducer);
 

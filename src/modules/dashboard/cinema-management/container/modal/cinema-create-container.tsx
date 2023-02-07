@@ -8,8 +8,9 @@ import {
 import cinemaValidationSchema from "@/modules/dashboard/cinema-management/utils/cinema-validation-schema";
 import { cinemaCreateAsync } from "@/modules/dashboard/cinema-management/action";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
+import { textFields } from "@/modules/dashboard/cinema-management/constants/fields";
 
-export default function CinemaCreateContainer({ handleCloseModal, textFields }) {
+export default function CinemaCreateContainer({ handleCloseModal }) {
   const dispatch = useAppDispatch();
   const cinemaState = useAppSelector((x) => x.cinema_management_reducer);
 

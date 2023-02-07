@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { CinemaFieldType } from "@/modules/dashboard/cinema-management/constants/cinema-field-values";
 import cinemaValidationSchema from "@/modules/dashboard/cinema-management/utils/cinema-validation-schema";
-import { useTheme } from "@mui/material";
 import { cinemaUpdateAsync } from "@/modules/dashboard/cinema-management/action";
+import { textFields } from "@/modules/dashboard/cinema-management/constants/fields";
 
-export default function CinemaUpdateContainer({ handleCloseModal, textFields }) {
-  const theme = useTheme();
+export default function CinemaUpdateContainer({ handleCloseModal }) {
   const dispatch = useAppDispatch();
   const cinemaState = useAppSelector((x) => x.cinema_management_reducer);
 

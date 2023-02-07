@@ -38,42 +38,15 @@ export default function MovieModalContainer({ modalType, handleCloseModal }) {
       <MovieDetailsContainer />
     );
   } else {
-    const textFields = [
-      {
-        id: "name",
-        name: "name",
-        label: "Name",
-        type: "text",
-      },
-      {
-        id: "description",
-        name: "description",
-        label: "Description",
-        type: "text",
-      },
-      {
-        id: "premiereDate",
-        name: "premiereDate",
-        label: "Premiere date",
-        type: "date",
-      },
-      {
-        id: "durationInMinutes",
-        name: "durationInMinutes",
-        label: "Duration (minutes)",
-        type: "number",
-      },
-    ];
-
     if (modalType === ModalActionTypes.UPDATE) {
       return (
-        <MovieUpdateContainer handleCloseModal={handleCloseModal} textFields={textFields} />
+        <MovieUpdateContainer handleCloseModal={handleCloseModal} />
       );
     }
 
     if (modalType === ModalActionTypes.CREATE) {
       return (
-        <MovieCreateContainer handleCloseModal={handleCloseModal} textFields={textFields} />
+        <MovieCreateContainer handleCloseModal={handleCloseModal} />
       );
     }
 

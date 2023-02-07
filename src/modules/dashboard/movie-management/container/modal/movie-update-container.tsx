@@ -6,8 +6,9 @@ import { MovieFieldType } from "@/modules/dashboard/movie-management/constants/m
 import { movieUpdateAsync } from "@/modules/dashboard/movie-management/action";
 import movieValidationSchema from "@/modules/dashboard/movie-management/utils/movie-validation-schema";
 import moment from "moment/moment";
+import { textFields } from "@/modules/dashboard/movie-management/constants/fields";
 
-export default function MovieUpdateContainer({ handleCloseModal, textFields }) {
+export default function MovieUpdateContainer({ handleCloseModal }) {
   const dispatch = useAppDispatch();
   const movieState = useAppSelector((x) => x.movie_management_reducer);
 

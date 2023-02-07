@@ -1,13 +1,9 @@
-import { GridItemsType } from "@/modules/dashboard/shared/types/grid-items-type";
-import { SessionManagementState } from "@/modules/dashboard/session-management/reducer";
 import ModalLayout from "@/modules/dashboard/shared/component/modal-layout";
 import {
   Grid,
   Typography,
-  Box,
   TableContainer,
   Table,
-  Paper,
   TableHead,
   TableRow,
   TableCell,
@@ -15,12 +11,7 @@ import {
 } from "@mui/material";
 import LockResetIcon from "@mui/icons-material/LockReset";
 import { TicketState } from "@/modules/shared/constants/ticket-state";
-
-export interface SessionDetailsProps {
-  gridItems: GridItemsType[];
-  sessionState: SessionManagementState;
-  handleRemoveFromBooking: (id: string) => void;
-}
+import { SessionDetailsProps } from "@/modules/dashboard/session-management/types/session-details-props";
 
 export default function SessionDetails({ gridItems, sessionState, handleRemoveFromBooking }: SessionDetailsProps) {
   return (

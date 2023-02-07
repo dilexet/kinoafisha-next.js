@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import {
-  HallFieldsType,
   RowFieldsType,
   SeatFieldsType, SeatTypePriceFieldsType,
 } from "@/modules/dashboard/hall-management/types/hall-field-types";
 import HallPlanForm from "@/modules/dashboard/hall-management/component/hall-plan-form";
 import { useAppSelector } from "@/modules/shared/redux/hooks";
 import { SeatTypeState } from "@/modules/seat-types/reducer";
+import { HallPlanFormContainerProps } from "@/modules/dashboard/hall-management/types/hall-plan-form-container-props";
 
 export default function HallPlanFormContainer({
                                                 values,
                                                 setFieldValue,
-                                              }: { values: HallFieldsType, setFieldValue: any }) {
+                                              }: HallPlanFormContainerProps) {
   const seatTypeState = useAppSelector<SeatTypeState>(x => x.seat_types_reducer);
 
   const [numberOfRows, setNumberOfRows] = useState(values?.rows?.length);

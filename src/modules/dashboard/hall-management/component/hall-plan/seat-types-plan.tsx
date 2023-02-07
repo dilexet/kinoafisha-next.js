@@ -1,5 +1,4 @@
 import { Tooltip, Typography, Box } from "@mui/material";
-import { generateColor } from "@/modules/shared/utils/generate-color";
 import { useAppSelector } from "@/modules/shared/redux/hooks";
 import { SeatTypeState } from "@/modules/seat-types/reducer";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
