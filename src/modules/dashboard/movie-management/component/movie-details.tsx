@@ -56,7 +56,7 @@ export default function MovieDetails({
             <Typography
               style={{
                 fontWeight: "500",
-                fontSize: item.value.toString().length < 20 ? "1.625em" : "1em",
+                fontSize: item.value.toString().length < 50 ? "1.625em" : "1em",
                 textAlign: "start",
               }}
             >

@@ -8,7 +8,7 @@ export default function UserDetails({
 }: UserDetailsProps) {
   return (
     <ModalLayout
-      title='Show movie details'
+      title='Show user details'
       error={userState?.errorInfo?.message}
     >
       <Grid
