@@ -1,54 +1,12 @@
 import {
-  Card, CardMedia, CardContent, useTheme,
-  Typography, CardActions, Button, Box, Stack, Skeleton,
+  Card, CardMedia, CardContent,
+  Typography, CardActions, Button, Box,
 } from "@mui/material";
-import { MovieType } from "@/modules/home/types/movie-type";
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
-import { CountriesContent } from "@/modules/home/component/card/countries-content";
-import { GenresContent } from "@/modules/home/component/card/genres-content";
-import { generateEmptyArray } from "@/modules/shared/utils/generate-empty-array";
-import React from "react";
+import { CountriesContent } from "@/modules/shared/component/card/countries-content";
+import { GenresContent } from "@/modules/shared/component/card/genres-content";
+import { MovieCardProps } from "@/modules/shared/types/movie-card-props";
 
-// TODO: move it
-export interface MovieCardProps {
-  movie: MovieType;
-}
-
-export function MovieCardSkeleton() {
-  return (
-    <Stack spacing={1} style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      paddingLeft: "20px",
-      paddingRight: "20px",
-      boxShadow: "none",
-      margin: "10px 0",
-      minHeight: "725px",
-    }}>
-      <Skeleton variant="rounded" width={240} height={360} />
-      <Box style={{
-        width: "98%",
-        flexGrow: 1,
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "space-between",
-        flexDirection: "column",
-        margin: "60px 0",
-      }}>
-        <Skeleton variant="rounded" width={80} height={40} />
-        <Skeleton variant="text" width={200} height={40} />
-        <Skeleton variant="rounded" width={80} height={40} />
-      </Box>
-      <Box>
-        <Skeleton variant="rounded" width={150} height={50} />
-      </Box>
-    </Stack>
-  );
-}
-
-// TODO: move it
 export default function MovieCard({ movie }: MovieCardProps) {
   return (
     <Card

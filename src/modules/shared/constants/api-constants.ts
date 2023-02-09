@@ -30,3 +30,4 @@ export const SESSION_MANAGEMENT = "/session-management";
 export const HALLS = "/halls";
 export const MOVIES = "/movies";
 export const MOVIE_FILTER = "/movie-filter";
+export const MOVIE_AFISHA = "/movie-filter/afisha";

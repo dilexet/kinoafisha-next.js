@@ -8,6 +8,7 @@ export default function SearchInputContainer({ loadData }) {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setSearch(value);
+    loadData(value);
   };
 
   const handleSubmitSearch = (event) => {

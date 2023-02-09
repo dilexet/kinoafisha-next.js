@@ -12,3 +12,6 @@ export const dashboard = {
   Sessions: "/dashboard/sessions",
   Users: "/dashboard/users",
 };
+
+export const home = "/";
+export const afisha = "/afisha";

@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import Link from "next/link";
+import { afisha } from "@/modules/shared/constants/app-routes";
 
 export default function HomeTitle() {
   return (
@@ -32,7 +33,7 @@ export default function HomeTitle() {
           }} />
         </Box>
         <Box style={{marginLeft: "20px"}}>
-          <Typography component={Link} href="/afisha" style={{
+          <Typography component={Link} href={afisha} style={{
             fontSize: "1.125em",
             fontWeight: "500",
             opacity: "0.8",

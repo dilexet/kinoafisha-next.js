@@ -2,20 +2,18 @@ import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { LayoutComponentProps } from "@/modules/layout/type/layout-container-props";
 import Footer from "@/modules/footer/component";
 import HeaderContainer from "@/modules/header/container";
-import { darkTheme, lightTheme } from "@/modules/layout/theme/mui-theme";
+import { darkTheme } from "@/modules/layout/theme/mui-theme";
 import { googleOptions } from "@/modules/shared/constants/google-constants";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import MainLayout from "@/modules/layout/component/main-layout";
 
 const Layout = ({
-  Component,
-  pageProps,
-  isDarkModeEnabled,
-  onChangeTheme,
-}: LayoutComponentProps) => {
+                  Component,
+                  pageProps,
+                }: LayoutComponentProps) => {
   return (
     <GoogleOAuthProvider clientId={googleOptions.GOOGLE_ID}>
-      <ThemeProvider theme={isDarkModeEnabled ? darkTheme : lightTheme}>
+      <ThemeProvider theme={darkTheme}>
         <Box
           sx={{
             display: "flex",
@@ -24,10 +22,7 @@ const Layout = ({
           }}
         >
           <CssBaseline>
-            <HeaderContainer
-              isDarkModeEnabled={isDarkModeEnabled}
-              onChangeTheme={onChangeTheme}
-            />
+            <HeaderContainer />
             <section>
               <MainLayout Component={Component} pageProps={pageProps} />
             </section>

@@ -65,7 +65,7 @@ const movieFilterSlice = createSlice({
           state.loadingStatusGetAll = LOADING_STATUSES.FAILED;
           state.errorInfo = {
             message:
-            action.payload?.movie_managemmovie_filter_reducerent_reducer?.errorInfo?.message,
+            action.payload?.movie_filter_reducer?.errorInfo?.message,
             error: action.payload?.movie_filter_reducer?.errorInfo?.error,
           };
           movieFilterEntityAdapter.setAll(state, []);
@@ -84,10 +84,10 @@ const movieFilterSlice = createSlice({
 
 export default movieFilterSlice.reducer;
 
-const movieManagementSelectors = movieFilterEntityAdapter.getSelectors<RootState>(
+const movieFilterSelectors = movieFilterEntityAdapter.getSelectors<RootState>(
   (state) => state.movie_filter_reducer,
 );
 
 export const { clearErrors } = movieFilterSlice.actions;
 
-export const { selectAll } = movieManagementSelectors;
+export const { selectAll } = movieFilterSelectors;

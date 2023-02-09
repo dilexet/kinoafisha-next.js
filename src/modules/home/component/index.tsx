@@ -1,51 +1,12 @@
 import { Box, Tab } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
-import { ImageUploadState } from "@/modules/upload-image/reducer";
 import SwiperComponent from "@/modules/home/component/swiper";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { SyntheticEvent, useEffect, useState } from "react";
 import HomeTitle from "@/modules/home/component/home-title";
-import { MovieFilterState, selectAll } from "@/modules/home/reducer";
-import MovieCard, { MovieCardSkeleton } from "@/modules/home/component/card/movie-card";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation, Scrollbar } from "swiper";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
-import { generateEmptyArray } from "@/modules/shared/utils/generate-empty-array";
-import { moviesFilterGetAllAsync } from "@/modules/home/action";
+import MoviesSwiper from "@/modules/home/component/movies-swiper";
+import { TabValue } from "@/modules/home/types/tab-value";
 
-export enum TabValue {
-  ONE = "1",
-  TWO = "2"
-}
-
-export default function HomeComponent() {
-  const dispatch = useAppDispatch();
-  const imageState = useAppSelector<ImageUploadState>((x) => x.upload_image_reducer);
-  const movieState = useAppSelector<MovieFilterState>((x) => x.movie_filter_reducer);
-  const movies = useAppSelector(selectAll);
-
-  const [tabValue, setTabValue] = useState(TabValue.ONE);
-
-  const handleChange = async (event: SyntheticEvent, newValue) => {
-    if (newValue === TabValue.ONE) {
-      await dispatch(moviesFilterGetAllAsync({ onlyPopular: true }));
-    } else {
-      await dispatch(moviesFilterGetAllAsync({ onlyFuture: true }));
-    }
-    setTabValue(newValue);
-  };
-
-  const [slidesPerView, setSlidesPerView] = useState(window.innerWidth <= 960 ? "sm" : "lg");
-  useEffect(() => {
-    window.onresize = () => {
-      if (window.innerWidth <= 960) {
-        setSlidesPerView("sm");
-      } else {
-        setSlidesPerView("lg");
-      }
-    };
-  }, []);
-
+export default function HomeComponent({ imageState, movieState, movies, slidesPerView, tabValue, handleChange }) {
   return (
     <Box style={{ margin: "5px 0" }}>
       <SwiperComponent images={imageState?.images} slidesPerView={slidesPerView} />
@@ -94,37 +55,5 @@ export default function HomeComponent() {
         </TabContext>
       </Box>
     </Box>
-  );
-}
-
-export function MoviesSwiper({ isLoading, movies, slidesPerView }) {
-  return (
-    <Swiper
-      modules={[Pagination, Scrollbar, Navigation, Autoplay]}
-      spaceBetween={5}
-      slidesPerView={slidesPerView === "sm" ? 3 : 6}
-      loop={true}
-      navigation={true}
-      autoplay={{
-        delay: 3000,
-        disableOnInteraction: false,
-      }}
-      pagination={{ clickable: true }}
-      scrollbar={{ draggable: true }}
-    >
-      {
-        isLoading ?
-          generateEmptyArray(10, 0).map((value, index) => (
-            <SwiperSlide key={index}>
-              <MovieCardSkeleton />
-            </SwiperSlide>
-          )) :
-          movies?.map((movie) => (
-            <SwiperSlide key={movie?.id}>
-              <MovieCard movie={movie} />
-            </SwiperSlide>
-          ))
-      }
-    </Swiper>
   );
 }

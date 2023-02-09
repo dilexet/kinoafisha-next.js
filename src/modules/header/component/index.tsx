@@ -2,28 +2,22 @@ import Link from "next/link";
 import {
   Toolbar,
   Typography,
-  IconButton,
   AppBar,
   Box,
   Link as LinkMaterial,
   ButtonGroup,
   Grid,
 } from "@mui/material";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { APP_LOGO } from "@/modules/shared/constants/app-constants";
 import { HeaderComponentProps } from "@/modules/header/type/header-component-props";
 import styles from "@/styles/header.module.css";
+import { afisha } from "@/modules/shared/constants/app-routes";
 
-const Header = ({
-  theme,
-  onChangeTheme,
-  isDarkModeEnabled,
-}: HeaderComponentProps) => {
+const Header = ({ theme }: HeaderComponentProps) => {
   return (
-    <Box component='header'>
+    <Box component="header">
       <AppBar
-        position='static'
+        position="static"
         elevation={0}
         sx={{
           borderBottom: `1px solid ${theme.palette.divider}`,
@@ -37,13 +31,13 @@ const Header = ({
             }}
           >
             <Link
-              href='/'
+              href="/"
               style={{
                 textDecoration: "none",
               }}
             >
               <Typography
-                component='h1'
+                component="h1"
                 style={{
                   textDecoration: "none",
                   textTransform: "none",
@@ -75,9 +69,9 @@ const Header = ({
               <Grid item>
                 <LinkMaterial
                   sx={{ my: 1, mx: 1.5 }}
-                  variant='button'
+                  variant="button"
                   component={Link}
-                  href='/afisha'
+                  href={afisha}
                   style={{
                     color: theme.palette.text.secondary,
                     textDecoration: "none",
@@ -92,17 +86,8 @@ const Header = ({
                 </LinkMaterial>
               </Grid>
               <Grid item>
-                <ButtonGroup size='medium'>
-                  <IconButton
-                    onClick={() => onChangeTheme(!isDarkModeEnabled)}
-                    color='inherit'
-                  >
-                    {isDarkModeEnabled ? (
-                      <Brightness7Icon />
-                    ) : (
-                      <Brightness4Icon />
-                    )}
-                  </IconButton>
+                <ButtonGroup size="medium">
+                  {/*TODO: */}
                 </ButtonGroup>
               </Grid>
             </Grid>
