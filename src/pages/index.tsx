@@ -26,7 +26,9 @@ export default function Home() {
     setTabValue(newValue);
   };
 
-  const [slidesPerView, setSlidesPerView] = useState(window.innerWidth <= 960 ? "sm" : "lg");
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [slidesPerView, setSlidesPerView] = useState("sm");
   useEffect(() => {
     window.onresize = () => {
       if (window.innerWidth <= 960) {
@@ -36,6 +38,13 @@ export default function Home() {
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (window !== undefined && isLoading === true) {
+      setSlidesPerView(window.innerWidth <= 960 ? "sm" : "lg");
+      setIsLoading(false);
+    }
+  }, [isLoading]);
 
   return (
     <>

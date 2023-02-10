@@ -1,4 +1,4 @@
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper";
 import { generateEmptyArray } from "@/modules/shared/utils/generate-empty-array";
 import MovieCard from "@/modules/shared/component/card/movie-card";

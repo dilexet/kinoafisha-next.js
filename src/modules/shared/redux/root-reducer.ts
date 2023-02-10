@@ -16,6 +16,7 @@ import halls_reducer from "@/modules/halls/reducer";
 import movies_reducer from "@/modules/movies/reducer";
 import movie_filter_reducer from "@/modules/home/reducer";
 import movie_afisha_reducer from "@/modules/afisha/reducer";
+import movie_sessions_reducer from "@/modules/movie-sessions/reducer";
 
 export const rootReducer = combineReducers({
   toastr: toastrReducer,
@@ -34,5 +35,6 @@ export const rootReducer = combineReducers({
   halls_reducer,
   movies_reducer,
   movie_filter_reducer,
-  movie_afisha_reducer
+  movie_afisha_reducer,
+  movie_sessions_reducer,
 });

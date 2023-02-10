@@ -6,8 +6,11 @@ import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
 import { CountriesContent } from "@/modules/shared/component/card/countries-content";
 import { GenresContent } from "@/modules/shared/component/card/genres-content";
 import { MovieCardProps } from "@/modules/shared/types/movie-card-props";
+import { useRouter } from "next/navigation";
+import { movie_sessions } from "@/modules/shared/constants/app-routes";
 
 export default function MovieCard({ movie }: MovieCardProps) {
+  const router = useRouter();
   return (
     <Card
       style={{
@@ -67,6 +70,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
         }}>
         <Button
           variant="outlined"
+          onClick={() => router.push(movie_sessions(movie.id))}
           style={{
             borderRadius: "22px",
             border: "2px solid #D40754",
