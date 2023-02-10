@@ -46,9 +46,21 @@ export default function MovieInfoComponent({ movie }: MovieInfoComponentProps) {
             fontSize: "1em",
             fontWeight: "400",
           }}>
-            {movie?.genres.map(x => x.name).join(", ")}
+           <span>
+              {movie?.genres.map(x => x.name).join(", ")}
+           </span>
+            <span>
             &nbsp;/&nbsp;
+            </span>
+            <span>
             {movie?.countries.map(x => x.name).join(", ")}
+            </span>
+            <span>
+            &nbsp;/&nbsp;
+            </span>
+            <span>
+              {`${movie?.durationInMinutes} min`}
+            </span>
           </Typography>
         </Box>
       </Box>

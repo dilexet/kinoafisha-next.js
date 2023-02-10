@@ -11,7 +11,6 @@ import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 export const pageItemLimit = 3;
 export const pageStart = 1;
 
-// TODO: move to afisha
 export default function Afisha() {
   const dispatch = useAppDispatch();
   const movieState = useAppSelector<MovieAfishaState>((x) => x.movie_afisha_reducer);

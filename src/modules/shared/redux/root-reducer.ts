@@ -17,6 +17,7 @@ import movies_reducer from "@/modules/movies/reducer";
 import movie_filter_reducer from "@/modules/home/reducer";
 import movie_afisha_reducer from "@/modules/afisha/reducer";
 import movie_sessions_reducer from "@/modules/movie-sessions/reducer";
+import session_details_reducer from "@/modules/booking/reducer";
 
 export const rootReducer = combineReducers({
   toastr: toastrReducer,
@@ -37,4 +38,5 @@ export const rootReducer = combineReducers({
   movie_filter_reducer,
   movie_afisha_reducer,
   movie_sessions_reducer,
+  session_details_reducer,
 });

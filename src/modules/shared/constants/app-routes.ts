@@ -16,3 +16,4 @@ export const dashboard = {
 export const home = "/";
 export const afisha = "/afisha";
 export const movie_sessions = (id) => `${afisha}/${id}`;
+export const session_booking = (id) => `/booking/${id}`;

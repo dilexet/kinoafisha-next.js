@@ -31,3 +31,4 @@ export const HALLS = "/halls";
 export const MOVIES = "/movies";
 export const MOVIE_FILTER = "/movie-filter";
 export const MOVIE_AFISHA = "/movie-filter/afisha";
+export const BOOKING = "/booking";
