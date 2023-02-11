@@ -1,4 +1,4 @@
-import { Box, CardMedia, Typography } from "@mui/material";
+import { Box, CardMedia, Skeleton, Typography } from "@mui/material";
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
 import { MovieInfoComponentProps } from "@/modules/movie-sessions/type/props";
 
@@ -15,18 +15,21 @@ export default function MovieInfoComponent({ movie }: MovieInfoComponentProps) {
           flex: "0 0 auto",
           width: "190px",
         }}>
-        <CardMedia
-          component="img"
-          style={{
-            width: "120px", height: "180px",
-            borderRadius: "12px",
-            position: "relative",
-            overflow: "hidden",
-            opacity: "0.9", display: "block",
-          }}
-          image={IMAGE_URL(movie?.posterURL)}
-          alt={movie?.name}
-        />
+        {
+          movie?.posterURL ? <CardMedia
+              component="img"
+              style={{
+                width: "120px", height: "180px",
+                borderRadius: "12px",
+                position: "relative",
+                overflow: "hidden",
+                opacity: "0.9", display: "block",
+              }}
+              image={IMAGE_URL(movie?.posterURL)}
+              alt={movie?.name}
+            /> :
+            <Skeleton variant="rounded" width={120} height={180} />
+        }
       </Box>
       <Box style={{
         color: "rgba(255, 255, 255, 0.8)",

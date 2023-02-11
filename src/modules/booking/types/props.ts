@@ -1,9 +1,15 @@
-import { SessionDetailsState } from "@/modules/booking/reducer";
-import { SessionDetailsType, SessionSeatType } from "@/modules/booking/types/session-details-type";
+import { BookingState } from "@/modules/booking/reducer";
+import { SeatType, SessionDetailsType, SessionSeatType } from "@/modules/booking/types/session-details-type";
 
 export interface SessionDetailsComponentProps {
-  sessionDetailsState: SessionDetailsState;
+  bookingState: BookingState;
   handleClose: () => void;
+  handleSelectSeat: (seatId: string) => void;
+  handleCancelSelectSeat: (seatId: string) => void;
+  selectedSeatIds: string[];
+  minutes: number;
+  seconds: number;
+  isRunning: boolean;
 }
 
 export interface SessionMovieInfoComponentProps {
@@ -17,4 +23,17 @@ export interface SeatTypeInfoComponentProps {
 
 export interface SeatTypeComponentProps {
   seatType: SessionSeatType;
+}
+
+export interface SelectedSeatsComponentProps {
+  selectedSeats: SeatType[];
+  session: SessionDetailsType;
+  totalPrice: number;
+  handleCancelSelectSeat: (seatId: string) => void;
+}
+
+
+export interface SelectedSeatComponentProps {
+  selectedSeat: SeatType;
+  handleCancelSelectSeat: (seatId: string) => void;
 }

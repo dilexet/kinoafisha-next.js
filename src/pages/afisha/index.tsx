@@ -7,8 +7,9 @@ import { MovieAfishaState, selectAll } from "@/modules/afisha/reducer";
 import AfishaComponent from "@/modules/afisha/component";
 import { useCallback, useEffect, useState } from "react";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
+import Loading from "@/modules/loading";
 
-export const pageItemLimit = 3;
+export const pageItemLimit = 6;
 export const pageStart = 1;
 
 export default function Afisha() {
@@ -69,7 +70,12 @@ export default function Afisha() {
         <title>Movie afisha</title>
       </Head>
       <main>
-        <AfishaComponent movies={movies} movieState={movieState} handleSearch={handleSearch} />
+        {
+          movieState?.loadingStatusGetAll === LOADING_STATUSES.PENDING ||
+          movieState?.loadingStatusGetAll === LOADING_STATUSES.LOADING ?
+            <Loading /> :
+            <AfishaComponent movies={movies} movieState={movieState} handleSearch={handleSearch} />
+        }
       </main>
     </>
   );

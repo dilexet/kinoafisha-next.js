@@ -1,5 +1,5 @@
 import { SessionMovieInfoComponentProps } from "@/modules/booking/types/props";
-import { Box, CardMedia, Typography } from "@mui/material";
+import { Box, CardMedia, Skeleton, Typography } from "@mui/material";
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
@@ -17,19 +17,23 @@ export default function MovieInfoComponent({ session }: SessionMovieInfoComponen
         style={{
           flex: "0 0 auto", margin: "10px 20px 10px 0",
         }}>
-        <CardMedia
-          component="img"
-          style={{
-            width: "100px",
-            height: "160px",
-            borderRadius: "5px",
-            position: "relative",
-            overflow: "hidden",
-            opacity: "0.9",
-          }}
-          image={IMAGE_URL(session?.movie.posterURL)}
-          alt={session?.movie?.name}
-        />
+        {
+          session?.movie?.posterURL ?
+            <CardMedia
+              component="img"
+              style={{
+                width: "100px",
+                height: "160px",
+                borderRadius: "5px",
+                position: "relative",
+                overflow: "hidden",
+                opacity: "0.9",
+              }}
+              image={IMAGE_URL(session?.movie.posterURL)}
+              alt={session?.movie?.name}
+            /> :
+            <Skeleton variant="rounded" width={100} height={160} />
+        }
       </Box>
       <Box
         style={{
@@ -47,7 +51,11 @@ export default function MovieInfoComponent({ session }: SessionMovieInfoComponen
           }}>
           <Box
             style={{
-              margin: "10px 0", display: "inline-flex", verticalAlign: "top", alignItems: "center",
+              width: "100%",
+              margin: "10px 0",
+              display: "flex",
+              verticalAlign: "top",
+              alignItems: "center",
             }}>
             <Box
               style={{

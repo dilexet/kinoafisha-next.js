@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import CropSquareIcon from "@mui/icons-material/CropSquare";
 import { SeatTypeComponentProps } from "@/modules/booking/types/props";
-import { generateColor } from "@/modules/shared/utils/generate-color";
 
 export default function SeatTypeComponent({ seatType }: SeatTypeComponentProps) {
   return (
@@ -19,7 +18,7 @@ export default function SeatTypeComponent({ seatType }: SeatTypeComponentProps) 
         }}>
         <CropSquareIcon style={{
           fontSize: "40px",
-          color: generateColor(seatType?.id),
+          color: seatType?.colorHex,
         }} />
       </Box>
       <Box

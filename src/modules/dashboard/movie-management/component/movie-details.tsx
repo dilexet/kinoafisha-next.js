@@ -1,23 +1,23 @@
-import { Typography, Grid, Box, Avatar } from "@mui/material";
+import { Typography, Grid, Box, Avatar, Skeleton } from "@mui/material";
 import ModalLayout from "@/modules/dashboard/shared/component/modal-layout";
 import { MovieDetailsProps } from "@/modules/dashboard/movie-management/types/movie-details-props";
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
 
 export default function MovieDetails({
-  gridItems,
-  movieState,
-}: MovieDetailsProps) {
+                                       gridItems,
+                                       movieState,
+                                     }: MovieDetailsProps) {
   return (
     <ModalLayout
-      title='Show movie details'
+      title="Show movie details"
       error={movieState?.errorInfo?.message}
     >
       <Grid
         container
         spacing={3}
-        direction='column'
-        justifyContent='center'
-        alignItems='flex-start'
+        direction="column"
+        justifyContent="center"
+        alignItems="flex-start"
       >
         <Grid
           item
@@ -28,11 +28,15 @@ export default function MovieDetails({
             justifyContent: "center",
           }}
         >
-          <Avatar
-            alt='Poster'
-            sx={{ width: 228, height: 228 }}
-            src={IMAGE_URL(movieState?.movie?.posterURL)}
-          />
+          {
+            movieState?.movie?.posterURL ?
+              <Avatar
+                alt="Poster"
+                sx={{ width: 228, height: 228 }}
+                src={IMAGE_URL(movieState?.movie?.posterURL)}
+              /> :
+              <Skeleton variant="circular" width={228} height={228} />
+          }
         </Grid>
         {gridItems?.map((item, index) => (
           <Grid
