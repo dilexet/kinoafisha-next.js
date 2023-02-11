@@ -5,7 +5,11 @@ import { HallRowsPlanProps } from "@/modules/booking/types/hall-rows-plan-props"
 import RowNumbers from "@/modules/booking/component/hall-plan/row-numbers";
 import HallSeatsPlan from "@/modules/booking/component/hall-plan/hall-seats-plan";
 
-export default function HallRowsPlan({ row }: HallRowsPlanProps) {
+export default function HallRowsPlan({
+                                       row,
+                                       handleCancelSelectSeat,
+                                       handleSelectSeat,
+                                     }: HallRowsPlanProps) {
   return (
     <Box
       style={{
@@ -24,7 +28,10 @@ export default function HallRowsPlan({ row }: HallRowsPlanProps) {
       >
         {row?.seats?.map((seat) => (
           <React.Fragment key={seat.id}>
-            <HallSeatsPlan seat={seat} numberRow={row?.numberRow} />
+            <HallSeatsPlan seat={seat} numberRow={row?.numberRow}
+                           handleSelectSeat={handleSelectSeat}
+                           handleCancelSelectSeat={handleCancelSelectSeat}
+            />
           </React.Fragment>
         ))}
       </Box>

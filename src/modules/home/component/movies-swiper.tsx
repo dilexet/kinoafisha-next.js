@@ -13,7 +13,7 @@ export default function MoviesSwiper({ isLoading, movies, slidesPerView }) {
       loop={true}
       navigation={true}
       autoplay={{
-        delay: 3000,
+        delay: 10000,
         disableOnInteraction: false,
       }}
       pagination={{ clickable: true }}

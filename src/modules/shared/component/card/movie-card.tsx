@@ -1,6 +1,6 @@
 import {
   Card, CardMedia, CardContent,
-  Typography, CardActions, Button, Box,
+  Typography, CardActions, Button, Box, Skeleton,
 } from "@mui/material";
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
 import { CountriesContent } from "@/modules/shared/component/card/countries-content";
@@ -26,16 +26,20 @@ export default function MovieCard({ movie }: MovieCardProps) {
         margin: "10px 0",
         minHeight: "725px",
       }}>
-      <CardMedia
-        component="img"
-        style={{
-          width: "240px", height: "360px",
-          borderRadius: "22px",
-          opacity: "0.9", display: "block",
-        }}
-        image={IMAGE_URL(movie?.posterURL)}
-        alt={movie?.name}
-      />
+      {
+        movie?.posterURL ?
+          <CardMedia
+            component="img"
+            style={{
+              width: "240px", height: "360px",
+              borderRadius: "22px",
+              opacity: "0.9", display: "block",
+            }}
+            image={IMAGE_URL(movie?.posterURL)}
+            alt={movie?.name}
+          /> :
+          <Skeleton variant="rounded" width={240} height={360} />
+      }
       <CardContent
         style={{
           margin: "5% 0",

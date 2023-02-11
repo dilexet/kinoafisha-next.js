@@ -6,6 +6,8 @@ import Head from "next/head";
 import MovieSessionsComponent from "@/modules/movie-sessions/component";
 import { useRouter } from "next/navigation";
 import { afisha } from "@/modules/shared/constants/app-routes";
+import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
+import Loading from "@/modules/loading";
 
 export default function MovieSessions() {
   const router = useRouter();
@@ -15,13 +17,20 @@ export default function MovieSessions() {
     router.push(afisha);
   };
 
+  console.log("Afisha");
+
   return (
     <>
       <Head>
         <title>{`KinoAfisha: ${movieSessionState?.movie?.name}`}</title>
       </Head>
       <main>
-        <MovieSessionsComponent movieSessionState={movieSessionState} handleClose={handleClose} />
+        {
+          movieSessionState?.loadingStatus === LOADING_STATUSES.PENDING ||
+          movieSessionState?.loadingStatus === LOADING_STATUSES.LOADING ?
+            <Loading /> :
+            <MovieSessionsComponent movieSessionState={movieSessionState} handleClose={handleClose} />
+        }
       </main>
     </>
   );

@@ -3,7 +3,7 @@ import React from "react";
 import { HallPlanProps } from "@/modules/booking/types/hall-plan-props";
 import HallRowsPlan from "@/modules/booking/component/hall-plan/hall-rows-plan";
 
-export default function HallPlan({ hall }: HallPlanProps) {
+export default function HallPlan({ hall, handleCancelSelectSeat, handleSelectSeat }: HallPlanProps) {
   return (
     <Box
       style={{
@@ -53,7 +53,10 @@ export default function HallPlan({ hall }: HallPlanProps) {
             <Box>
               {hall?.rows?.map((row) => (
                 <React.Fragment key={row.id}>
-                  <HallRowsPlan row={row} />
+                  <HallRowsPlan row={row}
+                                handleSelectSeat={handleSelectSeat}
+                                handleCancelSelectSeat={handleCancelSelectSeat}
+                  />
                 </React.Fragment>
               ))}
               <h1></h1>

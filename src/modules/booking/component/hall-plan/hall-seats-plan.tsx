@@ -1,57 +1,79 @@
-import { Box, Fade, Tooltip, useTheme } from "@mui/material";
+import { Box, Fade, Tooltip } from "@mui/material";
 import CropSquareIcon from "@mui/icons-material/CropSquare";
-import { generateColor } from "@/modules/shared/utils/generate-color";
+import SquareRoundedIcon from "@mui/icons-material/SquareRounded";
 import { HallSeatsPlanProps } from "@/modules/booking/types/hall-seats-plan-props";
 import ToolTipSeatMenu from "@/modules/booking/component/hall-plan/tool-tip-seat-menu";
+import { TicketState } from "@/modules/shared/constants/ticket-state";
+import { SeatBookedColor, SeatSelectedColor } from "@/modules/booking/constants/seat-colors";
 
-export default function HallSeatsPlan({ seat, numberRow }: HallSeatsPlanProps) {
-  const theme = useTheme();
+export default function HallSeatsPlan({
+                                        seat, numberRow,
+                                        handleCancelSelectSeat,
+                                        handleSelectSeat,
+                                      }: HallSeatsPlanProps) {
   return (
     <Box
-      key={seat.id}
       style={{
         display: "inline-block",
       }}
     >
-      <Tooltip
-        TransitionComponent={Fade}
-        arrow
-        placement="top"
-        TransitionProps={{ timeout: 400 }}
-        title={<ToolTipSeatMenu seat={seat} numberRow={numberRow} />}
-        componentsProps={{
-          tooltip: {
-            sx: {
-              backgroundColor:
-                theme.palette.mode === "dark"
-                  ? "rgba(0, 0, 0, 0.9)"
-                  : "rgba(255, 255, 255, 0.9)",
-            },
-          },
-          arrow: {
-            sx: {
-              color:
-                theme.palette.mode === "dark"
-                  ? "rgba(0, 0, 0, 0.9)"
-                  : "rgba(255, 255, 255, 0.9)",
-            },
-          },
-        }}
-      >
-        <Box
-          style={{
-            margin: "0 2px",
-            cursor: "pointer",
-          }}
-        >
-          <CropSquareIcon
-            style={{
-              fontSize: "40px",
-              color: generateColor(seat.seatTypeId),
+      {
+        seat?.ticketState === TicketState.Free ?
+          <Tooltip
+            TransitionComponent={Fade}
+            arrow
+            placement="top"
+            TransitionProps={{ timeout: 400 }}
+            title={<ToolTipSeatMenu seat={seat} numberRow={numberRow} />}
+            componentsProps={{
+              tooltip: {
+                sx: {
+                  backgroundColor: "rgba(0, 0, 0, 0.9)",
+                },
+              },
+              arrow: {
+                sx: {
+                  color: "rgba(0, 0, 0, 0.9)",
+                },
+              },
             }}
-          />
-        </Box>
-      </Tooltip>
+          >
+            <Box
+              onClick={() => handleSelectSeat(seat?.sessionSeatId)}
+              style={{
+                margin: "0 2px",
+                cursor: "pointer",
+              }}
+            >
+              <CropSquareIcon
+                style={{
+                  fontSize: "40px",
+                  color: seat?.colorHex,
+                }}
+              />
+            </Box>
+          </Tooltip> :
+          seat.ticketState === TicketState.BlockedMySelf ?
+            <Box onClick={() => handleCancelSelectSeat(seat?.sessionSeatId)}
+                 style={{
+                   margin: "0 2px",
+                   cursor: "pointer",
+                 }}>
+              <SquareRoundedIcon style={{
+                fontSize: "40px",
+                fill: SeatSelectedColor,
+              }} />
+            </Box> :
+            <Box style={{
+              margin: "0 2px",
+              cursor: "not-allowed",
+            }}>
+              <CropSquareIcon style={{
+                fontSize: "40px",
+                color: SeatBookedColor,
+              }} />
+            </Box>
+      }
     </Box>
   );
 }

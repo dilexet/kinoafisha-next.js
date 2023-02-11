@@ -1,8 +1,15 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import CloseIcon from "@mui/icons-material/Close";
+import Timer from "@/modules/booking/component/timer";
 
-export default function MovieTitleComponent({ movieName, handleClose }) {
+export default function MovieTitleComponent({
+                                              movieName,
+                                              handleClose,
+                                              minutes = 0,
+                                              seconds = 0,
+                                              isRunning = false,
+                                            }) {
   return (
     <Box
       style={{
@@ -42,12 +49,12 @@ export default function MovieTitleComponent({ movieName, handleClose }) {
           }}>
             {movieName}
           </Typography>
-          {/*{*/}
-          {/*  isRunning ?*/}
-          {/*    <Box>*/}
-          {/*      <Timer minutes={minutes} seconds={seconds} />*/}
-          {/*    </Box> : <></>*/}
-          {/*}*/}
+          {
+            isRunning === true ?
+              <Box>
+                <Timer minutes={minutes} seconds={seconds} />
+              </Box> : <></>
+          }
         </Box>
         <Box style={{ boxSizing: "border-box" }}>
           <IconButton aria-label="Back" onClick={handleClose}

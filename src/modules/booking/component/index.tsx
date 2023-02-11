@@ -4,8 +4,16 @@ import MovieTitleComponent from "@/modules/movie-sessions/component/movie-title"
 import MovieInfoComponent from "@/modules/booking/component/movie-info";
 import HallPlan from "@/modules/booking/component/hall-plan/hall-plan";
 import SeatTypeInfoComponent from "@/modules/booking/component/seat-type-info";
+import SelectedSeatsContainer from "@/modules/booking/container/selected-seats";
 
-export default function SessionDetailsComponent({ sessionDetailsState, handleClose }: SessionDetailsComponentProps) {
+export default function SessionDetailsComponent({
+                                                  bookingState,
+                                                  handleClose,
+                                                  handleCancelSelectSeat,
+                                                  handleSelectSeat,
+                                                  selectedSeatIds,
+                                                  minutes, seconds, isRunning,
+                                                }: SessionDetailsComponentProps) {
   return (
     <Box style={{
       margin: "16px 0",
@@ -19,22 +27,34 @@ export default function SessionDetailsComponent({ sessionDetailsState, handleClo
           border: "none",
           boxShadow: "none",
         }}>
-          <MovieTitleComponent movieName={sessionDetailsState?.session?.movie?.name}
-                               handleClose={handleClose} />
+          <MovieTitleComponent movieName={bookingState?.session?.movie?.name}
+                               handleClose={handleClose}
+                               minutes={minutes} seconds={seconds} isRunning={isRunning}
+          />
           <Divider />
           <Grid container spacing={1}>
             <Grid item xs={12}>
-              <MovieInfoComponent session={sessionDetailsState?.session} />
+              <MovieInfoComponent session={bookingState?.session} />
               <Divider />
             </Grid>
             <Grid item xs={12}>
               <Grid container>
                 <Grid item xs={8}>
-                  <HallPlan hall={sessionDetailsState?.session?.hall} />
+                  <HallPlan hall={bookingState?.session?.hall}
+                            handleSelectSeat={handleSelectSeat}
+                            handleCancelSelectSeat={handleCancelSelectSeat}
+                  />
                 </Grid>
                 <Grid item xs={4}>
-                  <SeatTypeInfoComponent sessionSeatTypes={sessionDetailsState?.session?.sessionSeatTypes}
-                                         hallName={sessionDetailsState?.session?.hall?.name} />
+                  {
+                    selectedSeatIds?.length <= 0 ?
+                      <SeatTypeInfoComponent sessionSeatTypes={bookingState?.session?.sessionSeatTypes}
+                                             hallName={bookingState?.session?.hall?.name} /> :
+                      <SelectedSeatsContainer
+                        selectedSeatIds={selectedSeatIds}
+                        handleCancelSelectSeat={handleCancelSelectSeat}
+                      />
+                  }
                 </Grid>
               </Grid>
             </Grid>

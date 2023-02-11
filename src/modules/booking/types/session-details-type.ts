@@ -24,6 +24,7 @@ export interface SessionSeatType {
   id: string;
   price: number;
   name: string;
+  colorHex: string;
 }
 
 export interface HallType {
@@ -42,9 +43,12 @@ export interface RowType {
 
 export interface SeatType {
   id: string;
+  sessionSeatId: string;
   numberSeat: number;
+  numberRow: number;
   price: number;
   seatType: string;
   seatTypeId: string;
+  colorHex: string;
   ticketState: string;
 }

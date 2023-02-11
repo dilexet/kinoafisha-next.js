@@ -51,8 +51,8 @@ const authorizeSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
           state.tokens = null;
         },
@@ -76,8 +76,8 @@ const authorizeSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
           state.tokens = null;
         },
@@ -98,8 +98,8 @@ const authorizeSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
           state.tokens = null;
         },
@@ -123,8 +123,8 @@ const authorizeSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
           state.tokens = null;
         },
@@ -148,8 +148,8 @@ const authorizeSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
           state.tokens = null;
         },
