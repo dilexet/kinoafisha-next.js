@@ -8,6 +8,11 @@ import { RegisterFieldValues } from "@/modules/authorize/constants/register-fiel
 import registerValidationSchema from "@/modules/authorize/utils/register-validation-schema";
 import { clearErrors } from "@/modules/authorize/reducer";
 import { authorize } from "@/modules/shared/constants/app-routes";
+import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
+import { GetServerSideProps } from "next";
+import { wrapper } from "@/modules/shared/redux/store";
+import { getTokenPayload } from "@/modules/authorize/utils/token-service";
+import { Roles } from "@/modules/shared/utils/roles";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -16,6 +21,7 @@ export default function RegisterPage() {
 
   const [rememberMe, setRememberMe] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
 
   function handleNavigateToSignIn() {
     router.push(authorize.Login);
@@ -26,22 +32,23 @@ export default function RegisterPage() {
       await dispatch(
         registerActionAsync({ data: values, rememberMe: rememberMe }),
       );
+      setIsSubmit(true);
     }
   }
 
   useEffect(() => {
-    if (
-      isLoading === true &&
-      (authState?.errorInfo?.message || authState?.errorInfo?.error)
-    ) {
+    if (authState?.loadingStatus === LOADING_STATUSES.IDLE && isSubmit === true) {
+      router.push("/");
+    }
+  }, [authState?.loadingStatus, isSubmit, router]);
+
+  useEffect(() => {
+    if (isLoading === true) {
       dispatch(clearErrors());
       setIsLoading(false);
-    } else {
-      setIsLoading(false);
+      setIsSubmit(false);
     }
   }, [
-    authState?.errorInfo?.error,
-    authState?.errorInfo?.message,
     dispatch,
     isLoading,
   ]);
@@ -63,3 +70,31 @@ export default function RegisterPage() {
     </>
   );
 }
+
+
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps(() => async ({ req, res }) => {
+    const tokenPayload = getTokenPayload(true, req, res);
+
+    if (!tokenPayload) {
+      return { props: {} };
+    }
+
+    if (tokenPayload?.role === Roles.Admin) {
+      return {
+        props: {},
+        redirect: {
+          destination: "/dashboard",
+          permanent: false,
+        },
+      };
+    }
+
+    return {
+      props: {},
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  });

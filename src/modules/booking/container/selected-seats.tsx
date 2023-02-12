@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAppSelector } from "@/modules/shared/redux/hooks";
 import { SeatType } from "@/modules/booking/types/session-details-type";
 import { useRouter } from "next/router";
+import { getTokens } from "@/modules/authorize/utils/token-service";
 
 export default function SelectedSeatsContainer({ selectedSeatIds, handleCancelSelectSeat }) {
   const router = useRouter();
@@ -10,6 +11,8 @@ export default function SelectedSeatsContainer({ selectedSeatIds, handleCancelSe
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedSeat, setSelectedSeats] = useState<SeatType[]>([]);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const [openRegisterModal, setOpenRegisterModal] = useState(false);
 
   useEffect(() => {
     if (selectedSeatIds) {
@@ -32,12 +35,17 @@ export default function SelectedSeatsContainer({ selectedSeatIds, handleCancelSe
   }, [bookingState?.session?.hall?.rows, selectedSeatIds]);
 
   const handleConfirmOrder = async () => {
-    await router.push(
-      {
-        pathname: `/confirm-booking/${bookingState?.session?.id}`,
-        query: { seats: selectedSeatIds },
-      },
-    );
+    const tokens = getTokens();
+    if (tokens && tokens?.accessToken && tokens?.refreshToken) {
+      await router.push(
+        {
+          pathname: `/confirm-booking/${bookingState?.session?.id}`,
+          query: { seats: selectedSeatIds },
+        },
+      );
+    } else {
+      setOpenLoginModal(true);
+    }
   };
 
   return (
@@ -47,6 +55,10 @@ export default function SelectedSeatsContainer({ selectedSeatIds, handleCancelSe
       totalPrice={totalPrice}
       handleCancelSelectSeat={handleCancelSelectSeat}
       handleConfirmOrder={handleConfirmOrder}
+      openLoginModal={openLoginModal}
+      setOpenLoginModal={setOpenLoginModal}
+      openRegisterModal={openRegisterModal}
+      setOpenRegisterModal={setOpenRegisterModal}
     />
   );
 };

@@ -6,22 +6,31 @@ import {
   Box,
   Link as LinkMaterial,
   ButtonGroup,
-  Grid,
+  Grid, IconButton,
 } from "@mui/material";
 import { APP_LOGO } from "@/modules/shared/constants/app-constants";
 import { HeaderComponentProps } from "@/modules/header/type/header-component-props";
 import styles from "@/styles/header.module.css";
 import { afisha } from "@/modules/shared/constants/app-routes";
+import { AccountCircle } from "@mui/icons-material";
+import AccountMenu from "@/modules/header/component/account-menu";
 
-const Header = ({ theme }: HeaderComponentProps) => {
+const Header = ({
+                  isMenuOpen,
+                  handleLogoutClick,
+                  handleMenuOpen,
+                  handleMenuClose,
+                  anchorEl,
+                  isAuthenticate,
+                }: HeaderComponentProps) => {
   return (
     <Box component="header">
       <AppBar
         position="static"
         elevation={0}
         sx={{
-          borderBottom: `1px solid ${theme.palette.divider}`,
-          background: theme.palette.background.default,
+          borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+          background: theme => theme.palette.background.default,
         }}
       >
         <Toolbar sx={{ flexWrap: "wrap" }}>
@@ -72,8 +81,8 @@ const Header = ({ theme }: HeaderComponentProps) => {
                   variant="button"
                   component={Link}
                   href={afisha}
+                  color="secondary"
                   style={{
-                    color: theme.palette.text.secondary,
                     textDecoration: "none",
                     marginLeft: "20px",
                     opacity: "0.9",
@@ -87,13 +96,26 @@ const Header = ({ theme }: HeaderComponentProps) => {
               </Grid>
               <Grid item>
                 <ButtonGroup size="medium">
-                  {/*TODO: */}
+                  <IconButton
+                    size="large"
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls="account-menu"
+                    aria-haspopup="true"
+                    onClick={handleMenuOpen}
+                    color="inherit"
+                  >
+                    <AccountCircle />
+                  </IconButton>
                 </ButtonGroup>
               </Grid>
             </Grid>
           </Box>
         </Toolbar>
       </AppBar>
+      <AccountMenu isMenuOpen={isMenuOpen} handleMenuClose={handleMenuClose}
+                   anchorEl={anchorEl} isAuthenticate={isAuthenticate}
+                   handleLogoutClick={handleLogoutClick} />
     </Box>
   );
 };

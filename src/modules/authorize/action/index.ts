@@ -15,6 +15,7 @@ import {
   saveTokens,
 } from "@/modules/authorize/utils/token-service";
 import { toastr } from "react-redux-toastr";
+import { AxiosResponse } from "axios";
 
 const title = "Authorize";
 export const loginActionAsync = createAsyncThunk(
@@ -72,18 +73,11 @@ export const logoutActionAsync = createAsyncThunk(
   },
 );
 
-export const refreshTokensAsync = createAsyncThunk(
+export const refreshTokensActionAsync = createAsyncThunk(
   "authorize/refresh-tokens",
   async (arg, thunkAPI) => {
     try {
-      const tokens = getTokens();
-
-      const response = await axiosInstance.post(REFRESH_ENDPOINT, {
-        accessToken: tokens.accessToken,
-        refreshToken: tokens.refreshToken,
-      });
-
-      saveTokens(tokens.rememberMe, response?.data);
+      const response = await refreshTokensAsync();
       return response?.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data.errorInfo);
@@ -107,3 +101,17 @@ export const googleAuthorizeAsync = createAsyncThunk(
     }
   },
 );
+
+
+export async function refreshTokensAsync(): Promise<AxiosResponse<any, any>> {
+  const tokens = getTokens();
+
+  const response = await axiosInstance.post(REFRESH_ENDPOINT, {
+    accessToken: tokens.accessToken,
+    refreshToken: tokens.refreshToken,
+  });
+
+  saveTokens(tokens?.rememberMe, response?.data);
+
+  return response;
+}

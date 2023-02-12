@@ -31,6 +31,10 @@ export interface SelectedSeatsComponentProps {
   totalPrice: number;
   handleCancelSelectSeat: (seatId: string) => void;
   handleConfirmOrder: () => void;
+  openLoginModal: boolean;
+  openRegisterModal: boolean;
+  setOpenLoginModal: any;
+  setOpenRegisterModal: any;
 }
 
 

@@ -8,7 +8,11 @@ export const confirmBookingActionAsync = createAsyncThunk(
   "booking/confirm",
   async (args: ConfirmBookingArgs, thunkAPI) => {
     try {
-      const response = await axiosInstance.put(`${BOOKING}/${args.sessionId}`, args);
+      const response = await axiosInstance.put(`${BOOKING}/${args.sessionId}`,
+        {
+          userProfileId: args.userProfileId,
+          sessionSeatsId: args?.sessionSeatsId,
+        });
       toastr.success("Confirm booking", "Confirm booking completed successfully");
       return response?.data;
     } catch (err) {

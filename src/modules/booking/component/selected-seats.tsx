@@ -1,13 +1,19 @@
 import { Box, Button, Divider, Typography } from "@mui/material";
 import { SelectedSeatsComponentProps } from "@/modules/booking/types/props";
 import SelectedSeatComponent from "@/modules/booking/component/selected-seat";
+import LoginModalContainer from "@/modules/authorize/container/login-modal-container";
+import RegisterModalContainer from "@/modules/authorize/container/register-modal-container";
 
 export default function SelectedSeatsComponent({
                                                  totalPrice,
                                                  selectedSeats,
                                                  handleCancelSelectSeat,
                                                  session,
-                                                 handleConfirmOrder
+                                                 handleConfirmOrder,
+                                                 openRegisterModal,
+                                                 setOpenLoginModal,
+                                                 setOpenRegisterModal,
+                                                 openLoginModal,
                                                }: SelectedSeatsComponentProps) {
   return (
     <Box
@@ -42,6 +48,16 @@ export default function SelectedSeatsComponent({
         </Box>
       </Box>
       <Divider />
+      <LoginModalContainer confirmOrder={handleConfirmOrder}
+                           openLoginModal={openLoginModal}
+                           setOpenLoginModal={setOpenLoginModal}
+                           setOpenRegisterModal={setOpenRegisterModal}
+      />
+      <RegisterModalContainer confirmOrder={handleConfirmOrder}
+                              openRegisterModal={openRegisterModal}
+                              setOpenLoginModal={setOpenLoginModal}
+                              setOpenRegisterModal={setOpenRegisterModal}
+      />
       <Box>
         <Box>
           {

@@ -1,5 +1,8 @@
-import { Theme } from "@mui/material";
-
 export type HeaderComponentProps = {
-  theme: Theme;
+  isMenuOpen: boolean;
+  handleLogoutClick: () => void;
+  handleMenuClose: () => void;
+  handleMenuOpen: (event: any) => void;
+  anchorEl: any;
+  isAuthenticate: boolean | null
 };

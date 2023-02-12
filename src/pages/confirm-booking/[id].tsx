@@ -4,7 +4,7 @@ import { wrapper } from "@/modules/shared/redux/store";
 import { GetServerSideProps } from "next";
 import { sessionDetailsGetAsync } from "@/modules/booking/action";
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
-import { afisha, session_booking } from "@/modules/shared/constants/app-routes";
+import { afisha, authorize, session_booking } from "@/modules/shared/constants/app-routes";
 import { useCallback, useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import { BOOKING_GATEWAY } from "@/modules/shared/constants/api-constants";
@@ -16,6 +16,7 @@ import { getCookie } from "cookies-next";
 import { timer_key } from "@/modules/booking/container/timer-settings";
 import { confirmBookingActionAsync } from "@/modules/confirm-booking/action";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
+import { getTokenPayload } from "@/modules/authorize/utils/token-service";
 
 export default function ConfirmBooking({ query }) {
   const router = useRouter();
@@ -52,13 +53,16 @@ export default function ConfirmBooking({ query }) {
   };
 
   const handleConfirmOrder = async () => {
-    // TODO: get from token
-    const userProfileId = "fbc1631b-411b-4a89-9d8e-d015ed9da221";
+    const tokenPayload = getTokenPayload();
+    if (!tokenPayload || !tokenPayload.userProfileId) {
+      router.push(authorize.Login);
+    }
+    const seats = typeof query.seats === "string" ? [query.seats] : query.seats;
     await dispatch(confirmBookingActionAsync(
       {
-        userProfileId: userProfileId,
+        userProfileId: tokenPayload.userProfileId,
         sessionId: query.id,
-        sessionSeatsId: query.seats,
+        sessionSeatsId: seats,
       },
     ));
 

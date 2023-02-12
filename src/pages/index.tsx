@@ -8,6 +8,8 @@ import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
 import { selectAll } from "@/modules/home/reducer";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { TabValue } from "@/modules/home/types/tab-value";
+import { getTokenPayload } from "@/modules/authorize/utils/token-service";
+import { Roles } from "@/modules/shared/utils/roles";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -61,7 +63,19 @@ export default function Home() {
 }
 
 export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps(store => async () => {
+  wrapper.getServerSideProps(store => async ({ req, res }) => {
+    const tokenPayload = getTokenPayload(true, req, res);
+
+    if (tokenPayload?.role === Roles.Admin) {
+      return {
+        props: {},
+        redirect: {
+          destination: "/dashboard",
+          permanent: false,
+        },
+      };
+    }
+
     await store.dispatch(imagesGetAllAsync());
     await store.dispatch(moviesFilterGetAllAsync({ onlyPopular: true }));
     return { props: {} };
