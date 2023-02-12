@@ -18,7 +18,6 @@ export default function SessionUpdateContainer({
   const [wasUpdated, setWasUpdated] = useState(false);
 
   const handleSubmit = async (values: SessionUpdateFieldsType) => {
-    console.log(values);
     if (await sessionUpdateValidationSchema.isValid(values)) {
       await dispatch(sessionUpdateAsync({ values: values, id: values.id }));
       setWasUpdated(true);

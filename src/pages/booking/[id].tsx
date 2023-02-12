@@ -30,7 +30,6 @@ export default function Booking({ sessionId, userSessionId }) {
     await handleCancelSelectAllSeats(selectedSeatIds);
     router.push(movie_sessions(bookingState?.session?.movie?.id));
   };
-  console.log("Booking");
   const {
     seconds,
     minutes,

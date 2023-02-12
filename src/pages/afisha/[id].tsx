@@ -17,8 +17,6 @@ export default function MovieSessions() {
     router.push(afisha);
   };
 
-  console.log("Afisha");
-
   return (
     <>
       <Head>
