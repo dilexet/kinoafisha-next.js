@@ -7,6 +7,7 @@ export default function SelectedSeatsComponent({
                                                  selectedSeats,
                                                  handleCancelSelectSeat,
                                                  session,
+                                                 handleConfirmOrder
                                                }: SelectedSeatsComponentProps) {
   return (
     <Box
@@ -85,7 +86,7 @@ export default function SelectedSeatsComponent({
           margin: "25px 0",
         }}>
         <Button variant="outlined" fullWidth
-                onClick={() => console.log("CONFIRM ORDER")}
+                onClick={handleConfirmOrder}
                 style={{
                   color: "rgba(255, 255, 255, 0.8)",
                   textTransform: "none",

@@ -27,9 +27,12 @@ export default function Booking({ sessionId, userSessionId }) {
   const [selectedSeatIds, setSelectedSeatIds] = useState<string[]>([]);
 
   const handleClose = async () => {
-    await handleCancelSelectAllSeats(selectedSeatIds);
+    if (selectedSeatIds?.length > 0) {
+      await handleCancelSelectAllSeats(selectedSeatIds);
+    }
     router.push(movie_sessions(bookingState?.session?.movie?.id));
   };
+
   const {
     seconds,
     minutes,

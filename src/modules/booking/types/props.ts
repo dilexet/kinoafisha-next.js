@@ -30,6 +30,7 @@ export interface SelectedSeatsComponentProps {
   session: SessionDetailsType;
   totalPrice: number;
   handleCancelSelectSeat: (seatId: string) => void;
+  handleConfirmOrder: () => void;
 }
 
 

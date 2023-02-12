@@ -2,8 +2,10 @@ import SelectedSeatsComponent from "@/modules/booking/component/selected-seats";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "@/modules/shared/redux/hooks";
 import { SeatType } from "@/modules/booking/types/session-details-type";
+import { useRouter } from "next/router";
 
 export default function SelectedSeatsContainer({ selectedSeatIds, handleCancelSelectSeat }) {
+  const router = useRouter();
   const bookingState = useAppSelector(x => x.booking_reducer);
 
   const [totalPrice, setTotalPrice] = useState(0);
@@ -29,12 +31,22 @@ export default function SelectedSeatsContainer({ selectedSeatIds, handleCancelSe
     }
   }, [bookingState?.session?.hall?.rows, selectedSeatIds]);
 
+  const handleConfirmOrder = async () => {
+    await router.push(
+      {
+        pathname: `/confirm-booking/${bookingState?.session?.id}`,
+        query: { seats: selectedSeatIds },
+      },
+    );
+  };
+
   return (
     <SelectedSeatsComponent
       selectedSeats={selectedSeat}
       session={bookingState?.session}
       totalPrice={totalPrice}
       handleCancelSelectSeat={handleCancelSelectSeat}
+      handleConfirmOrder={handleConfirmOrder}
     />
   );
-}
+};
