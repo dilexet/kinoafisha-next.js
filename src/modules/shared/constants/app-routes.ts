@@ -4,7 +4,7 @@ export const authorize = {
   Register: "/authorize/register",
 };
 
-export const user_profile = "/user-profile";
+export const user_profile = "/profile";
 
 export const dashboard = {
   Default: "/dashboard",

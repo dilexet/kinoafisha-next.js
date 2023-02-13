@@ -6,25 +6,26 @@ import {
 } from "@mui/material";
 
 export default function FormTextField({
-  error,
-  helperText,
-  value,
-  onChange,
-  onBlur,
-  variant,
-  size,
-  margin,
-  inputProps,
-  outlinedInputStyle,
-  formControlStyle,
-  ...props
-}: any) {
+                                        error,
+                                        helperText,
+                                        value,
+                                        onChange,
+                                        onBlur,
+                                        variant,
+                                        size,
+                                        margin,
+                                        inputProps,
+                                        outlinedInputStyle,
+                                        formControlStyle,
+                                        required = true,
+                                        ...props
+                                      }: any) {
   return (
     <FormControl
       variant={variant}
       size={size}
       margin={margin}
-      required={true}
+      required={required}
       fullWidth={true}
       style={formControlStyle}
       error={error}
