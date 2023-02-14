@@ -6,8 +6,18 @@ import {
   MovieSessionComponentProps,
 } from "@/modules/movie-sessions/type/props";
 import MovieSessionsListComponent from "@/modules/movie-sessions/component/movie-sessions-list";
+import CommentAddBlock from "@/modules/movie-sessions/component/comment-add-block";
+import CommentsBlock from "@/modules/movie-sessions/component/comments-block";
 
-export default function MovieSessionsComponent({ movieSessionState, handleClose }: MovieSessionComponentProps) {
+export default function MovieSessionsComponent({
+                                                 movieSessionState,
+                                                 handleClose,
+                                                 isAuthenticate,
+                                                 commentText,
+                                                 handleCommentTextChange,
+                                                 handleAddComment,
+                                                 tokenPayload,
+                                               }: MovieSessionComponentProps) {
   return (
     <Box style={{
       margin: "16px 0",
@@ -37,6 +47,18 @@ export default function MovieSessionsComponent({ movieSessionState, handleClose 
               movieName={movieSessionState?.movie?.name}
               movieDescription={movieSessionState?.movie?.description}
             />
+          </Box>
+          <Box style={{ width: "100%", height: "100%" }}>
+            {
+              isAuthenticate === false ? <></> :
+                <CommentAddBlock user={tokenPayload}
+                                 commentText={commentText}
+                                 handleCommentTextChange={handleCommentTextChange}
+                                 handleAddComment={handleAddComment}
+                />
+            }
+            <CommentsBlock comments={movieSessionState?.comments}
+                           currenUserProfileId={tokenPayload?.userProfileId ?? null} />
           </Box>
         </Paper>
       </Box>

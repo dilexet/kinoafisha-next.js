@@ -15,6 +15,7 @@ export interface TokenPayload {
   roleId: string;
   role: string;
   email: string;
+  name: string;
   isActivated: boolean;
   exp: number;
   iat: number;

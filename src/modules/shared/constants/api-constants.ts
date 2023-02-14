@@ -34,5 +34,6 @@ export const MOVIE_AFISHA = "/movie-filter/afisha";
 export const BOOKING = "/booking";
 
 export const BOOKING_GATEWAY = API_URL + "/booking-gateway";
+export const COMMENTS_GATEWAY = API_URL + "/comments-gateway";
 
 export const USER_PROFILE = "/user-profile";
