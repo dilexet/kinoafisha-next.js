@@ -21,6 +21,7 @@ import { timer_key } from "@/modules/booking/container/timer-settings";
 import { confirmBookingActionAsync } from "@/modules/confirm-booking/action";
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { getTokenPayload } from "@/modules/authorize/utils/token-service";
+import Loading from "@/modules/loading";
 
 export default function ConfirmBooking({ query }) {
   const router = useRouter();
@@ -117,23 +118,34 @@ export default function ConfirmBooking({ query }) {
     }
   }, [bookingState?.session?.hall?.rows, query.seats]);
 
+  useEffect(() => {
+    if (bookingState?.loadingStatus === LOADING_STATUSES.FAILED) {
+      router.push("/404");
+    }
+  }, [bookingState?.loadingStatus, router]);
+
   return (
     <>
       <Head>
-        <title>{`Confirm: ${bookingState?.session?.movie?.name}`}</title>
+        <title>{`Confirm: ${bookingState?.session?.movie?.name ?? ""}`}</title>
       </Head>
       <main>
-        <ConformBookingComponent
-          bookingState={bookingState}
-          minutes={minutes}
-          seconds={seconds}
-          isRunning={isRunning}
-          handleClose={handleClose}
-          selectedSeats={selectedSeat}
-          totalPrice={totalPrice}
-          handleConfirmOrder={handleConfirmOrder}
-          confirmBookingState={confirmBookingState}
-        />
+        {
+          bookingState?.loadingStatus !== LOADING_STATUSES.IDLE ? (
+              <Loading />
+            ) :
+            (<ConformBookingComponent
+                bookingState={bookingState}
+                minutes={minutes}
+                seconds={seconds}
+                isRunning={isRunning}
+                handleClose={handleClose}
+                selectedSeats={selectedSeat}
+                totalPrice={totalPrice}
+                handleConfirmOrder={handleConfirmOrder}
+                confirmBookingState={confirmBookingState}
+              />
+            )}
       </main>
     </>
   );

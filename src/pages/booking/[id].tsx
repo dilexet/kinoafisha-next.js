@@ -197,14 +197,19 @@ export default function Booking({ sessionId, userSessionId }) {
     unlockReceiveHandler,
   ]);
 
+  useEffect(() => {
+    if (bookingState?.loadingStatus === LOADING_STATUSES.FAILED) {
+      router.push("/404");
+    }
+  }, [bookingState?.loadingStatus, router]);
+
   return (
     <>
       <Head>
-        <title>{`Watch: ${bookingState?.session?.movie?.name}`}</title>
+        <title>{`Watch: ${bookingState?.session?.movie?.name ?? ""}`}</title>
       </Head>
       <main>
-        {bookingState?.loadingStatus === LOADING_STATUSES.PENDING ||
-        bookingState?.loadingStatus === LOADING_STATUSES.LOADING ? (
+        {bookingState?.loadingStatus !== LOADING_STATUSES.IDLE ? (
           <Loading />
         ) : (
           <SessionDetailsComponent

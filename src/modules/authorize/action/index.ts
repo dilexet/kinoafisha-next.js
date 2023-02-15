@@ -31,7 +31,7 @@ export const loginActionAsync = createAsyncThunk(
       return response?.data;
     } catch (err) {
       toastr.error(title, "Login completed with error");
-      return thunkAPI.rejectWithValue(err.response.data.errorInfo);
+      return thunkAPI.rejectWithValue(err.response?.data?.errorInfo);
     }
   },
 );
@@ -49,7 +49,7 @@ export const registerActionAsync = createAsyncThunk(
       return response?.data;
     } catch (err) {
       toastr.error(title, "Register completed with error");
-      return thunkAPI.rejectWithValue(err.response.data.errorInfo);
+      return thunkAPI.rejectWithValue(err.response?.data?.errorInfo);
     }
   },
 );
@@ -68,7 +68,7 @@ export const logoutActionAsync = createAsyncThunk(
       return response?.data;
     } catch (err) {
       toastr.error(title, "Logout completed with error");
-      return thunkAPI.rejectWithValue(err.response.data.errorInfo);
+      return thunkAPI.rejectWithValue(err.response?.data?.errorInfo);
     }
   },
 );

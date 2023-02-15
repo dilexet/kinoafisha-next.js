@@ -60,7 +60,7 @@ export default function MovieSessions({ movieId, isAuth, tokenPayload }) {
     if (!movieId) {
       router.push("/404");
     }
-    await socket.emit(EVENTS.COMMENT_GET_ALL, movieId);
+    await socket.emit(EVENTS.COMMENT_GET_ALL, { movieId });
   }, [movieId, router, socket]);
 
   const addCommentHandler = useCallback(
@@ -106,14 +106,19 @@ export default function MovieSessions({ movieId, isAuth, tokenPayload }) {
     }
   }, [addCommentHandler, getCommentsHandler, socket]);
 
+  useEffect(() => {
+    if (movieSessionState?.loadingStatus === LOADING_STATUSES.FAILED) {
+      router.push("/404");
+    }
+  }, [movieSessionState?.loadingStatus, router]);
+
   return (
     <>
       <Head>
-        <title>{`KinoAfisha: ${movieSessionState?.movie?.name}`}</title>
+        <title>{`KinoAfisha: ${movieSessionState?.movie?.name ?? ""}`}</title>
       </Head>
       <main>
-        {movieSessionState?.loadingStatus === LOADING_STATUSES.PENDING ||
-        movieSessionState?.loadingStatus === LOADING_STATUSES.LOADING ? (
+        {movieSessionState?.loadingStatus !== LOADING_STATUSES.IDLE ? (
           <Loading />
         ) : (
           <MovieSessionsComponent
