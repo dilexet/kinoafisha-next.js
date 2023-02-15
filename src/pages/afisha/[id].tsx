@@ -60,7 +60,7 @@ export default function MovieSessions({ movieId, isAuth, tokenPayload }) {
     if (!movieId) {
       router.push("/404");
     }
-    await socket.emit(EVENTS.COMMENT_GET_ALL, { movieId });
+    await socket.emit(EVENTS.COMMENT_GET_ALL, movieId);
   }, [movieId, router, socket]);
 
   const addCommentHandler = useCallback(
