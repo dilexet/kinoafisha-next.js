@@ -1,9 +1,17 @@
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
-import { AnyAction, createEntityAdapter, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  AnyAction,
+  createEntityAdapter,
+  createSlice,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import { RootState } from "@/modules/shared/redux/store";
 import { MovieType } from "../types/movie-type";
-import { moviesAfishaGetAllAsync, moviesAfishaUploadAsync } from "@/modules/afisha/action";
+import {
+  moviesAfishaGetAllAsync,
+  moviesAfishaUploadAsync,
+} from "@/modules/afisha/action";
 
 export interface MovieAfishaState {
   loadingStatusGetAll: string;
@@ -26,11 +34,11 @@ const initialState: MovieAfishaState = {
 };
 
 export const movieAfishaEntityAdapter = createEntityAdapter<MovieType>({
-  selectId: model => model?.id,
+  selectId: (model) => model?.id,
 });
 
-const initialAdapterState = movieAfishaEntityAdapter.getInitialState(initialState);
-
+const initialAdapterState =
+  movieAfishaEntityAdapter.getInitialState(initialState);
 
 const movieAfishaSlice = createSlice({
   name: "movie-afisha",
@@ -92,8 +100,7 @@ const movieAfishaSlice = createSlice({
         if (action.payload?.movie_afisha_reducer?.errorInfo) {
           state.loadingStatusGetAll = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message:
-            action.payload?.movie_afisha_reducer?.errorInfo?.message,
+            message: action.payload?.movie_afisha_reducer?.errorInfo?.message,
             error: action.payload?.movie_afisha_reducer?.errorInfo?.error,
           };
           movieAfishaEntityAdapter.setAll(state, []);
@@ -108,7 +115,6 @@ const movieAfishaSlice = createSlice({
       });
   },
 });
-
 
 export default movieAfishaSlice.reducer;
 

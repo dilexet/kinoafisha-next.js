@@ -3,7 +3,11 @@ import React from "react";
 import { HallPlanProps } from "@/modules/booking/types/hall-plan-props";
 import HallRowsPlan from "@/modules/booking/component/hall-plan/hall-rows-plan";
 
-export default function HallPlan({ hall, handleCancelSelectSeat, handleSelectSeat }: HallPlanProps) {
+export default function HallPlan({
+  hall,
+  handleCancelSelectSeat,
+  handleSelectSeat,
+}: HallPlanProps) {
   return (
     <Box
       style={{
@@ -29,19 +33,23 @@ export default function HallPlan({ hall, handleCancelSelectSeat, handleSelectSea
           <Box
             style={{
               margin: "10px 0 150px",
-            }}>
-            <Box style={{
-              border: "2px solid rgba(255, 255, 255, 0.8)",
-              maxWidth: "75%",
-              margin: "auto",
-            }} />
+            }}
+          >
+            <Box
+              style={{
+                border: "2px solid rgba(255, 255, 255, 0.8)",
+                maxWidth: "75%",
+                margin: "auto",
+              }}
+            />
             <Typography
               style={{
                 marginTop: "10px",
                 fontSize: "18px",
                 fontWeight: "700",
                 color: "rgba(255, 255, 255, 0.8)",
-              }}>
+              }}
+            >
               Screen
             </Typography>
           </Box>
@@ -53,9 +61,10 @@ export default function HallPlan({ hall, handleCancelSelectSeat, handleSelectSea
             <Box>
               {hall?.rows?.map((row) => (
                 <React.Fragment key={row.id}>
-                  <HallRowsPlan row={row}
-                                handleSelectSeat={handleSelectSeat}
-                                handleCancelSelectSeat={handleCancelSelectSeat}
+                  <HallRowsPlan
+                    row={row}
+                    handleSelectSeat={handleSelectSeat}
+                    handleCancelSelectSeat={handleCancelSelectSeat}
                   />
                 </React.Fragment>
               ))}

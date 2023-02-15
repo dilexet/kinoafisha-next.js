@@ -5,9 +5,12 @@ import { SeatType } from "@/modules/booking/types/session-details-type";
 import { useRouter } from "next/router";
 import { getTokens } from "@/modules/authorize/utils/token-service";
 
-export default function SelectedSeatsContainer({ selectedSeatIds, handleCancelSelectSeat }) {
+export default function SelectedSeatsContainer({
+  selectedSeatIds,
+  handleCancelSelectSeat,
+}) {
   const router = useRouter();
-  const bookingState = useAppSelector(x => x.booking_reducer);
+  const bookingState = useAppSelector((x) => x.booking_reducer);
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedSeat, setSelectedSeats] = useState<SeatType[]>([]);
@@ -19,7 +22,7 @@ export default function SelectedSeatsContainer({ selectedSeatIds, handleCancelSe
       let price = 0;
       const selectedSeatArray: SeatType[] = [];
       bookingState?.session?.hall?.rows.forEach((row) => {
-        row?.seats.forEach(seat => {
+        row?.seats.forEach((seat) => {
           if (selectedSeatIds.indexOf(seat?.sessionSeatId) >= 0) {
             price = price + seat.price;
             selectedSeatArray.push(seat);
@@ -37,12 +40,10 @@ export default function SelectedSeatsContainer({ selectedSeatIds, handleCancelSe
   const handleConfirmOrder = async () => {
     const tokens = getTokens();
     if (tokens && tokens?.accessToken && tokens?.refreshToken) {
-      await router.push(
-        {
-          pathname: `/confirm-booking/${bookingState?.session?.id}`,
-          query: { seats: selectedSeatIds },
-        },
-      );
+      await router.push({
+        pathname: `/confirm-booking/${bookingState?.session?.id}`,
+        query: { seats: selectedSeatIds },
+      });
     } else {
       setOpenLoginModal(true);
     }
@@ -61,4 +62,4 @@ export default function SelectedSeatsContainer({ selectedSeatIds, handleCancelSe
       setOpenRegisterModal={setOpenRegisterModal}
     />
   );
-};
+}

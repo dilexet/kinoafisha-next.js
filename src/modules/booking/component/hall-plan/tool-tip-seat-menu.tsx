@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
-import { ToolTipSeatMenuProps } from "@/modules/shared/types/tool-tip-seat-menu-props";
+import { ToolTipSeatMenuProps } from "@/modules/booking/types/tool-tip-seat-menu-props";
 
 export default function ToolTipSeatMenu({
-                                          seat,
-                                          numberRow,
-                                        }: ToolTipSeatMenuProps) {
+  seat,
+  numberRow,
+}: ToolTipSeatMenuProps) {
   return (
     <Box
       style={{

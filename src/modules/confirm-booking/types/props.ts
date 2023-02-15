@@ -3,19 +3,19 @@ import { SeatType } from "@/modules/booking/types/session-details-type";
 import { ConfirmBookingState } from "@/modules/confirm-booking/reducer";
 
 export interface ConfirmBookingComponentProps {
-  bookingState: BookingState,
-  confirmBookingState: ConfirmBookingState,
-  handleClose: () => void
-  minutes: number,
-  seconds: number,
-  isRunning: boolean,
-  selectedSeats: SeatType[],
-  totalPrice: number,
-  handleConfirmOrder: () => void
+  bookingState: BookingState;
+  confirmBookingState: ConfirmBookingState;
+  handleClose: () => void;
+  minutes: number;
+  seconds: number;
+  isRunning: boolean;
+  selectedSeats: SeatType[];
+  totalPrice: number;
+  handleConfirmOrder: () => void;
 }
 
 export interface OrdersListComponentProps {
-  selectedSeats: SeatType[],
+  selectedSeats: SeatType[];
 }
 
 export interface TicketComponentProps {
@@ -24,6 +24,6 @@ export interface TicketComponentProps {
 
 export interface TotalPayableInfoComponentProps {
   totalPrice: number;
-  handleConfirmOrder: () => void
-  confirmBookingState: ConfirmBookingState,
+  handleConfirmOrder: () => void;
+  confirmBookingState: ConfirmBookingState;
 }

@@ -12,7 +12,8 @@ export function SessionCardInfo({ session }: SessionCardInfoProps) {
       <Box
         style={{
           margin: "10px 0 20px",
-        }}>
+        }}
+      >
         <Typography
           style={{
             fontSize: "1.625em",
@@ -32,20 +33,21 @@ export function SessionCardInfo({ session }: SessionCardInfoProps) {
           {moment(session.startDate).format("dddd, MMMM DD")}
         </Typography>
       </Box>
-      {
-        session?.hallWorkLoad <= 0 ? <></> :
-          <Box>
-            <Typography
-              style={{
-                fontSize: "14px",
-                fontWeight: "400",
-                color: "rgba(255, 255, 255, 0.35)",
-              }}
-            >
-              {session.hallName}
-            </Typography>
-          </Box>
-      }
+      {session?.hallWorkLoad <= 0 ? (
+        <></>
+      ) : (
+        <Box>
+          <Typography
+            style={{
+              fontSize: "14px",
+              fontWeight: "400",
+              color: "rgba(255, 255, 255, 0.35)",
+            }}
+          >
+            {session.hallName}
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 }

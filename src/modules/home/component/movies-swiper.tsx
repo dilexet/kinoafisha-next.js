@@ -19,19 +19,17 @@ export default function MoviesSwiper({ isLoading, movies, slidesPerView }) {
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
     >
-      {
-        isLoading ?
-          generateEmptyArray(10, 0).map((value, index) => (
+      {isLoading
+        ? generateEmptyArray(10, 0).map((value, index) => (
             <SwiperSlide key={index}>
               <MovieCardSkeleton />
             </SwiperSlide>
-          )) :
-          movies?.map((movie) => (
+          ))
+        : movies?.map((movie) => (
             <SwiperSlide key={movie?.id}>
               <MovieCard movie={movie} />
             </SwiperSlide>
-          ))
-      }
+          ))}
     </Swiper>
   );
 }

@@ -10,11 +10,11 @@ import { RegisterFieldValues } from "@/modules/authorize/constants/register-fiel
 import RegisterComponent from "@/modules/authorize/component/register";
 
 export default function RegisterModalContainer({
-                                                 confirmOrder,
-                                                 openRegisterModal,
-                                                 setOpenLoginModal,
-                                                 setOpenRegisterModal,
-                                               }) {
+  confirmOrder,
+  openRegisterModal,
+  setOpenLoginModal,
+  setOpenRegisterModal,
+}) {
   const dispatch = useAppDispatch();
   const authState = useAppSelector((x) => x.authorize_reducer);
 
@@ -41,7 +41,10 @@ export default function RegisterModalContainer({
   }
 
   useEffect(() => {
-    if (authState?.loadingStatus === LOADING_STATUSES.IDLE && isSubmit === true) {
+    if (
+      authState?.loadingStatus === LOADING_STATUSES.IDLE &&
+      isSubmit === true
+    ) {
       confirmOrder();
     }
   }, [authState?.loadingStatus, confirmOrder, isSubmit]);
@@ -55,7 +58,7 @@ export default function RegisterModalContainer({
   }, [dispatch, isLoading]);
 
   if (isLoading === true) {
-    return (<Loading />);
+    return <Loading />;
   } else {
     return (
       <Modal openModal={openRegisterModal} handleCloseModal={handleCloseModal}>

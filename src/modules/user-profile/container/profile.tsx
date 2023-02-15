@@ -13,8 +13,9 @@ import Loading from "@/modules/loading";
 export default function ProfileContainer() {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const profileState = useAppSelector(state => state.user_profile_reducer);
-  const [initialValues, setInitialValues] = useState<UserProfileUpdateArgs>(null);
+  const profileState = useAppSelector((state) => state.user_profile_reducer);
+  const [initialValues, setInitialValues] =
+    useState<UserProfileUpdateArgs>(null);
   const [isUpdated, setIsUpdated] = useState(false);
 
   const handleSubmit = async (values: UserProfileUpdateArgs) => {
@@ -31,7 +32,10 @@ export default function ProfileContainer() {
   };
 
   useEffect(() => {
-    if (initialValues === null && profileState?.loadingStatusGet === LOADING_STATUSES.IDLE) {
+    if (
+      initialValues === null &&
+      profileState?.loadingStatusGet === LOADING_STATUSES.IDLE
+    ) {
       setInitialValues({
         userProfileId: "",
         name: profileState.profile.name,
@@ -39,7 +43,10 @@ export default function ProfileContainer() {
         oldPassword: "",
         newPassword: "",
       });
-    } else if (isUpdated === true && profileState?.loadingStatusUpdate === LOADING_STATUSES.IDLE) {
+    } else if (
+      isUpdated === true &&
+      profileState?.loadingStatusUpdate === LOADING_STATUSES.IDLE
+    ) {
       setInitialValues({
         userProfileId: "",
         name: profileState.profile.name,
@@ -52,12 +59,23 @@ export default function ProfileContainer() {
     if (profileState?.loadingStatusUpdate === LOADING_STATUSES.FAILED) {
       setIsUpdated(false);
     }
-  }, [initialValues, isUpdated, profileState?.loadingStatusGet, profileState?.loadingStatusUpdate, profileState.profile.email, profileState.profile.name]);
+  }, [
+    initialValues,
+    isUpdated,
+    profileState?.loadingStatusGet,
+    profileState?.loadingStatusUpdate,
+    profileState.profile.email,
+    profileState.profile.name,
+  ]);
 
   if (initialValues === null) {
     return <Loading />;
   }
   return (
-    <ProfileComponent handleSubmit={handleSubmit} profileState={profileState} initialValues={initialValues} />
+    <ProfileComponent
+      handleSubmit={handleSubmit}
+      profileState={profileState}
+      initialValues={initialValues}
+    />
   );
 }

@@ -37,7 +37,10 @@ export default function LoginPage() {
   }
 
   useEffect(() => {
-    if (authState?.loadingStatus === LOADING_STATUSES.IDLE && isSubmit === true) {
+    if (
+      authState?.loadingStatus === LOADING_STATUSES.IDLE &&
+      isSubmit === true
+    ) {
       router.push("/");
     }
   }, [authState?.loadingStatus, isSubmit, router]);
@@ -48,10 +51,7 @@ export default function LoginPage() {
       setIsLoading(false);
       setIsSubmit(false);
     }
-  }, [
-    dispatch,
-    isLoading,
-  ]);
+  }, [dispatch, isLoading]);
 
   return (
     <>

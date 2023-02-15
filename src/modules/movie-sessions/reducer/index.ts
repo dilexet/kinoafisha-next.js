@@ -3,7 +3,11 @@ import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import { MovieSessionsType } from "@/modules/movie-sessions/type/movie-sessions-type";
 import { movieWithSessionsGetAsync } from "@/modules/movie-sessions/action";
-import { CommentArrayType, CommentInfoType, CommentType } from "@/modules/movie-sessions/type/comment-types";
+import {
+  CommentArrayType,
+  CommentInfoType,
+  CommentType,
+} from "@/modules/movie-sessions/type/comment-types";
 
 export interface MovieSessionsState {
   loadingStatus: string;
@@ -67,8 +71,7 @@ const movieSessionsSlice = createSlice({
         if (action.payload?.movie_sessions_reducer?.errorInfo) {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message:
-            action.payload?.movie_sessions_reducer?.errorInfo?.message,
+            message: action.payload?.movie_sessions_reducer?.errorInfo?.message,
             error: action.payload?.movie_sessions_reducer?.errorInfo?.error,
           };
           state.movie = null;
@@ -81,7 +84,7 @@ const movieSessionsSlice = createSlice({
   },
 });
 
-
 export default movieSessionsSlice.reducer;
 
-export const { clearErrors, addComment, getComments } = movieSessionsSlice.actions;
+export const { clearErrors, addComment, getComments } =
+  movieSessionsSlice.actions;

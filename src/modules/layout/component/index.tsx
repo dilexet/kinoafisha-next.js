@@ -7,10 +7,7 @@ import { googleOptions } from "@/modules/shared/constants/google-constants";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import MainLayout from "@/modules/layout/component/main-layout";
 
-const Layout = ({
-                  Component,
-                  pageProps,
-                }: LayoutComponentProps) => {
+const Layout = ({ Component, pageProps }: LayoutComponentProps) => {
   return (
     <GoogleOAuthProvider clientId={googleOptions.GOOGLE_ID}>
       <ThemeProvider theme={darkTheme}>

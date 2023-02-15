@@ -1,10 +1,14 @@
 import axios from "axios";
 import {
-  API_URL, AUTHORIZE,
+  API_URL,
+  AUTHORIZE,
   IMAGE_UPLOAD,
 } from "@/modules/shared/constants/api-constants";
 import { refreshTokensAsync } from "@/modules/authorize/action";
-import { getTokens, removeTokens } from "@/modules/authorize/utils/token-service";
+import {
+  getTokens,
+  removeTokens,
+} from "@/modules/authorize/utils/token-service";
 import Router from "next/router";
 
 const axiosInstance = axios.create({
@@ -23,16 +27,16 @@ axiosInstance.interceptors.request.use(
         // @ts-ignore
         config.headers = {
           ...config.headers,
-          "Authorization": `Bearer ${tokens.accessToken}`,
-          "Accept": "*/*",
+          Authorization: `Bearer ${tokens.accessToken}`,
+          Accept: "*/*",
         };
         if (config.url.includes(IMAGE_UPLOAD)) {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           config.headers = {
             ...config.headers,
-            "Authorization": `Bearer ${tokens.accessToken}`,
-            "Accept": "*/*",
+            Authorization: `Bearer ${tokens.accessToken}`,
+            Accept: "*/*",
           };
         }
       }
@@ -51,13 +55,19 @@ axiosInstance.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
-    if (!originalRequest.url.includes(AUTHORIZE) && error.response.status === 401 && !originalRequest._retry) {
+    if (
+      !originalRequest.url.includes(AUTHORIZE) &&
+      error.response.status === 401 &&
+      !originalRequest._retry
+    ) {
       originalRequest._retry = true;
       try {
         await refreshTokensAsync();
         const tokens = getTokens();
         if (tokens) {
-          axios.defaults.headers.common["Authorization"] = `Bearer ${tokens.accessToken}`;
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${tokens.accessToken}`;
           return axiosInstance(originalRequest);
         }
       } catch (err) {

@@ -7,29 +7,39 @@ import SeatTypeInfoComponent from "@/modules/booking/component/seat-type-info";
 import SelectedSeatsContainer from "@/modules/booking/container/selected-seats";
 
 export default function SessionDetailsComponent({
-                                                  bookingState,
-                                                  handleClose,
-                                                  handleCancelSelectSeat,
-                                                  handleSelectSeat,
-                                                  selectedSeatIds,
-                                                  minutes, seconds, isRunning,
-                                                }: SessionDetailsComponentProps) {
+  bookingState,
+  handleClose,
+  handleCancelSelectSeat,
+  handleSelectSeat,
+  selectedSeatIds,
+  minutes,
+  seconds,
+  isRunning,
+}: SessionDetailsComponentProps) {
   return (
-    <Box style={{
-      margin: "16px 0",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }}>
+    <Box
+      style={{
+        margin: "16px 0",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <Box style={{ width: "90%" }}>
-        <Paper sx={{ p: 2 }} style={{
-          background: "#27272A",
-          border: "none",
-          boxShadow: "none",
-        }}>
-          <MovieTitleComponent movieName={bookingState?.session?.movie?.name}
-                               handleClose={handleClose}
-                               minutes={minutes} seconds={seconds} isRunning={isRunning}
+        <Paper
+          sx={{ p: 2 }}
+          style={{
+            background: "#27272A",
+            border: "none",
+            boxShadow: "none",
+          }}
+        >
+          <MovieTitleComponent
+            movieName={bookingState?.session?.movie?.name}
+            handleClose={handleClose}
+            minutes={minutes}
+            seconds={seconds}
+            isRunning={isRunning}
           />
           <Divider />
           <Grid container spacing={1}>
@@ -40,21 +50,24 @@ export default function SessionDetailsComponent({
             <Grid item xs={12}>
               <Grid container>
                 <Grid item xs={8}>
-                  <HallPlan hall={bookingState?.session?.hall}
-                            handleSelectSeat={handleSelectSeat}
-                            handleCancelSelectSeat={handleCancelSelectSeat}
+                  <HallPlan
+                    hall={bookingState?.session?.hall}
+                    handleSelectSeat={handleSelectSeat}
+                    handleCancelSelectSeat={handleCancelSelectSeat}
                   />
                 </Grid>
                 <Grid item xs={4}>
-                  {
-                    selectedSeatIds?.length <= 0 ?
-                      <SeatTypeInfoComponent sessionSeatTypes={bookingState?.session?.sessionSeatTypes}
-                                             hallName={bookingState?.session?.hall?.name} /> :
-                      <SelectedSeatsContainer
-                        selectedSeatIds={selectedSeatIds}
-                        handleCancelSelectSeat={handleCancelSelectSeat}
-                      />
-                  }
+                  {selectedSeatIds?.length <= 0 ? (
+                    <SeatTypeInfoComponent
+                      sessionSeatTypes={bookingState?.session?.sessionSeatTypes}
+                      hallName={bookingState?.session?.hall?.name}
+                    />
+                  ) : (
+                    <SelectedSeatsContainer
+                      selectedSeatIds={selectedSeatIds}
+                      handleCancelSelectSeat={handleCancelSelectSeat}
+                    />
+                  )}
                 </Grid>
               </Grid>
             </Grid>

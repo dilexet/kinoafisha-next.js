@@ -65,14 +65,16 @@ const imageUploadSlice = createSlice({
         state.loadingStatusGetAll = LOADING_STATUSES.LOADING;
         state.errorInfo = null;
       })
-      .addCase(imagesGetAllAsync.fulfilled.type,
+      .addCase(
+        imagesGetAllAsync.fulfilled.type,
         (state, action: PayloadAction<string[]>) => {
           state.loadingStatusGetAll = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
-          state.images = action?.payload?.map(x => IMAGE_URL(x));
+          state.images = action?.payload?.map((x) => IMAGE_URL(x));
         },
       )
-      .addCase(imagesGetAllAsync.rejected.type,
+      .addCase(
+        imagesGetAllAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatusGetAll = LOADING_STATUSES.FAILED;
           state.errorInfo = {
@@ -85,8 +87,7 @@ const imageUploadSlice = createSlice({
         if (action.payload?.upload_image_reducer?.errorInfo) {
           state.loadingStatusGetAll = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message:
-            action.payload?.upload_image_reducer?.errorInfo?.message,
+            message: action.payload?.upload_image_reducer?.errorInfo?.message,
             error: action.payload?.upload_image_reducer?.errorInfo?.error,
           };
           state.images = [];

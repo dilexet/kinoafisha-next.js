@@ -10,11 +10,11 @@ import LoginComponent from "@/modules/authorize/component/login";
 import Modal from "@/modules/dashboard/shared/component/modal";
 
 export default function LoginModalContainer({
-                                              confirmOrder,
-                                              openLoginModal,
-                                              setOpenLoginModal,
-                                              setOpenRegisterModal,
-                                            }) {
+  confirmOrder,
+  openLoginModal,
+  setOpenLoginModal,
+  setOpenRegisterModal,
+}) {
   const dispatch = useAppDispatch();
   const authState = useAppSelector((x) => x.authorize_reducer);
 
@@ -41,7 +41,10 @@ export default function LoginModalContainer({
   }
 
   useEffect(() => {
-    if (authState?.loadingStatus === LOADING_STATUSES.IDLE && isSubmit === true) {
+    if (
+      authState?.loadingStatus === LOADING_STATUSES.IDLE &&
+      isSubmit === true
+    ) {
       confirmOrder();
     }
   }, [authState?.loadingStatus, confirmOrder, isSubmit]);
@@ -55,7 +58,7 @@ export default function LoginModalContainer({
   }, [dispatch, isLoading]);
 
   if (isLoading === true) {
-    return (<Loading />);
+    return <Loading />;
   } else {
     return (
       <Modal openModal={openLoginModal} handleCloseModal={handleCloseModal}>

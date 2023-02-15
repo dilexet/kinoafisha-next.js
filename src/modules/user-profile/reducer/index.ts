@@ -1,7 +1,13 @@
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserProfile, UserProfileUpdateTypes } from "@/modules/user-profile/types/user-profile-types";
-import { userProfileGetActionAsync, userProfileUpdateActionAsync } from "@/modules/user-profile/action";
+import {
+  UserProfile,
+  UserProfileUpdateTypes,
+} from "@/modules/user-profile/types/user-profile-types";
+import {
+  userProfileGetActionAsync,
+  userProfileUpdateActionAsync,
+} from "@/modules/user-profile/action";
 import { HYDRATE } from "next-redux-wrapper";
 
 export interface UserProfileState {
@@ -87,8 +93,7 @@ const userProfileSlice = createSlice({
         if (action.payload?.user_profile_reducer?.errorInfo) {
           state.loadingStatusGet = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message:
-            action.payload?.user_profile_reducer?.errorInfo?.message,
+            message: action.payload?.user_profile_reducer?.errorInfo?.message,
             error: action.payload?.user_profile_reducer?.errorInfo?.error,
           };
           state.profile = null;
@@ -100,7 +105,6 @@ const userProfileSlice = createSlice({
       });
   },
 });
-
 
 export default userProfileSlice.reducer;
 

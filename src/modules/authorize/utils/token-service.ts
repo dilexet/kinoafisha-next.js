@@ -1,9 +1,20 @@
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import jwt_decode from "jwt-decode";
-import { TokensType, TokenResultType, TokenPayload } from "@/modules/authorize/types/tokens-type";
-import { AuthorizeCookieOptions, RememberMeOption } from "@/modules/authorize/constants/authorize-save-tokens-options";
+import {
+  TokensType,
+  TokenResultType,
+  TokenPayload,
+} from "@/modules/authorize/types/tokens-type";
+import {
+  AuthorizeCookieOptions,
+  RememberMeOption,
+} from "@/modules/authorize/constants/authorize-save-tokens-options";
 
-export function getTokens(isSSR = false, req = null, res = null): TokenResultType {
+export function getTokens(
+  isSSR = false,
+  req = null,
+  res = null,
+): TokenResultType {
   let tokensData;
   let rememberMeData;
   if (isSSR === true) {
@@ -14,7 +25,6 @@ export function getTokens(isSSR = false, req = null, res = null): TokenResultTyp
     rememberMeData = getCookie(RememberMeOption.key);
   }
 
-
   if (!tokensData || rememberMeData === null || rememberMeData === undefined) {
     return null;
   }
@@ -24,7 +34,8 @@ export function getTokens(isSSR = false, req = null, res = null): TokenResultTyp
   const rememberMe = Boolean(JSON.parse(rememberMeData?.toString()));
 
   return {
-    ...tokens, rememberMe: rememberMe,
+    ...tokens,
+    rememberMe: rememberMe,
   };
 }
 
@@ -43,7 +54,11 @@ export function saveTokens(rememberMe: boolean, tokens: TokensType) {
   }
 }
 
-export function getTokenPayload(isSSR = false, req = null, res = null): TokenPayload {
+export function getTokenPayload(
+  isSSR = false,
+  req = null,
+  res = null,
+): TokenPayload {
   let tokensData;
   if (isSSR === true) {
     tokensData = getCookie(AuthorizeCookieOptions.key, { req, res });

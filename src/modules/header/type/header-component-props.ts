@@ -4,5 +4,5 @@ export type HeaderComponentProps = {
   handleMenuClose: () => void;
   handleMenuOpen: (event: any) => void;
   anchorEl: any;
-  isAuthenticate: boolean | null
+  isAuthenticate: boolean | null;
 };

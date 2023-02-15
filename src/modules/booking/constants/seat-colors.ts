@@ -1,3 +1,3 @@
-export const SeatBookedColor = '#90908F'
+export const SeatBookedColor = "#90908F";
 
-export const SeatSelectedColor = '#D40754'
+export const SeatSelectedColor = "#D40754";

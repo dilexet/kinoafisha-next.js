@@ -1,6 +1,11 @@
 import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import { MovieType } from "@/modules/home/types/movie-type";
-import { AnyAction, createEntityAdapter, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  AnyAction,
+  createEntityAdapter,
+  createSlice,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import { moviesFilterGetAllAsync } from "@/modules/home/action";
 import { RootState } from "@/modules/shared/redux/store";
@@ -22,11 +27,11 @@ const initialState: MovieFilterState = {
 };
 
 export const movieFilterEntityAdapter = createEntityAdapter<MovieType>({
-  selectId: model => model?.id,
+  selectId: (model) => model?.id,
 });
 
-const initialAdapterState = movieFilterEntityAdapter.getInitialState(initialState);
-
+const initialAdapterState =
+  movieFilterEntityAdapter.getInitialState(initialState);
 
 const movieFilterSlice = createSlice({
   name: "movie-filter",
@@ -64,8 +69,7 @@ const movieFilterSlice = createSlice({
         if (action.payload?.movie_filter_reducer?.errorInfo) {
           state.loadingStatusGetAll = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message:
-            action.payload?.movie_filter_reducer?.errorInfo?.message,
+            message: action.payload?.movie_filter_reducer?.errorInfo?.message,
             error: action.payload?.movie_filter_reducer?.errorInfo?.error,
           };
           movieFilterEntityAdapter.setAll(state, []);
@@ -80,7 +84,6 @@ const movieFilterSlice = createSlice({
       });
   },
 });
-
 
 export default movieFilterSlice.reducer;
 

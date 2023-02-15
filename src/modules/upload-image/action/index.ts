@@ -14,7 +14,6 @@ export const uploadImageAsync = createAsyncThunk(
   },
 );
 
-
 export const imagesGetAllAsync = createAsyncThunk(
   "images/getAll",
   async (arg, thunkAPI) => {

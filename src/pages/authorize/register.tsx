@@ -37,7 +37,10 @@ export default function RegisterPage() {
   }
 
   useEffect(() => {
-    if (authState?.loadingStatus === LOADING_STATUSES.IDLE && isSubmit === true) {
+    if (
+      authState?.loadingStatus === LOADING_STATUSES.IDLE &&
+      isSubmit === true
+    ) {
       router.push("/");
     }
   }, [authState?.loadingStatus, isSubmit, router]);
@@ -48,10 +51,7 @@ export default function RegisterPage() {
       setIsLoading(false);
       setIsSubmit(false);
     }
-  }, [
-    dispatch,
-    isLoading,
-  ]);
+  }, [dispatch, isLoading]);
 
   return (
     <>
@@ -70,7 +70,6 @@ export default function RegisterPage() {
     </>
   );
 }
-
 
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps(() => async ({ req, res }) => {

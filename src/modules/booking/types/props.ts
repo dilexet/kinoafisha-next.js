@@ -1,5 +1,9 @@
 import { BookingState } from "@/modules/booking/reducer";
-import { SeatType, SessionDetailsType, SessionSeatType } from "@/modules/booking/types/session-details-type";
+import {
+  SeatType,
+  SessionDetailsType,
+  SessionSeatType,
+} from "@/modules/booking/types/session-details-type";
 
 export interface SessionDetailsComponentProps {
   bookingState: BookingState;
@@ -36,7 +40,6 @@ export interface SelectedSeatsComponentProps {
   setOpenLoginModal: any;
   setOpenRegisterModal: any;
 }
-
 
 export interface SelectedSeatComponentProps {
   selectedSeat: SeatType;

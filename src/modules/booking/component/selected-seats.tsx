@@ -5,35 +5,41 @@ import LoginModalContainer from "@/modules/authorize/container/login-modal-conta
 import RegisterModalContainer from "@/modules/authorize/container/register-modal-container";
 
 export default function SelectedSeatsComponent({
-                                                 totalPrice,
-                                                 selectedSeats,
-                                                 handleCancelSelectSeat,
-                                                 session,
-                                                 handleConfirmOrder,
-                                                 openRegisterModal,
-                                                 setOpenLoginModal,
-                                                 setOpenRegisterModal,
-                                                 openLoginModal,
-                                               }: SelectedSeatsComponentProps) {
+  totalPrice,
+  selectedSeats,
+  handleCancelSelectSeat,
+  session,
+  handleConfirmOrder,
+  openRegisterModal,
+  setOpenLoginModal,
+  setOpenRegisterModal,
+  openLoginModal,
+}: SelectedSeatsComponentProps) {
   return (
     <Box
       style={{
-        margin: "25px 0", padding: "10px",
-      }}>
+        margin: "25px 0",
+        padding: "10px",
+      }}
+    >
       <Box
         style={{
           marginBottom: "20px",
-        }}>
+        }}
+      >
         <Box
           style={{
-            display: "inline", textAlign: "left",
-          }}>
+            display: "inline",
+            textAlign: "left",
+          }}
+        >
           <Typography
             style={{
               fontSize: "1.47em",
               fontWeight: "700",
               color: "rgba(255, 255, 255, 0.8)",
-            }}>
+            }}
+          >
             My tickets
           </Typography>
           <Typography
@@ -42,74 +48,79 @@ export default function SelectedSeatsComponent({
               fontSize: "15px",
               fontWeight: "400",
               color: "rgba(255, 255, 255, 0.5)",
-            }}>
+            }}
+          >
             {session?.hall?.name}
           </Typography>
         </Box>
       </Box>
       <Divider />
-      <LoginModalContainer confirmOrder={handleConfirmOrder}
-                           openLoginModal={openLoginModal}
-                           setOpenLoginModal={setOpenLoginModal}
-                           setOpenRegisterModal={setOpenRegisterModal}
+      <LoginModalContainer
+        confirmOrder={handleConfirmOrder}
+        openLoginModal={openLoginModal}
+        setOpenLoginModal={setOpenLoginModal}
+        setOpenRegisterModal={setOpenRegisterModal}
       />
-      <RegisterModalContainer confirmOrder={handleConfirmOrder}
-                              openRegisterModal={openRegisterModal}
-                              setOpenLoginModal={setOpenLoginModal}
-                              setOpenRegisterModal={setOpenRegisterModal}
+      <RegisterModalContainer
+        confirmOrder={handleConfirmOrder}
+        openRegisterModal={openRegisterModal}
+        setOpenLoginModal={setOpenLoginModal}
+        setOpenRegisterModal={setOpenRegisterModal}
       />
       <Box>
         <Box>
-          {
-            selectedSeats?.map((selectedSeat, index) => (
-                <Box key={index}
-                     style={{
-                       borderBottom: "1px solid rgba(255, 255, 255, 0.15",
-                     }}>
-                  <SelectedSeatComponent selectedSeat={selectedSeat}
-                                         handleCancelSelectSeat={handleCancelSelectSeat} />
-                </Box>
-              ),
-            )
-          }
+          {selectedSeats?.map((selectedSeat, index) => (
+            <Box
+              key={index}
+              style={{
+                borderBottom: "1px solid rgba(255, 255, 255, 0.15",
+              }}
+            >
+              <SelectedSeatComponent
+                selectedSeat={selectedSeat}
+                handleCancelSelectSeat={handleCancelSelectSeat}
+              />
+            </Box>
+          ))}
         </Box>
         <Box
           style={{
-            marginTop: "25px", textAlign: "center",
-          }}>
+            marginTop: "25px",
+            textAlign: "center",
+          }}
+        >
           <Typography
             style={{
               fontSize: "1.625em",
               fontWeight: "500",
               color: "rgba(255, 255, 255, 0.8)",
-            }}>
-            <span>
-              Total price:&nbsp;
-            </span>
+            }}
+          >
+            <span>Total price:&nbsp;</span>
             <strong>
-              <span>
-                {totalPrice}
-              </span>
+              <span>{totalPrice}</span>
             </strong>
-            <small>
-              &nbsp;$
-            </small>
+            <small>&nbsp;$</small>
           </Typography>
         </Box>
       </Box>
       <Box
         style={{
           margin: "25px 0",
-        }}>
-        <Button variant="outlined" fullWidth
-                onClick={handleConfirmOrder}
-                style={{
-                  color: "rgba(255, 255, 255, 0.8)",
-                  textTransform: "none",
-                  borderRadius: "22px",
-                  border: "2px solid #FFFFFF",
-                  fontSize: "1em",
-                }}>
+        }}
+      >
+        <Button
+          variant='outlined'
+          fullWidth
+          onClick={handleConfirmOrder}
+          style={{
+            color: "rgba(255, 255, 255, 0.8)",
+            textTransform: "none",
+            borderRadius: "22px",
+            border: "2px solid #FFFFFF",
+            fontSize: "1em",
+          }}
+        >
           Confirm
         </Button>
       </Box>

@@ -6,7 +6,8 @@ import {
   Box,
   Link as LinkMaterial,
   ButtonGroup,
-  Grid, IconButton,
+  Grid,
+  IconButton,
 } from "@mui/material";
 import { APP_LOGO } from "@/modules/shared/constants/app-constants";
 import { HeaderComponentProps } from "@/modules/header/type/header-component-props";
@@ -16,21 +17,21 @@ import { AccountCircle } from "@mui/icons-material";
 import AccountMenu from "@/modules/header/component/account-menu";
 
 const Header = ({
-                  isMenuOpen,
-                  handleLogoutClick,
-                  handleMenuOpen,
-                  handleMenuClose,
-                  anchorEl,
-                  isAuthenticate,
-                }: HeaderComponentProps) => {
+  isMenuOpen,
+  handleLogoutClick,
+  handleMenuOpen,
+  handleMenuClose,
+  anchorEl,
+  isAuthenticate,
+}: HeaderComponentProps) => {
   return (
-    <Box component="header">
+    <Box component='header'>
       <AppBar
-        position="static"
+        position='static'
         elevation={0}
         sx={{
           borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
-          background: theme => theme.palette.background.default,
+          background: (theme) => theme.palette.background.default,
         }}
       >
         <Toolbar sx={{ flexWrap: "wrap" }}>
@@ -40,13 +41,13 @@ const Header = ({
             }}
           >
             <Link
-              href="/"
+              href='/'
               style={{
                 textDecoration: "none",
               }}
             >
               <Typography
-                component="h1"
+                component='h1'
                 style={{
                   textDecoration: "none",
                   textTransform: "none",
@@ -78,10 +79,10 @@ const Header = ({
               <Grid item>
                 <LinkMaterial
                   sx={{ my: 1, mx: 1.5 }}
-                  variant="button"
+                  variant='button'
                   component={Link}
                   href={afisha}
-                  color="secondary"
+                  color='secondary'
                   style={{
                     textDecoration: "none",
                     marginLeft: "20px",
@@ -95,15 +96,15 @@ const Header = ({
                 </LinkMaterial>
               </Grid>
               <Grid item>
-                <ButtonGroup size="medium">
+                <ButtonGroup size='medium'>
                   <IconButton
-                    size="large"
-                    edge="end"
-                    aria-label="account of current user"
-                    aria-controls="account-menu"
-                    aria-haspopup="true"
+                    size='large'
+                    edge='end'
+                    aria-label='account of current user'
+                    aria-controls='account-menu'
+                    aria-haspopup='true'
                     onClick={handleMenuOpen}
-                    color="inherit"
+                    color='inherit'
                   >
                     <AccountCircle />
                   </IconButton>
@@ -113,9 +114,13 @@ const Header = ({
           </Box>
         </Toolbar>
       </AppBar>
-      <AccountMenu isMenuOpen={isMenuOpen} handleMenuClose={handleMenuClose}
-                   anchorEl={anchorEl} isAuthenticate={isAuthenticate}
-                   handleLogoutClick={handleLogoutClick} />
+      <AccountMenu
+        isMenuOpen={isMenuOpen}
+        handleMenuClose={handleMenuClose}
+        anchorEl={anchorEl}
+        isAuthenticate={isAuthenticate}
+        handleLogoutClick={handleLogoutClick}
+      />
     </Box>
   );
 };

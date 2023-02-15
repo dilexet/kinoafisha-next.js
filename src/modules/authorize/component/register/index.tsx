@@ -21,14 +21,14 @@ import AuthorizeButtonContainer from "@/modules/authorize/container/authorize-bu
 import { register_messages } from "@/modules/authorize/constants/messages";
 
 export default function RegisterComponent({
-                                            authorizeState,
-                                            rememberMe,
-                                            setRememberMe,
-                                            handleSubmitForm,
-                                            handleNavigateToSignIn,
-                                          }: RegisterComponentProps) {
+  authorizeState,
+  rememberMe,
+  setRememberMe,
+  handleSubmitForm,
+  handleNavigateToSignIn,
+}: RegisterComponentProps) {
   return (
-    <Container component="main" sx={{ mt: 2, mb: 10 }} maxWidth="sm">
+    <Container component='main' sx={{ mt: 2, mb: 10 }} maxWidth='sm'>
       <Box
         sx={{
           marginTop: 8,
@@ -41,10 +41,10 @@ export default function RegisterComponent({
           <LockOutlinedIcon />
         </Avatar>
 
-        <Typography component="h1" variant="h5">
+        <Typography component='h1' variant='h5'>
           {register_messages.title}
         </Typography>
-        <Typography component="h1" variant="h5" fontStyle={{ color: "red" }}>
+        <Typography component='h1' variant='h5' fontStyle={{ color: "red" }}>
           {authorizeState?.loadingStatus === LOADING_STATUSES.FAILED
             ? authorizeState?.errorInfo?.message
             : ""}
@@ -58,21 +58,21 @@ export default function RegisterComponent({
           onSubmit={handleSubmitForm}
         >
           {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-            }) => (
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+          }) => (
             <Box component={Form} sx={{ mt: 3 }} onSubmit={handleSubmit}>
               <FormTextField
-                id="name"
-                type="text"
-                label="Name"
-                name="name"
-                variant="outlined"
-                margin="normal"
+                id='name'
+                type='text'
+                label='Name'
+                name='name'
+                variant='outlined'
+                margin='normal'
                 outlinedInputStyle={{ borderRadius: "20px" }}
                 value={values.name}
                 onChange={handleChange}
@@ -81,12 +81,12 @@ export default function RegisterComponent({
                 {...handleErrors(errors, touched, "name")}
               />
               <FormTextField
-                id="email"
-                type="text"
-                label="Email"
-                name="email"
-                variant="outlined"
-                margin="normal"
+                id='email'
+                type='text'
+                label='Email'
+                name='email'
+                variant='outlined'
+                margin='normal'
                 outlinedInputStyle={{ borderRadius: "20px" }}
                 value={values.email}
                 onChange={handleChange}
@@ -94,12 +94,12 @@ export default function RegisterComponent({
                 {...handleErrors(errors, touched, "email")}
               />
               <PasswordFormTextField
-                id="password"
-                type="password"
-                label="Password"
-                name="password"
-                variant="outlined"
-                margin="normal"
+                id='password'
+                type='password'
+                label='Password'
+                name='password'
+                variant='outlined'
+                margin='normal'
                 style={{ borderRadius: "20px" }}
                 value={values.password}
                 onChange={handleChange}
@@ -107,12 +107,12 @@ export default function RegisterComponent({
                 {...handleErrors(errors, touched, "password")}
               />
               <PasswordFormTextField
-                id="confirmPassword"
-                type="password"
-                name="confirmPassword"
-                label="ConfirmPassword"
-                variant="outlined"
-                margin="normal"
+                id='confirmPassword'
+                type='password'
+                name='confirmPassword'
+                label='ConfirmPassword'
+                variant='outlined'
+                margin='normal'
                 style={{ borderRadius: "20px" }}
                 value={values.confirmPassword}
                 onChange={handleChange}
@@ -121,21 +121,21 @@ export default function RegisterComponent({
               />
               <FormControlLabel
                 onChange={() => setRememberMe((rememberMe) => !rememberMe)}
-                control={<Checkbox value={rememberMe} color="primary" />}
-                label="Remember me"
+                control={<Checkbox value={rememberMe} color='primary' />}
+                label='Remember me'
               />
               <AuthorizeButtonContainer
                 isLoading={
                   authorizeState?.loadingStatus === LOADING_STATUSES.LOADING ||
                   authorizeState?.loadingStatus === LOADING_STATUSES.IDLE
                 }
-                buttonText="Sign up"
+                buttonText='Sign up'
               />
               <Grid container>
                 <Grid item xs>
                   <LinkMaterial
-                    color="inherit"
-                    variant="body2"
+                    color='inherit'
+                    variant='body2'
                     style={{ cursor: "pointer" }}
                     onClick={handleNavigateToSignIn}
                   >

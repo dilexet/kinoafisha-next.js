@@ -1,5 +1,8 @@
 import { UserProfileState } from "@/modules/user-profile/reducer";
-import { BookedOrder, BookedSeat } from "@/modules/user-profile/types/user-profile-types";
+import {
+  BookedOrder,
+  BookedSeat,
+} from "@/modules/user-profile/types/user-profile-types";
 import { UserProfileUpdateArgs } from "@/modules/user-profile/types/user-profile-update-args";
 
 export interface UserProfileComponentProps {

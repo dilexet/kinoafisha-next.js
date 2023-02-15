@@ -7,48 +7,63 @@ import moment from "moment/moment";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { convertMinutesToHoursWithMinutes } from "@/modules/dashboard/shared/utils/date-formater";
 
-export default function MovieInfoComponent({ session }: SessionMovieInfoComponentProps) {
+export default function MovieInfoComponent({
+  session,
+}: SessionMovieInfoComponentProps) {
   return (
     <Box
       style={{
-        padding: "20px 0", display: "flex",
-      }}>
+        padding: "20px 0",
+        display: "flex",
+      }}
+    >
       <Box
         style={{
-          flex: "0 0 auto", margin: "10px 20px 10px 0",
-        }}>
-        {
-          session?.movie?.posterURL ?
-            <CardMedia
-              component="img"
-              style={{
-                width: "100px",
-                height: "160px",
-                borderRadius: "5px",
-                position: "relative",
-                overflow: "hidden",
-                opacity: "0.9",
-              }}
-              image={IMAGE_URL(session?.movie.posterURL)}
-              alt={session?.movie?.name}
-            /> :
-            <Skeleton variant="rounded" width={100} height={160} />
-        }
+          flex: "0 0 auto",
+          margin: "10px 20px 10px 0",
+        }}
+      >
+        {session?.movie?.posterURL ? (
+          <CardMedia
+            component='img'
+            style={{
+              width: "100px",
+              height: "160px",
+              borderRadius: "5px",
+              position: "relative",
+              overflow: "hidden",
+              opacity: "0.9",
+            }}
+            image={IMAGE_URL(session?.movie.posterURL)}
+            alt={session?.movie?.name}
+          />
+        ) : (
+          <Skeleton variant='rounded' width={100} height={160} />
+        )}
       </Box>
       <Box
         style={{
-          flex: "1 1 auto", marginLeft: "20px",
-        }}>
+          flex: "1 1 auto",
+          marginLeft: "20px",
+        }}
+      >
         <Typography
           style={{
-            fontSize: "2.25em", fontWeight: "700", lineHeight: "34px", marginBottom: "6px", opacity: "0.8",
-          }}>
+            fontSize: "2.25em",
+            fontWeight: "700",
+            lineHeight: "34px",
+            marginBottom: "6px",
+            opacity: "0.8",
+          }}
+        >
           {session?.movie?.name}
         </Typography>
         <Box
           style={{
-            display: "inline-block", verticalAlign: "top",
-          }}>
+            display: "inline-block",
+            verticalAlign: "top",
+          }}
+        >
           <Box
             style={{
               width: "100%",
@@ -56,14 +71,20 @@ export default function MovieInfoComponent({ session }: SessionMovieInfoComponen
               display: "flex",
               verticalAlign: "top",
               alignItems: "center",
-            }}>
+            }}
+          >
             <Box
               style={{
-                display: "flex", paddingRight: "12px",
-              }}>
-              <LocationOnIcon sx={{ fontSize: 26 }} style={{
-                color: "rgba(255, 255, 255, 0.35)",
-              }} />
+                display: "flex",
+                paddingRight: "12px",
+              }}
+            >
+              <LocationOnIcon
+                sx={{ fontSize: 26 }}
+                style={{
+                  color: "rgba(255, 255, 255, 0.35)",
+                }}
+              />
             </Box>
             <Box>
               <Typography
@@ -71,7 +92,8 @@ export default function MovieInfoComponent({ session }: SessionMovieInfoComponen
                   fontSize: "17px",
                   fontWeight: "bold",
                   color: "rgba(255, 255, 255, 0.8)",
-                }}>
+                }}
+              >
                 <span>
                   {session?.hall?.cinemaName}
                   &nbsp;in&nbsp;
@@ -80,12 +102,11 @@ export default function MovieInfoComponent({ session }: SessionMovieInfoComponen
                 <span
                   style={{
                     color: "rgba(255, 255, 255, 0.35)",
-                  }}>
+                  }}
+                >
                   &nbsp;/&nbsp;
                 </span>
-                <span>
-                  {session?.hall?.name}
-                </span>
+                <span>{session?.hall?.name}</span>
               </Typography>
             </Box>
           </Box>
@@ -95,77 +116,81 @@ export default function MovieInfoComponent({ session }: SessionMovieInfoComponen
               display: "inline-flex",
               verticalAlign: "top",
               alignItems: "center",
-            }}>
+            }}
+          >
             <Box
               style={{
                 display: "flex",
-              }}>
-              <CalendarTodayIcon style={{
-                color: "rgba(255, 255, 255, 0.35)",
-                fontSize: "26px",
-              }} />
+              }}
+            >
+              <CalendarTodayIcon
+                style={{
+                  color: "rgba(255, 255, 255, 0.35)",
+                  fontSize: "26px",
+                }}
+              />
             </Box>
             <Box
               style={{
                 margin: "0 15px",
-              }}>
+              }}
+            >
               <Typography
                 style={{
                   fontSize: "1em",
                   fontWeight: "400",
                   color: "rgba(255, 255, 255, 0.8)",
-                }}>
+                }}
+              >
                 <span>
                   {moment(session?.startDate).format("dddd, MMMM DD")}
                 </span>
-                <span>
-                  &nbsp;/&nbsp;
-                </span>
-                <span>
-                  {moment(session?.startDate).format("HH:mm")}
-                </span>
-                <span>
-                  &nbsp;-&nbsp;
-                </span>
-                <span>
-                  {moment(session?.endDate).format("HH:mm")}
-                </span>
+                <span>&nbsp;/&nbsp;</span>
+                <span>{moment(session?.startDate).format("HH:mm")}</span>
+                <span>&nbsp;-&nbsp;</span>
+                <span>{moment(session?.endDate).format("HH:mm")}</span>
               </Typography>
             </Box>
           </Box>
-          <Box style={{
-            margin: "10px 0",
-            display: "inline-flex",
-            verticalAlign: "top",
-            alignItems: "center",
-            width: "100%",
-          }}>
+          <Box
+            style={{
+              margin: "10px 0",
+              display: "inline-flex",
+              verticalAlign: "top",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
             <Box
               style={{
                 display: "flex",
-              }}>
-              <AccessTimeIcon style={{
-                color: "rgba(255, 255, 255, 0.35)",
-                fontSize: "26px",
-              }} />
+              }}
+            >
+              <AccessTimeIcon
+                style={{
+                  color: "rgba(255, 255, 255, 0.35)",
+                  fontSize: "26px",
+                }}
+              />
             </Box>
-            <Box style={{
-              margin: "0 15px",
-            }}>
+            <Box
+              style={{
+                margin: "0 15px",
+              }}
+            >
               <Typography
                 style={{
                   fontSize: "1em",
                   fontWeight: "400",
                   color: "rgba(255, 255, 255, 0.8)",
-                }}>
+                }}
+              >
+                <span>{`${session?.movie?.durationInMinutes} m`}</span>
+                <span>&nbsp;=&nbsp;</span>
                 <span>
-                  {`${session?.movie?.durationInMinutes} m`}
-                </span>
-                <span>
-                  &nbsp;=&nbsp;
-                </span>
-                <span>
-                  {convertMinutesToHoursWithMinutes(session?.movie?.durationInMinutes)}
+                  {convertMinutesToHoursWithMinutes(
+                    session?.movie?.durationInMinutes,
+                  )}
                 </span>
               </Typography>
             </Box>

@@ -102,7 +102,6 @@ export const googleAuthorizeAsync = createAsyncThunk(
   },
 );
 
-
 export async function refreshTokensAsync(): Promise<AxiosResponse<any, any>> {
   const tokens = getTokens();
 

@@ -1,4 +1,4 @@
-import { SeatType } from "@/modules/dashboard/hall-management/types/hall-type";
+import { SeatType } from "@/modules/booking/types/session-details-type";
 
 export interface ToolTipSeatMenuProps {
   seat: SeatType;

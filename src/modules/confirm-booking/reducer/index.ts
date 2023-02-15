@@ -53,10 +53,8 @@ const confirmBookingSlice = createSlice({
           };
         },
       );
-
   },
 });
-
 
 export default confirmBookingSlice.reducer;
 

@@ -1,4 +1,8 @@
-import { CinemaSessionsType, MovieSessionsType, SessionType } from "@/modules/movie-sessions/type/movie-sessions-type";
+import {
+  CinemaSessionsType,
+  MovieSessionsType,
+  SessionType,
+} from "@/modules/movie-sessions/type/movie-sessions-type";
 import { MovieSessionsState } from "@/modules/movie-sessions/reducer";
 import { TokenPayload } from "@/modules/authorize/types/tokens-type";
 import { CommentInfoType } from "@/modules/movie-sessions/type/comment-types";
@@ -16,7 +20,6 @@ export interface MovieSessionComponentProps {
   handleAddComment: () => void;
   tokenPayload: TokenPayload;
 }
-
 
 export interface MovieSessionsListComponentProps {
   cinemaSessions: CinemaSessionsType[];

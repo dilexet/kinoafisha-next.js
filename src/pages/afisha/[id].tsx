@@ -13,13 +13,16 @@ import { useCallback, useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import { getTokenPayload } from "@/modules/authorize/utils/token-service";
 import { COMMENTS_GATEWAY } from "@/modules/shared/constants/api-constants";
-import { CommentArrayType, CommentType } from "@/modules/movie-sessions/type/comment-types";
+import {
+  CommentArrayType,
+  CommentType,
+} from "@/modules/movie-sessions/type/comment-types";
 import { addComment, getComments } from "@/modules/movie-sessions/reducer";
 
 export default function MovieSessions({ movieId, isAuth, tokenPayload }) {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const movieSessionState = useAppSelector(x => x.movie_sessions_reducer);
+  const movieSessionState = useAppSelector((x) => x.movie_sessions_reducer);
   const [socket, setSocket] = useState<Socket>();
   const [isAuthenticate, setIsAuthenticate] = useState(isAuth);
   const [isLoading, setIsLoading] = useState(true);
@@ -60,19 +63,24 @@ export default function MovieSessions({ movieId, isAuth, tokenPayload }) {
     await socket.emit(EVENTS.COMMENT_GET_ALL, movieId);
   }, [movieId, router, socket]);
 
+  const addCommentHandler = useCallback(
+    async (comment: CommentType) => {
+      if (comment.movieId === movieId && comment?.comment) {
+        await dispatch(addComment(comment));
+      }
+    },
+    [dispatch, movieId],
+  );
 
-  const addCommentHandler = useCallback(async (comment: CommentType) => {
-    if (comment.movieId === movieId && comment?.comment) {
-      await dispatch(addComment(comment));
-    }
-  }, [dispatch, movieId]);
-
-  const getCommentsHandler = useCallback(async (commentArray: CommentArrayType) => {
-    console.log(commentArray);
-    if (commentArray.movieId === movieId && commentArray?.comments) {
-      await dispatch(getComments(commentArray));
-    }
-  }, [dispatch, movieId]);
+  const getCommentsHandler = useCallback(
+    async (commentArray: CommentArrayType) => {
+      console.log(commentArray);
+      if (commentArray.movieId === movieId && commentArray?.comments) {
+        await dispatch(getComments(commentArray));
+      }
+    },
+    [dispatch, movieId],
+  );
 
   useEffect(() => {
     if (!socket) {
@@ -99,33 +107,33 @@ export default function MovieSessions({ movieId, isAuth, tokenPayload }) {
     }
   }, [addCommentHandler, getCommentsHandler, socket]);
 
-
   return (
     <>
       <Head>
         <title>{`KinoAfisha: ${movieSessionState?.movie?.name}`}</title>
       </Head>
       <main>
-        {
-          movieSessionState?.loadingStatus === LOADING_STATUSES.PENDING ||
-          movieSessionState?.loadingStatus === LOADING_STATUSES.LOADING ?
-            <Loading /> :
-            <MovieSessionsComponent movieSessionState={movieSessionState}
-                                    handleClose={handleClose}
-                                    isAuthenticate={isAuthenticate}
-                                    commentText={commentText}
-                                    handleCommentTextChange={handleCommentTextChange}
-                                    handleAddComment={handleAddComment}
-                                    tokenPayload={tokenPayload}
-            />
-        }
+        {movieSessionState?.loadingStatus === LOADING_STATUSES.PENDING ||
+        movieSessionState?.loadingStatus === LOADING_STATUSES.LOADING ? (
+          <Loading />
+        ) : (
+          <MovieSessionsComponent
+            movieSessionState={movieSessionState}
+            handleClose={handleClose}
+            isAuthenticate={isAuthenticate}
+            commentText={commentText}
+            handleCommentTextChange={handleCommentTextChange}
+            handleAddComment={handleAddComment}
+            tokenPayload={tokenPayload}
+          />
+        )}
       </main>
     </>
   );
 }
 
 export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps(store => async ({ query, req, res }) => {
+  wrapper.getServerSideProps((store) => async ({ query, req, res }) => {
     const movieId = typeof query?.id === "string" ? query?.id : query?.id[0];
     if (!movieId || !req) {
       return {
@@ -137,7 +145,9 @@ export const getServerSideProps: GetServerSideProps =
       };
     }
     const tokenPayload = getTokenPayload(true, req, res);
-    const isAuth = Boolean(tokenPayload && tokenPayload?.userProfileId && tokenPayload?.name);
+    const isAuth = Boolean(
+      tokenPayload && tokenPayload?.userProfileId && tokenPayload?.name,
+    );
     await store.dispatch(movieWithSessionsGetAsync(movieId));
     return { props: { movieId, isAuth, tokenPayload } };
   });

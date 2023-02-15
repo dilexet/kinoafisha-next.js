@@ -14,7 +14,7 @@ const NotFound = () => {
           <Box className={styles.notfound_box}>
             <Box className={styles.notfound_info_box}>
               <Typography
-                component="h3"
+                component='h3'
                 className={
                   theme.palette.mode === "dark"
                     ? styles.notfound_title_color_light
@@ -23,16 +23,10 @@ const NotFound = () => {
               >
                 Oops! Page not found
               </Typography>
-              <Typography component="h1" className={styles.notfound_title_color}>
-            <span
-              className={
-                theme.palette.mode === "dark"
-                  ? styles.notfound_text_shadow_light
-                  : styles.notfound_text_shadow_dark
-              }
-            >
-              4
-            </span>
+              <Typography
+                component='h1'
+                className={styles.notfound_title_color}
+              >
                 <span
                   className={
                     theme.palette.mode === "dark"
@@ -40,8 +34,8 @@ const NotFound = () => {
                       : styles.notfound_text_shadow_dark
                   }
                 >
-              0
-            </span>
+                  4
+                </span>
                 <span
                   className={
                     theme.palette.mode === "dark"
@@ -49,12 +43,21 @@ const NotFound = () => {
                       : styles.notfound_text_shadow_dark
                   }
                 >
-              4
-            </span>
+                  0
+                </span>
+                <span
+                  className={
+                    theme.palette.mode === "dark"
+                      ? styles.notfound_text_shadow_light
+                      : styles.notfound_text_shadow_dark
+                  }
+                >
+                  4
+                </span>
               </Typography>
             </Box>
             <Typography
-              component="h2"
+              component='h2'
               className={
                 theme.palette.mode === "dark"
                   ? styles.notfound_description_color_light

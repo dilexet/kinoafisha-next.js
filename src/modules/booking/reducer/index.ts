@@ -36,12 +36,16 @@ const bookingSlice = createSlice({
         ...state.session,
         hall: {
           ...state.session?.hall,
-          rows: state.session?.hall?.rows?.map(row => ({
+          rows: state.session?.hall?.rows?.map((row) => ({
             ...row,
-            seats: row.seats?.map(seat => seat?.sessionSeatId !== action?.payload ? seat : {
-              ...seat,
-              ticketState: TicketState.BlockedMySelf,
-            }),
+            seats: row.seats?.map((seat) =>
+              seat?.sessionSeatId !== action?.payload
+                ? seat
+                : {
+                    ...seat,
+                    ticketState: TicketState.BlockedMySelf,
+                  },
+            ),
           })),
         },
       };
@@ -52,12 +56,16 @@ const bookingSlice = createSlice({
         ...state.session,
         hall: {
           ...state.session?.hall,
-          rows: state.session?.hall?.rows?.map(row => ({
+          rows: state.session?.hall?.rows?.map((row) => ({
             ...row,
-            seats: row.seats?.map(seat => seat?.sessionSeatId !== action?.payload ? seat : {
-              ...seat,
-              ticketState: TicketState.Free,
-            }),
+            seats: row.seats?.map((seat) =>
+              seat?.sessionSeatId !== action?.payload
+                ? seat
+                : {
+                    ...seat,
+                    ticketState: TicketState.Free,
+                  },
+            ),
           })),
         },
       };
@@ -68,12 +76,16 @@ const bookingSlice = createSlice({
         ...state.session,
         hall: {
           ...state.session?.hall,
-          rows: state.session?.hall?.rows?.map(row => ({
+          rows: state.session?.hall?.rows?.map((row) => ({
             ...row,
-            seats: row.seats?.map(seat => seat?.sessionSeatId !== action?.payload ? seat : {
-              ...seat,
-              ticketState: TicketState.Blocked,
-            }),
+            seats: row.seats?.map((seat) =>
+              seat?.sessionSeatId !== action?.payload
+                ? seat
+                : {
+                    ...seat,
+                    ticketState: TicketState.Blocked,
+                  },
+            ),
           })),
         },
       };
@@ -92,15 +104,17 @@ const bookingSlice = createSlice({
           state.errorInfo = null;
           state.session = {
             ...action?.payload,
-            sessionSeatTypes: action?.payload?.sessionSeatTypes?.map(seatType => ({
-              ...seatType,
-              colorHex: generateColor(seatType?.id),
-            })),
+            sessionSeatTypes: action?.payload?.sessionSeatTypes?.map(
+              (seatType) => ({
+                ...seatType,
+                colorHex: generateColor(seatType?.id),
+              }),
+            ),
             hall: {
               ...action?.payload?.hall,
-              rows: action?.payload?.hall?.rows?.map(row => ({
+              rows: action?.payload?.hall?.rows?.map((row) => ({
                 ...row,
-                seats: row.seats?.map(seat => ({
+                seats: row.seats?.map((seat) => ({
                   ...seat,
                   colorHex: generateColor(seat.seatTypeId),
                   numberRow: row.numberRow,
@@ -124,8 +138,7 @@ const bookingSlice = createSlice({
         if (action.payload?.booking_reducer?.errorInfo) {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message:
-            action.payload?.booking_reducer?.errorInfo?.message,
+            message: action.payload?.booking_reducer?.errorInfo?.message,
             error: action.payload?.booking_reducer?.errorInfo?.error,
           };
           state.session = null;
@@ -138,7 +151,7 @@ const bookingSlice = createSlice({
   },
 });
 
-
 export default bookingSlice.reducer;
 
-export const { clearErrors, blockSeat, receiveBlockSeat, unlockSeat } = bookingSlice.actions;
+export const { clearErrors, blockSeat, receiveBlockSeat, unlockSeat } =
+  bookingSlice.actions;

@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Scrollbar } from "swiper";
+import Image from "next/image";
 
 export default function SwiperComponent({ images, slidesPerView }) {
   return (
@@ -18,18 +19,19 @@ export default function SwiperComponent({ images, slidesPerView }) {
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
       >
-        {
-          images?.map((image, index) => (
-            <SwiperSlide key={index}>
-              <img src={image} alt=""
-                   style={{
-                     width: "auto",
-                     height: "700px",
-                     objectFit: "contain",
-                   }} />
-            </SwiperSlide>
-          ))
-        }
+        {images?.map((image, index) => (
+          <SwiperSlide key={index}>
+            <Image
+              src={image}
+              alt=''
+              style={{
+                width: "auto",
+                height: "700px",
+                objectFit: "contain",
+              }}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </Box>
   );

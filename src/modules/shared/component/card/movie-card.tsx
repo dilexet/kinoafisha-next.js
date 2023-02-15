@@ -1,6 +1,12 @@
 import {
-  Card, CardMedia, CardContent,
-  Typography, CardActions, Button, Box, Skeleton,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  CardActions,
+  Button,
+  Box,
+  Skeleton,
 } from "@mui/material";
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
 import { CountriesContent } from "@/modules/shared/component/card/countries-content";
@@ -25,21 +31,24 @@ export default function MovieCard({ movie }: MovieCardProps) {
         boxShadow: "none",
         margin: "10px 0",
         minHeight: "725px",
-      }}>
-      {
-        movie?.posterURL ?
-          <CardMedia
-            component="img"
-            style={{
-              width: "240px", height: "360px",
-              borderRadius: "22px",
-              opacity: "0.9", display: "block",
-            }}
-            image={IMAGE_URL(movie?.posterURL)}
-            alt={movie?.name}
-          /> :
-          <Skeleton variant="rounded" width={240} height={360} />
-      }
+      }}
+    >
+      {movie?.posterURL ? (
+        <CardMedia
+          component='img'
+          style={{
+            width: "240px",
+            height: "360px",
+            borderRadius: "22px",
+            opacity: "0.9",
+            display: "block",
+          }}
+          image={IMAGE_URL(movie?.posterURL)}
+          alt={movie?.name}
+        />
+      ) : (
+        <Skeleton variant='rounded' width={240} height={360} />
+      )}
       <CardContent
         style={{
           margin: "5% 0",
@@ -48,21 +57,25 @@ export default function MovieCard({ movie }: MovieCardProps) {
         }}
       >
         <CountriesContent countries={movie?.countries?.slice(0, 2)} />
-        <Box style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: "10% 0 15%",
-        }}>
-          <Typography style={{
-            color: "rgba(255, 255, 255, 0.9)",
-            fontSize: "1.375em",
-            fontWeight: "700",
-            textAlign: "center",
-            whiteSpace: "nowrap",
-            textOverflow: "ellipsis",
-            overflow: "hidden",
-          }}>
+        <Box
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "10% 0 15%",
+          }}
+        >
+          <Typography
+            style={{
+              color: "rgba(255, 255, 255, 0.9)",
+              fontSize: "1.375em",
+              fontWeight: "700",
+              textAlign: "center",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+            }}
+          >
             {movie?.name}
           </Typography>
         </Box>
@@ -71,9 +84,10 @@ export default function MovieCard({ movie }: MovieCardProps) {
       <CardActions
         style={{
           margin: "auto 0",
-        }}>
+        }}
+      >
         <Button
-          variant="outlined"
+          variant='outlined'
           onClick={() => router.push(movie_sessions(movie.id))}
           style={{
             borderRadius: "22px",

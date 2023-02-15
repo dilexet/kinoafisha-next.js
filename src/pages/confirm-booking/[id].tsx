@@ -4,7 +4,11 @@ import { wrapper } from "@/modules/shared/redux/store";
 import { GetServerSideProps } from "next";
 import { sessionDetailsGetAsync } from "@/modules/booking/action";
 import { useAppDispatch, useAppSelector } from "@/modules/shared/redux/hooks";
-import { afisha, authorize, session_booking } from "@/modules/shared/constants/app-routes";
+import {
+  afisha,
+  authorize,
+  session_booking,
+} from "@/modules/shared/constants/app-routes";
 import { useCallback, useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import { BOOKING_GATEWAY } from "@/modules/shared/constants/api-constants";
@@ -21,8 +25,8 @@ import { getTokenPayload } from "@/modules/authorize/utils/token-service";
 export default function ConfirmBooking({ query }) {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const bookingState = useAppSelector(x => x.booking_reducer);
-  const confirmBookingState = useAppSelector(x => x.confirm_booking_reducer);
+  const bookingState = useAppSelector((x) => x.booking_reducer);
+  const confirmBookingState = useAppSelector((x) => x.confirm_booking_reducer);
   const [socket, setSocket] = useState<Socket>();
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedSeat, setSelectedSeats] = useState<SeatType[]>([]);
@@ -39,13 +43,10 @@ export default function ConfirmBooking({ query }) {
     };
   };
 
-  const {
-    seconds, minutes, isRunning,
-  } = useTimer(
-    {
-      ...getTimerSettings(),
-      onExpire: async () => await handleCancelSelectAllSeats(query.seats),
-    });
+  const { seconds, minutes, isRunning } = useTimer({
+    ...getTimerSettings(),
+    onExpire: async () => await handleCancelSelectAllSeats(query.seats),
+  });
 
   const handleClose = async () => {
     await handleCancelSelectAllSeats(query.seats);
@@ -58,23 +59,25 @@ export default function ConfirmBooking({ query }) {
       router.push(authorize.Login);
     }
     const seats = typeof query.seats === "string" ? [query.seats] : query.seats;
-    await dispatch(confirmBookingActionAsync(
-      {
+    await dispatch(
+      confirmBookingActionAsync({
         userProfileId: tokenPayload.userProfileId,
         sessionId: query.id,
         sessionSeatsId: seats,
-      },
-    ));
-
+      }),
+    );
   };
 
-  const handleCancelSelectAllSeats = useCallback(async (sessionSeatIds: string[]) => {
-    await socket.emit(EVENTS.UNLOCK_ALL_SEND, {
-      sessionSeatIds: sessionSeatIds,
-      sessionId: query.id,
-    });
-    router.push(session_booking(query?.id));
-  }, [query.id, router, socket]);
+  const handleCancelSelectAllSeats = useCallback(
+    async (sessionSeatIds: string[]) => {
+      await socket.emit(EVENTS.UNLOCK_ALL_SEND, {
+        sessionSeatIds: sessionSeatIds,
+        sessionId: query.id,
+      });
+      router.push(session_booking(query?.id));
+    },
+    [query.id, router, socket],
+  );
 
   useEffect(() => {
     if (!socket) {
@@ -99,7 +102,7 @@ export default function ConfirmBooking({ query }) {
       let price = 0;
       const selectedSeatArray: SeatType[] = [];
       bookingState?.session?.hall?.rows.forEach((row) => {
-        row?.seats.forEach(seat => {
+        row?.seats.forEach((seat) => {
           if (query.seats.indexOf(seat?.sessionSeatId) >= 0) {
             price = price + seat.price;
             selectedSeatArray.push(seat);
@@ -137,7 +140,7 @@ export default function ConfirmBooking({ query }) {
 }
 
 export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps(store => async ({ query, req }) => {
+  wrapper.getServerSideProps((store) => async ({ query, req }) => {
     const sessionId = typeof query?.id === "string" ? query?.id : query?.id[0];
     const seats = query?.seats;
     if (!sessionId || !req || !seats || seats?.length <= 0) {

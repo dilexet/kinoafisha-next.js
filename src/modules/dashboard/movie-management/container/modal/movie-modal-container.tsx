@@ -11,7 +11,7 @@ import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 
 export default function MovieModalContainer({ modalType, handleCloseModal }) {
   const dispatch = useAppDispatch();
-  const movieState = useAppSelector(x => x.movie_management_reducer);
+  const movieState = useAppSelector((x) => x.movie_management_reducer);
   const [loadData, setLoadData] = useState(true);
 
   const fetchData = useCallback(async () => {
@@ -28,7 +28,10 @@ export default function MovieModalContainer({ modalType, handleCloseModal }) {
     }
   }, [fetchData, loadData, modalType]);
 
-  if (loadData || movieState?.loadingStatusGetOne === LOADING_STATUSES.LOADING) {
+  if (
+    loadData ||
+    movieState?.loadingStatusGetOne === LOADING_STATUSES.LOADING
+  ) {
     return <Loading />;
   }
 

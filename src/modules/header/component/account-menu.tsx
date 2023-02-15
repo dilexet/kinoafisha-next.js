@@ -7,13 +7,16 @@ import Link from "next/link";
 import { authorize, user_profile } from "@/modules/shared/constants/app-routes";
 
 export default function AccountMenu({
-                                      isMenuOpen, handleLogoutClick,
-                                      handleMenuClose, anchorEl, isAuthenticate,
-                                    }) {
+  isMenuOpen,
+  handleLogoutClick,
+  handleMenuClose,
+  anchorEl,
+  isAuthenticate,
+}) {
   return (
     <Menu
       anchorEl={anchorEl}
-      id="account-menu"
+      id='account-menu'
       keepMounted
       transformOrigin={{ horizontal: "right", vertical: "top" }}
       anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
@@ -30,7 +33,7 @@ export default function AccountMenu({
             mr: 1,
           },
           "&:before": {
-            content: "\"\"",
+            content: '""',
             display: "block",
             position: "absolute",
             top: 0,
@@ -47,41 +50,56 @@ export default function AccountMenu({
       onClick={handleMenuClose}
       onClose={handleMenuClose}
     >
-      {
-        isAuthenticate === true ?
-          <div>
-            <MenuItem color="inherit" style={{ textDecoration: "none" }}
-                      component={Link} href={user_profile}>
-              <ListItemIcon>
-                <PersonIcon fontSize="small" />
-              </ListItemIcon>
-              Profile
-            </MenuItem>
-            <MenuItem color="inherit" style={{ textDecoration: "none" }}
-                      onClick={handleLogoutClick}>
-              <ListItemIcon>
-                <LogoutIcon fontSize="small" />
-              </ListItemIcon>
-              Logout
-            </MenuItem>
-          </div> :
-          <div>
-            <MenuItem color="inherit" style={{ textDecoration: "none" }}
-                      component={Link} href={authorize.Login}>
-              <ListItemIcon>
-                <LoginIcon fontSize="small" />
-              </ListItemIcon>
-              Sign in
-            </MenuItem>
-            <MenuItem color="inherit" style={{ textDecoration: "none" }}
-                      component={Link} href={authorize.Register}>
-              <ListItemIcon>
-                <PersonAdd fontSize="small" />
-              </ListItemIcon>
-              Sign up
-            </MenuItem>
-          </div>
-      }
+      {isAuthenticate === true ? (
+        <div>
+          <MenuItem
+            color='inherit'
+            style={{ textDecoration: "none" }}
+            component={Link}
+            href={user_profile}
+          >
+            <ListItemIcon>
+              <PersonIcon fontSize='small' />
+            </ListItemIcon>
+            Profile
+          </MenuItem>
+          <MenuItem
+            color='inherit'
+            style={{ textDecoration: "none" }}
+            onClick={handleLogoutClick}
+          >
+            <ListItemIcon>
+              <LogoutIcon fontSize='small' />
+            </ListItemIcon>
+            Logout
+          </MenuItem>
+        </div>
+      ) : (
+        <div>
+          <MenuItem
+            color='inherit'
+            style={{ textDecoration: "none" }}
+            component={Link}
+            href={authorize.Login}
+          >
+            <ListItemIcon>
+              <LoginIcon fontSize='small' />
+            </ListItemIcon>
+            Sign in
+          </MenuItem>
+          <MenuItem
+            color='inherit'
+            style={{ textDecoration: "none" }}
+            component={Link}
+            href={authorize.Register}
+          >
+            <ListItemIcon>
+              <PersonAdd fontSize='small' />
+            </ListItemIcon>
+            Sign up
+          </MenuItem>
+        </div>
+      )}
     </Menu>
   );
 }

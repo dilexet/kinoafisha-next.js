@@ -20,7 +20,7 @@ export default function ModalLayout({ title, error, children }) {
       </Box>
       <Box style={{ marginTop: "10px", width: "300px" }}>
         <Typography
-          color="error"
+          color='error'
           style={{
             fontSize: "1.125em",
             fontWeight: "500",

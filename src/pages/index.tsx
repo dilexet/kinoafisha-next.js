@@ -54,16 +54,21 @@ export default function Home() {
         <title>Home</title>
       </Head>
       <main style={{ overflow: "auto" }}>
-        <HomeComponent movies={movies} movieState={movieState}
-                       imageState={imageState} handleChange={handleChange}
-                       slidesPerView={slidesPerView} tabValue={tabValue} />
+        <HomeComponent
+          movies={movies}
+          movieState={movieState}
+          imageState={imageState}
+          handleChange={handleChange}
+          slidesPerView={slidesPerView}
+          tabValue={tabValue}
+        />
       </main>
     </>
   );
 }
 
 export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps(store => async ({ req, res }) => {
+  wrapper.getServerSideProps((store) => async ({ req, res }) => {
     const tokenPayload = getTokenPayload(true, req, res);
 
     if (tokenPayload?.role === Roles.Admin) {

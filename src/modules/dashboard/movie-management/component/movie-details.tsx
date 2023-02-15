@@ -4,20 +4,20 @@ import { MovieDetailsProps } from "@/modules/dashboard/movie-management/types/mo
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
 
 export default function MovieDetails({
-                                       gridItems,
-                                       movieState,
-                                     }: MovieDetailsProps) {
+  gridItems,
+  movieState,
+}: MovieDetailsProps) {
   return (
     <ModalLayout
-      title="Show movie details"
+      title='Show movie details'
       error={movieState?.errorInfo?.message}
     >
       <Grid
         container
         spacing={3}
-        direction="column"
-        justifyContent="center"
-        alignItems="flex-start"
+        direction='column'
+        justifyContent='center'
+        alignItems='flex-start'
       >
         <Grid
           item
@@ -28,15 +28,15 @@ export default function MovieDetails({
             justifyContent: "center",
           }}
         >
-          {
-            movieState?.movie?.posterURL ?
-              <Avatar
-                alt="Poster"
-                sx={{ width: 228, height: 228 }}
-                src={IMAGE_URL(movieState?.movie?.posterURL)}
-              /> :
-              <Skeleton variant="circular" width={228} height={228} />
-          }
+          {movieState?.movie?.posterURL ? (
+            <Avatar
+              alt='Poster'
+              sx={{ width: 228, height: 228 }}
+              src={IMAGE_URL(movieState?.movie?.posterURL)}
+            />
+          ) : (
+            <Skeleton variant='circular' width={228} height={228} />
+          )}
         </Grid>
         {gridItems?.map((item, index) => (
           <Grid

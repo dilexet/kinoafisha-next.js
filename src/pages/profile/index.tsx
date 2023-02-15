@@ -13,7 +13,7 @@ import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 
 export default function UserProfile({ tokenPayload }) {
   const dispatch = useAppDispatch();
-  const profileState = useAppSelector(x => x.user_profile_reducer);
+  const profileState = useAppSelector((x) => x.user_profile_reducer);
 
   const [isLoading, setIsLoading] = useState(true);
   const [tabsValue, setTabsValue] = useState(TabsValue.tickets);
@@ -41,11 +41,16 @@ export default function UserProfile({ tokenPayload }) {
         <title>{`Profile: ${profileState?.profile?.name ?? ""}`}</title>
       </Head>
       <main>
-        {
-          isLoading === true || profileState?.loadingStatusGet === LOADING_STATUSES.LOADING ?
-            <Loading /> :
-            <UserProfileComponent tabsValue={tabsValue} handleChange={handleChange} profileState={profileState} />
-        }
+        {isLoading === true ||
+        profileState?.loadingStatusGet === LOADING_STATUSES.LOADING ? (
+          <Loading />
+        ) : (
+          <UserProfileComponent
+            tabsValue={tabsValue}
+            handleChange={handleChange}
+            profileState={profileState}
+          />
+        )}
       </main>
     </>
   );

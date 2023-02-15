@@ -28,14 +28,14 @@ export default function Modal({ openModal, handleCloseModal, children }) {
           }}
         >
           <IconButton
-            aria-label="close"
+            aria-label='close'
             onClick={handleCloseModal}
             style={{
               height: "22px",
               width: "22px",
             }}
           >
-            <CloseIcon fontSize="inherit" />
+            <CloseIcon fontSize='inherit' />
           </IconButton>
         </Box>
         {children}

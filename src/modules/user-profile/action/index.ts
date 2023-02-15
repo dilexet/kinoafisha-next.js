@@ -8,7 +8,9 @@ export const userProfileGetActionAsync = createAsyncThunk(
   "profile/get",
   async (userProfileId: string, thunkAPI) => {
     try {
-      const response = await axiosInstance.get(`${USER_PROFILE}/${userProfileId}`);
+      const response = await axiosInstance.get(
+        `${USER_PROFILE}/${userProfileId}`,
+      );
       return response?.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response);
@@ -20,7 +22,10 @@ export const userProfileUpdateActionAsync = createAsyncThunk(
   "profile/update",
   async (args: UserProfileUpdateArgs, thunkAPI) => {
     try {
-      const response = await axiosInstance.put(`${USER_PROFILE}/${args.userProfileId}`, args);
+      const response = await axiosInstance.put(
+        `${USER_PROFILE}/${args.userProfileId}`,
+        args,
+      );
       toastr.success("User profile", "Update completed successfully");
       return response?.data;
     } catch (err) {

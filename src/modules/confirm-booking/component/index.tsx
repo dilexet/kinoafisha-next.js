@@ -6,32 +6,40 @@ import TotalPayableInfoComponent from "@/modules/confirm-booking/component/total
 import OrdersListComponent from "@/modules/confirm-booking/component/orders-list";
 
 export default function ConfirmBookingComponent({
-                                                  bookingState,
-                                                  handleClose,
-                                                  minutes,
-                                                  seconds,
-                                                  isRunning,
-                                                  selectedSeats,
-                                                  totalPrice,
-                                                  handleConfirmOrder,
-                                                  confirmBookingState,
-                                                }: ConfirmBookingComponentProps) {
+  bookingState,
+  handleClose,
+  minutes,
+  seconds,
+  isRunning,
+  selectedSeats,
+  totalPrice,
+  handleConfirmOrder,
+  confirmBookingState,
+}: ConfirmBookingComponentProps) {
   return (
-    <Box style={{
-      margin: "16px 0",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }}>
+    <Box
+      style={{
+        margin: "16px 0",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <Box style={{ width: "90%" }}>
-        <Paper sx={{ p: 2 }} style={{
-          background: "#27272A",
-          border: "none",
-          boxShadow: "none",
-        }}>
-          <MovieTitleComponent movieName={bookingState?.session?.movie?.name}
-                               handleClose={handleClose}
-                               minutes={minutes} seconds={seconds} isRunning={isRunning}
+        <Paper
+          sx={{ p: 2 }}
+          style={{
+            background: "#27272A",
+            border: "none",
+            boxShadow: "none",
+          }}
+        >
+          <MovieTitleComponent
+            movieName={bookingState?.session?.movie?.name}
+            handleClose={handleClose}
+            minutes={minutes}
+            seconds={seconds}
+            isRunning={isRunning}
           />
           <Divider />
           <Grid container spacing={1}>
