@@ -72,18 +72,15 @@ axiosInstance.interceptors.response.use(
           return axiosInstance(originalRequest);
         }
       } catch (err) {
-        if (err?.response?.status === 401 || err?.response?.status === 403) {
+        if (err?.response?.status === 401) {
           removeTokens();
           await Router.push(authorize.Login);
-        }
-        if (err?.response?.status === 403) {
+        } else if (err?.response?.status === 403) {
           removeTokens();
           await Router.push("/403");
-
         }
       }
-    }
-    if (error.response.status === 403) {
+    } else if (error.response.status === 403) {
       removeTokens();
       await Router.push("/403");
     }
