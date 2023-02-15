@@ -10,6 +10,7 @@ import {
   removeTokens,
 } from "@/modules/authorize/utils/token-service";
 import Router from "next/router";
+import { authorize } from "@/modules/shared/constants/app-routes";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
@@ -67,15 +68,24 @@ axiosInstance.interceptors.response.use(
         if (tokens) {
           axios.defaults.headers.common[
             "Authorization"
-          ] = `Bearer ${tokens.accessToken}`;
+            ] = `Bearer ${tokens.accessToken}`;
           return axiosInstance(originalRequest);
         }
       } catch (err) {
         if (err?.response?.status === 401 || err?.response?.status === 403) {
           removeTokens();
-          await Router.push("/login");
+          await Router.push(authorize.Login);
+        }
+        if (err?.response?.status === 403) {
+          removeTokens();
+          await Router.push("/403");
+
         }
       }
+    }
+    if (error.response.status === 403) {
+      removeTokens();
+      await Router.push("/403");
     }
 
     return Promise.reject(error);
