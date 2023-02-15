@@ -23,10 +23,11 @@ export default function SwiperComponent({ images, slidesPerView }) {
           <SwiperSlide key={index}>
             <Image
               src={image}
-              alt=''
+              alt="Poster"
+              quality={100}
+              width={500}
+              height={700}
               style={{
-                width: "auto",
-                height: "700px",
                 objectFit: "contain",
               }}
             />

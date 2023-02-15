@@ -74,8 +74,7 @@ export default function MovieSessions({ movieId, isAuth, tokenPayload }) {
 
   const getCommentsHandler = useCallback(
     async (commentArray: CommentArrayType) => {
-      console.log(commentArray);
-      if (commentArray.movieId === movieId && commentArray?.comments) {
+      if (commentArray?.movieId === movieId && commentArray?.comments) {
         await dispatch(getComments(commentArray));
       }
     },
