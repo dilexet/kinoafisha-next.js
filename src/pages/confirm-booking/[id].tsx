@@ -130,22 +130,21 @@ export default function ConfirmBooking({ query }) {
         <title>{`Confirm: ${bookingState?.session?.movie?.name ?? ""}`}</title>
       </Head>
       <main>
-        {
-          bookingState?.loadingStatus !== LOADING_STATUSES.IDLE ? (
-              <Loading />
-            ) :
-            (<ConformBookingComponent
-                bookingState={bookingState}
-                minutes={minutes}
-                seconds={seconds}
-                isRunning={isRunning}
-                handleClose={handleClose}
-                selectedSeats={selectedSeat}
-                totalPrice={totalPrice}
-                handleConfirmOrder={handleConfirmOrder}
-                confirmBookingState={confirmBookingState}
-              />
-            )}
+        {bookingState?.loadingStatus !== LOADING_STATUSES.IDLE ? (
+          <Loading />
+        ) : (
+          <ConformBookingComponent
+            bookingState={bookingState}
+            minutes={minutes}
+            seconds={seconds}
+            isRunning={isRunning}
+            handleClose={handleClose}
+            selectedSeats={selectedSeat}
+            totalPrice={totalPrice}
+            handleConfirmOrder={handleConfirmOrder}
+            confirmBookingState={confirmBookingState}
+          />
+        )}
       </main>
     </>
   );

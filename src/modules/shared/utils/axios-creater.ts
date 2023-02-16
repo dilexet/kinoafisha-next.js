@@ -68,7 +68,7 @@ axiosInstance.interceptors.response.use(
         if (tokens) {
           axios.defaults.headers.common[
             "Authorization"
-            ] = `Bearer ${tokens.accessToken}`;
+          ] = `Bearer ${tokens.accessToken}`;
           return axiosInstance(originalRequest);
         }
       } catch (err) {

@@ -14,7 +14,7 @@ const NotFound = () => {
           <Box className={styles.notfound_box}>
             <Box className={styles.notfound_info_box}>
               <Typography
-                component="h3"
+                component='h3'
                 className={
                   theme.palette.mode === "dark"
                     ? styles.notfound_title_color_light
@@ -24,7 +24,7 @@ const NotFound = () => {
                 Oops! You do not have access
               </Typography>
               <Typography
-                component="h1"
+                component='h1'
                 className={styles.notfound_title_color}
               >
                 <span
@@ -57,7 +57,7 @@ const NotFound = () => {
               </Typography>
             </Box>
             <Typography
-              component="h2"
+              component='h2'
               className={
                 theme.palette.mode === "dark"
                   ? styles.notfound_description_color_light
