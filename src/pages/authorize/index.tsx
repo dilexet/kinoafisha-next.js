@@ -65,6 +65,7 @@ export default function LoginPage() {
           setRememberMe={setRememberMe}
           handleNavigateToSignUp={handleNavigateToSignUp}
           handleSubmitForm={handleSubmitForm}
+          setIsSubmit={setIsSubmit}
         />
       </main>
     </>

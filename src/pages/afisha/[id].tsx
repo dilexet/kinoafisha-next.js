@@ -82,10 +82,10 @@ export default function MovieSessions({ movieId, isAuth, tokenPayload }) {
   );
 
   useEffect(() => {
-    if (!socket) {
+    if (!socket && movieSessionState?.loadingStatus === LOADING_STATUSES.IDLE) {
       setSocket(io(COMMENTS_GATEWAY));
     }
-  }, [socket]);
+  }, [movieSessionState?.loadingStatus, socket]);
 
   useEffect(() => {
     if (isLoading === true && socket) {

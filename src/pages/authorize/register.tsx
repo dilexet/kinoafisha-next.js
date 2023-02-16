@@ -65,6 +65,7 @@ export default function RegisterPage() {
           rememberMe={rememberMe}
           setRememberMe={setRememberMe}
           authorizeState={authState}
+          setIsSubmit={setIsSubmit}
         />
       </main>
     </>
