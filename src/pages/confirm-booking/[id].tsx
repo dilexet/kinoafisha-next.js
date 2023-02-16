@@ -30,6 +30,7 @@ export default function ConfirmBooking({ query }) {
   const confirmBookingState = useAppSelector((x) => x.confirm_booking_reducer);
   const [socket, setSocket] = useState<Socket>();
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedSeat, setSelectedSeats] = useState<SeatType[]>([]);
 
   const getTimerSettings = () => {
@@ -51,6 +52,7 @@ export default function ConfirmBooking({ query }) {
 
   const handleClose = async () => {
     await handleCancelSelectAllSeats(query.seats);
+    setIsLoading(false);
     router.push(session_booking(query?.id));
   };
 
@@ -119,10 +121,12 @@ export default function ConfirmBooking({ query }) {
   }, [bookingState?.session?.hall?.rows, query.seats]);
 
   useEffect(() => {
-    if (bookingState?.loadingStatus === LOADING_STATUSES.FAILED) {
+    if (bookingState?.loadingStatus === LOADING_STATUSES.FAILED && isLoading === true) {
       router.push("/404");
+    } else if (bookingState?.loadingStatus === LOADING_STATUSES.IDLE && isLoading === true) {
+      setIsLoading(false);
     }
-  }, [bookingState?.loadingStatus, router]);
+  }, [isLoading, bookingState?.loadingStatus, router]);
 
   return (
     <>

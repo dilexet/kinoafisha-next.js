@@ -33,10 +33,12 @@ export default function Home() {
   const [slidesPerView, setSlidesPerView] = useState("sm");
   useEffect(() => {
     window.onresize = () => {
-      if (window.innerWidth <= 960) {
-        setSlidesPerView("sm");
-      } else {
-        setSlidesPerView("lg");
+      if (window !== undefined) {
+        if (window.innerWidth <= 960) {
+          setSlidesPerView("sm");
+        } else {
+          setSlidesPerView("lg");
+        }
       }
     };
   }, []);

@@ -32,12 +32,14 @@ export default function Booking({ sessionId, userSessionId }) {
   const router = useRouter();
   const bookingState = useAppSelector((x) => x.booking_reducer);
   const [socket, setSocket] = useState<Socket>();
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedSeatIds, setSelectedSeatIds] = useState<string[]>([]);
 
   const handleClose = async () => {
     if (selectedSeatIds?.length > 0) {
       await handleCancelSelectAllSeats(selectedSeatIds);
     }
+    setIsLoading(false);
     router.push(movie_sessions(bookingState?.session?.movie?.id));
   };
 
@@ -198,10 +200,12 @@ export default function Booking({ sessionId, userSessionId }) {
   ]);
 
   useEffect(() => {
-    if (bookingState?.loadingStatus === LOADING_STATUSES.FAILED) {
+    if (bookingState?.loadingStatus === LOADING_STATUSES.FAILED && isLoading === true) {
       router.push("/404");
+    } else if (bookingState?.loadingStatus === LOADING_STATUSES.IDLE && isLoading === true) {
+      setIsLoading(false);
     }
-  }, [bookingState?.loadingStatus, router]);
+  }, [isLoading, bookingState?.loadingStatus, router]);
 
   return (
     <>

@@ -49,14 +49,14 @@ export default function SessionDetailsComponent({
             </Grid>
             <Grid item xs={12}>
               <Grid container>
-                <Grid item xs={8}>
+                <Grid item xs={12}>
                   <HallPlan
                     hall={bookingState?.session?.hall}
                     handleSelectSeat={handleSelectSeat}
                     handleCancelSelectSeat={handleCancelSelectSeat}
                   />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                   {selectedSeatIds?.length <= 0 ? (
                     <SeatTypeInfoComponent
                       sessionSeatTypes={bookingState?.session?.sessionSeatTypes}

@@ -29,6 +29,7 @@ export default function MovieSessions({ movieId, isAuth, tokenPayload }) {
   const [commentText, setCommentText] = useState("");
 
   const handleClose = () => {
+    setIsLoading(false);
     router.push(afisha);
   };
 
@@ -107,10 +108,10 @@ export default function MovieSessions({ movieId, isAuth, tokenPayload }) {
   }, [addCommentHandler, getCommentsHandler, socket]);
 
   useEffect(() => {
-    if (movieSessionState?.loadingStatus === LOADING_STATUSES.FAILED) {
+    if (movieSessionState?.loadingStatus === LOADING_STATUSES.FAILED && isLoading === true) {
       router.push("/404");
     }
-  }, [movieSessionState?.loadingStatus, router]);
+  }, [isLoading, movieSessionState?.loadingStatus, router]);
 
   return (
     <>
