@@ -129,7 +129,7 @@ export default function HallPlanForm({
                   label={`Price $ for ${
                     seatTypeState?.seatTypes?.find(
                       (x) => x.id === seatTypePrice?.seatTypeId,
-                    ).name
+                    )?.name
                   } seat`}
                   name='seatTypePrice'
                   value={seatTypePrice.price}
