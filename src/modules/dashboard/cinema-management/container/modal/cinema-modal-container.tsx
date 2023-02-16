@@ -7,7 +7,7 @@ import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 import Loading from "@/modules/loading";
 
 export default function CinemaModalContainer({ modalType, handleCloseModal }) {
-  const cinemaState = useAppSelector(x => x.cinema_management_reducer);
+  const cinemaState = useAppSelector((x) => x.cinema_management_reducer);
 
   if (cinemaState?.loadingStatusGetOne === LOADING_STATUSES.LOADING) {
     return <Loading />;

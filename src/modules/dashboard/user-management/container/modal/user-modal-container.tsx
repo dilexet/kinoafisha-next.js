@@ -10,7 +10,7 @@ import { LOADING_STATUSES } from "@/modules/shared/constants/redux-constants";
 
 export default function UserModalContainer({ modalType, handleCloseModal }) {
   const dispatch = useAppDispatch();
-  const userState = useAppSelector(x => x.user_management_reducer);
+  const userState = useAppSelector((x) => x.user_management_reducer);
   const [loadData, setLoadData] = useState(true);
 
   const fetchData = useCallback(async () => {

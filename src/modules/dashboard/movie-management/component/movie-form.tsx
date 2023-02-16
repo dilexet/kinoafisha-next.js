@@ -1,5 +1,12 @@
 import { Form, Formik } from "formik";
-import { Box, Grid, Avatar, FormHelperText, useTheme } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Avatar,
+  FormHelperText,
+  useTheme,
+  Skeleton,
+} from "@mui/material";
 import FormTextField from "@/modules/shared/component/form-text-field";
 import { handleErrors } from "@/modules/shared/utils/handle-errors";
 import ModalLayout from "@/modules/dashboard/shared/component/modal-layout";
@@ -59,11 +66,15 @@ export default function MovieForm({
                       justifyContent: "center",
                     }}
                   >
-                    <Avatar
-                      alt='Poster'
-                      sx={{ width: 69, height: 69 }}
-                      src={values.posterURL ? IMAGE_URL(values.posterURL) : ""}
-                    />
+                    {values?.posterURL ? (
+                      <Avatar
+                        alt='Poster'
+                        sx={{ width: 69, height: 69 }}
+                        src={IMAGE_URL(values.posterURL)}
+                      />
+                    ) : (
+                      <Skeleton variant='circular' width={69} height={69} />
+                    )}
                     <UploadImageContainer setFieldValue={setFieldValue} />
                   </Box>
                   <FormHelperText

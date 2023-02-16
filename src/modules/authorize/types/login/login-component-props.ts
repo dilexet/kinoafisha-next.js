@@ -8,4 +8,5 @@ export interface LoginComponentProps {
   setRememberMe: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmitForm: (values: typeof LoginFieldValues) => void;
   handleNavigateToSignUp: () => void;
+  setIsSubmit: any;
 }

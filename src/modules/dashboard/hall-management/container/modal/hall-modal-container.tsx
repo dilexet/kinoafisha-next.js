@@ -11,7 +11,7 @@ import Loading from "@/modules/loading";
 
 export default function HallModalContainer({ modalType, handleCloseModal }) {
   const dispatch = useAppDispatch();
-  const hallState = useAppSelector(x => x.hall_management_reducer);
+  const hallState = useAppSelector((x) => x.hall_management_reducer);
 
   const [loadData, setLoadData] = useState(true);
 

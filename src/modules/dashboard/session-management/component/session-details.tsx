@@ -1,26 +1,23 @@
 import ModalLayout from "@/modules/dashboard/shared/component/modal-layout";
-import {
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { SessionDetailsProps } from "@/modules/dashboard/session-management/types/session-details-props";
 import SessionSeatTable from "@/modules/dashboard/session-management/component/session-seat-table";
 
 export default function SessionDetails({
-                                         gridItems,
-                                         sessionState,
-                                         handleRemoveFromBooking,
-                                       }: SessionDetailsProps) {
+  gridItems,
+  sessionState,
+  handleRemoveFromBooking,
+}: SessionDetailsProps) {
   return (
     <ModalLayout
-      title="Show session details"
+      title='Show session details'
       error={sessionState?.errorInfo?.message}
     >
       <Grid
         container
-        direction="column"
-        justifyContent="center"
-        alignItems="flex-start"
+        direction='column'
+        justifyContent='center'
+        alignItems='flex-start'
         style={{ minWidth: "550px" }}
       >
         {gridItems?.map((item, index) => (
@@ -54,8 +51,10 @@ export default function SessionDetails({
           </Grid>
         ))}
         <Grid item>
-          <SessionSeatTable session={sessionState?.session}
-                            handleRemoveFromBooking={handleRemoveFromBooking} />
+          <SessionSeatTable
+            session={sessionState?.session}
+            handleRemoveFromBooking={handleRemoveFromBooking}
+          />
         </Grid>
       </Grid>
     </ModalLayout>

@@ -1,12 +1,8 @@
-import { Theme } from "@mui/material";
-
 export type HeaderComponentProps = {
-  theme: Theme;
-  isDarkModeEnabled: boolean;
-  onChangeTheme: (isDark: boolean) => void;
-};
-
-export type HeaderContainerProps = {
-  isDarkModeEnabled: boolean;
-  onChangeTheme: (isDark: boolean) => void;
+  isMenuOpen: boolean;
+  handleLogoutClick: () => void;
+  handleMenuClose: () => void;
+  handleMenuOpen: (event: any) => void;
+  anchorEl: any;
+  isAuthenticate: boolean | null;
 };

@@ -1,20 +1,20 @@
 .table {
-    overflow: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgb(130, 130, 130) rgb(50, 50, 50);
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(130, 130, 130) rgb(50, 50, 50);
 }
 
 .table::-webkit-scrollbar {
-    height: 5px;
-    width: 5px;
+  height: 5px;
+  width: 5px;
 }
 
 .table::-webkit-scrollbar-track {
-    background: rgb(50, 50, 50);
+  background: rgb(50, 50, 50);
 }
 
 .table::-webkit-scrollbar-thumb {
-    background-color: rgb(130, 130, 130);
-    border-radius: 99px;
-    border: 2px solid rgb(130, 130, 130);
+  background-color: rgb(130, 130, 130);
+  border-radius: 99px;
+  border: 2px solid rgb(130, 130, 130);
 }

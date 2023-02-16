@@ -8,4 +8,5 @@ export interface RegisterComponentProps {
   setRememberMe: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmitForm: (values: typeof RegisterFieldValues) => void;
   handleNavigateToSignIn: () => void;
+  setIsSubmit: any;
 }

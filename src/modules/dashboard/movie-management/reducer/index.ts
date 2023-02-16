@@ -67,8 +67,8 @@ const movieManagementSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatusGetAll = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
         },
       )
@@ -90,8 +90,8 @@ const movieManagementSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatusGetOne = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
         },
       )
@@ -116,8 +116,8 @@ const movieManagementSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatusUpdate = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
         },
       )
@@ -139,8 +139,8 @@ const movieManagementSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatusCreate = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
         },
       )
@@ -162,8 +162,8 @@ const movieManagementSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatusDelete = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
         },
       )

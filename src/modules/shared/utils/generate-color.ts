@@ -10,11 +10,23 @@ function normalize(r: number, g: number, b: number) {
   };
 }
 
-export function generateColor(seatTypeId: string) {
-  const r_random = seedrandom(`blue-${seatTypeId}-red-${seatTypeId}-green`);
-  const g_random = seedrandom(`red-${seatTypeId}-green-${seatTypeId}-blue`);
-  const b_random = seedrandom(`green-${seatTypeId}-blue-${seatTypeId}-red`);
+function hashCode(str: string) {
+  let hash = 0,
+    i, chr;
+  if (str.length === 0) return hash;
+  for (i = 0; i < str.length; i++) {
+    chr = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+}
 
+export function generateColor(id: string) {
+  const hash = hashCode(id);
+  const r_random = seedrandom(`red-${hash}-red-${id}-red-${hash}-red`);
+  const g_random = seedrandom(`green-${hash}-green-${id}-green-${hash}-red`);
+  const b_random = seedrandom(`blue-${hash}-blue-${id}-blue-${hash}-red`);
   const { r_normalize, g_normalize, b_normalize } = normalize(
     r_random(),
     g_random(),

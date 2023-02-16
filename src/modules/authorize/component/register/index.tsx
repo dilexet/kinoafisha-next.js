@@ -26,6 +26,7 @@ export default function RegisterComponent({
   setRememberMe,
   handleSubmitForm,
   handleNavigateToSignIn,
+  setIsSubmit,
 }: RegisterComponentProps) {
   return (
     <Container component='main' sx={{ mt: 2, mb: 10 }} maxWidth='sm'>
@@ -125,8 +126,10 @@ export default function RegisterComponent({
                 label='Remember me'
               />
               <AuthorizeButtonContainer
+                setIsSubmit={setIsSubmit}
                 isLoading={
-                  authorizeState?.loadingStatus === LOADING_STATUSES.LOADING
+                  authorizeState?.loadingStatus === LOADING_STATUSES.LOADING ||
+                  authorizeState?.loadingStatus === LOADING_STATUSES.IDLE
                 }
                 buttonText='Sign up'
               />

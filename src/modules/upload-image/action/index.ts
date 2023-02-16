@@ -13,3 +13,15 @@ export const uploadImageAsync = createAsyncThunk(
     }
   },
 );
+
+export const imagesGetAllAsync = createAsyncThunk(
+  "images/getAll",
+  async (arg, thunkAPI) => {
+    try {
+      const response = await axiosInstance.get(IMAGE_UPLOAD);
+      return response?.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data.errorInfo);
+    }
+  },
+);

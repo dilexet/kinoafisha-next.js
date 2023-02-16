@@ -17,6 +17,7 @@ export default function FormTextField({
   inputProps,
   outlinedInputStyle,
   formControlStyle,
+  required = true,
   ...props
 }: any) {
   return (
@@ -24,7 +25,7 @@ export default function FormTextField({
       variant={variant}
       size={size}
       margin={margin}
-      required={true}
+      required={required}
       fullWidth={true}
       style={formControlStyle}
       error={error}

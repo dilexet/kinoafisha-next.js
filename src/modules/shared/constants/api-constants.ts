@@ -1,6 +1,6 @@
 export const API_URL = "http://localhost:3001";
 
-const AUTHORIZE = "/authorize";
+export const AUTHORIZE = "/authorize";
 
 export const LOGIN_ENDPOINT = AUTHORIZE + "/login";
 
@@ -29,3 +29,11 @@ export const SEAT_TYPES = "/seat-types";
 export const SESSION_MANAGEMENT = "/session-management";
 export const HALLS = "/halls";
 export const MOVIES = "/movies";
+export const MOVIE_FILTER = "/movie-filter";
+export const MOVIE_AFISHA = "/movie-filter/afisha";
+export const BOOKING = "/booking";
+
+export const BOOKING_GATEWAY = API_URL + "/booking-gateway";
+export const COMMENTS_GATEWAY = API_URL + "/comments-gateway";
+
+export const USER_PROFILE = "/user-profile";

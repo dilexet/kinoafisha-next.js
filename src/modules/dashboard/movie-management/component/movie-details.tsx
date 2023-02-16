@@ -1,4 +1,4 @@
-import { Typography, Grid, Box, Avatar } from "@mui/material";
+import { Typography, Grid, Box, Avatar, Skeleton } from "@mui/material";
 import ModalLayout from "@/modules/dashboard/shared/component/modal-layout";
 import { MovieDetailsProps } from "@/modules/dashboard/movie-management/types/movie-details-props";
 import { IMAGE_URL } from "@/modules/shared/constants/api-constants";
@@ -28,11 +28,15 @@ export default function MovieDetails({
             justifyContent: "center",
           }}
         >
-          <Avatar
-            alt='Poster'
-            sx={{ width: 228, height: 228 }}
-            src={IMAGE_URL(movieState?.movie?.posterURL)}
-          />
+          {movieState?.movie?.posterURL ? (
+            <Avatar
+              alt='Poster'
+              sx={{ width: 228, height: 228 }}
+              src={IMAGE_URL(movieState?.movie?.posterURL)}
+            />
+          ) : (
+            <Skeleton variant='circular' width={228} height={228} />
+          )}
         </Grid>
         {gridItems?.map((item, index) => (
           <Grid
@@ -56,7 +60,7 @@ export default function MovieDetails({
             <Typography
               style={{
                 fontWeight: "500",
-                fontSize: item.value.toString().length < 20 ? "1.625em" : "1em",
+                fontSize: item.value.toString().length < 50 ? "1.625em" : "1em",
                 textAlign: "start",
               }}
             >

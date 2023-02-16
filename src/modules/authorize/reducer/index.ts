@@ -5,7 +5,7 @@ import {
   googleAuthorizeAsync,
   loginActionAsync,
   logoutActionAsync,
-  refreshTokensAsync,
+  refreshTokensActionAsync,
   registerActionAsync,
 } from "@/modules/authorize/action";
 
@@ -29,6 +29,7 @@ const authorizeSlice = createSlice({
   reducers: {
     clearErrors(state) {
       state.errorInfo = null;
+      state.loadingStatus = LOADING_STATUSES.PENDING;
     },
   },
   extraReducers: (builder) => {
@@ -51,8 +52,8 @@ const authorizeSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
           state.tokens = null;
         },
@@ -76,8 +77,8 @@ const authorizeSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
           state.tokens = null;
         },
@@ -98,20 +99,20 @@ const authorizeSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
           state.tokens = null;
         },
       )
 
-      .addCase(refreshTokensAsync.pending.type, (state) => {
+      .addCase(refreshTokensActionAsync.pending.type, (state) => {
         state.loadingStatus = LOADING_STATUSES.LOADING;
         state.errorInfo = null;
         state.tokens = null;
       })
       .addCase(
-        refreshTokensAsync.fulfilled.type,
+        refreshTokensActionAsync.fulfilled.type,
         (state, action: PayloadAction<AuthorizeResponse>) => {
           state.loadingStatus = LOADING_STATUSES.IDLE;
           state.errorInfo = null;
@@ -119,12 +120,12 @@ const authorizeSlice = createSlice({
         },
       )
       .addCase(
-        refreshTokensAsync.rejected.type,
+        refreshTokensActionAsync.rejected.type,
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
           state.tokens = null;
         },
@@ -148,8 +149,8 @@ const authorizeSlice = createSlice({
         (state, action: PayloadAction<any>) => {
           state.loadingStatus = LOADING_STATUSES.FAILED;
           state.errorInfo = {
-            message: action.payload?.message,
-            error: action.payload?.error,
+            message: action.payload?.message ?? null,
+            error: action.payload?.error ?? null,
           };
           state.tokens = null;
         },

@@ -21,17 +21,17 @@ import { generateEmptyArray } from "@/modules/shared/utils/generate-empty-array"
 import styles from "@/styles/table.module.css";
 
 export default function TableManagementComponent({
-                                                   title,
-                                                   loadData,
-                                                   handleOpenModal,
-                                                   loadingStatus,
-                                                   errorMessage,
-                                                   TableHead,
-                                                   TableBody,
-                                                 }: TableManagementContainerProps) {
+  title,
+  loadData,
+  handleOpenModal,
+  loadingStatus,
+  errorMessage,
+  TableHead,
+  TableBody,
+}: TableManagementContainerProps) {
   const theme = useTheme();
   return (
-    <Container component="main" sx={{ mt: 2, mb: 2 }} maxWidth="lg">
+    <Container component='main' sx={{ mt: 2, mb: 2 }} maxWidth='lg'>
       <Grid item>
         <Paper
           sx={{
@@ -50,9 +50,9 @@ export default function TableManagementComponent({
           >
             <Box>
               <Typography
-                component="h2"
-                variant="h6"
-                color="secondary"
+                component='h2'
+                variant='h6'
+                color='secondary'
                 style={{
                   textAlign: "left",
                   float: "left",
@@ -66,9 +66,9 @@ export default function TableManagementComponent({
             </Box>
             <Box>
               <Button
-                size="small"
-                aria-label="create"
-                variant="outlined"
+                size='small'
+                aria-label='create'
+                variant='outlined'
                 onClick={() => handleOpenModal(ModalActionTypes.CREATE)}
                 style={{
                   color: theme.palette.grey["200"],
@@ -91,9 +91,9 @@ export default function TableManagementComponent({
             }}
           >
             <Typography
-              component="h1"
-              variant="h6"
-              color="secondary"
+              component='h1'
+              variant='h6'
+              color='secondary'
               style={{
                 textAlign: "center",
               }}
@@ -104,18 +104,17 @@ export default function TableManagementComponent({
                 : ""}
             </Typography>
           </Box>
-          {
-            loadingStatus !== LOADING_STATUSES.PENDING &&
-            loadingStatus !== LOADING_STATUSES.LOADING ?
-              <TableContainer className={styles.table}>
-                <Table width="auto" aria-label="a dense table">
-                  {TableHead}
-                  {TableBody}
-                </Table>
-              </TableContainer> :
-              <TableSkeleton />
-          }
-
+          {loadingStatus !== LOADING_STATUSES.PENDING &&
+          loadingStatus !== LOADING_STATUSES.LOADING ? (
+            <TableContainer className={styles.table}>
+              <Table width='auto' aria-label='a dense table'>
+                {TableHead}
+                {TableBody}
+              </Table>
+            </TableContainer>
+          ) : (
+            <TableSkeleton />
+          )}
         </Paper>
       </Grid>
     </Container>
@@ -124,19 +123,20 @@ export default function TableManagementComponent({
 
 export function TableSkeleton() {
   return (
-    <Stack spacing={1} style={{
-      display: "flex",
-      alignItems: "space-between",
-      justifyContent: "space-between",
-      width: "100%",
-      marginTop: "16px",
-    }}>
-      <Skeleton variant="rectangular" height={30} />
-      {
-        generateEmptyArray(10, 0)?.map((value, index) => (
-          <Skeleton variant="rectangular" height={65} key={index} />
-        ))
-      }
+    <Stack
+      spacing={1}
+      style={{
+        display: "flex",
+        alignItems: "space-between",
+        justifyContent: "space-between",
+        width: "100%",
+        marginTop: "16px",
+      }}
+    >
+      <Skeleton variant='rectangular' height={30} />
+      {generateEmptyArray(10, 0)?.map((value, index) => (
+        <Skeleton variant='rectangular' height={65} key={index} />
+      ))}
     </Stack>
   );
 }

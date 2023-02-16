@@ -10,9 +10,9 @@ import { SeatTypeState } from "@/modules/seat-types/reducer";
 import { HallPlanFormContainerProps } from "@/modules/dashboard/hall-management/types/hall-plan-form-container-props";
 
 export default function HallPlanFormContainer({
-  values,
-  setFieldValue,
-}: HallPlanFormContainerProps) {
+                                                values,
+                                                setFieldValue,
+                                              }: HallPlanFormContainerProps) {
   const seatTypeState = useAppSelector<SeatTypeState>(
     (x) => x.seat_types_reducer,
   );
@@ -24,7 +24,7 @@ export default function HallPlanFormContainer({
   const [isSeatChange, setIsSeatChange] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
-  const [maxWidth, setMaxWidth] = useState(window.innerWidth);
+  const [maxWidth, setMaxWidth] = useState(window?.innerWidth);
 
   useEffect(() => {
     if (isLoading === true) {
@@ -70,9 +70,9 @@ export default function HallPlanFormContainer({
     const newRows = values?.rows?.map((item) =>
       item.numberRow === indexValue + 1
         ? {
-            ...item,
-            seats: seatsArray,
-          }
+          ...item,
+          seats: seatsArray,
+        }
         : item,
     );
     setFieldValue("rows", newRows);
@@ -83,17 +83,17 @@ export default function HallPlanFormContainer({
       const newRows = values?.rows?.map((row) =>
         row.numberRow === rowNumber
           ? {
-              ...row,
-              seats: row.seats.map((seat) => {
-                if (seat.numberSeat === seatNumber) {
-                  return {
-                    ...seat,
-                    seatTypeId: selectedSeatType,
-                  };
-                }
-                return seat;
-              }),
-            }
+            ...row,
+            seats: row.seats.map((seat) => {
+              if (seat.numberSeat === seatNumber) {
+                return {
+                  ...seat,
+                  seatTypeId: selectedSeatType,
+                };
+              }
+              return seat;
+            }),
+          }
           : row,
       );
       setFieldValue("rows", newRows);
@@ -101,17 +101,17 @@ export default function HallPlanFormContainer({
       const newRows = values?.rows?.map((row) =>
         row.numberRow === rowNumber
           ? {
-              ...row,
-              seats: row.seats.map((seat) => {
-                if (seat.numberSeat === seatNumber && seat.seatTypeId) {
-                  return {
-                    ...seat,
-                    seatTypeId: "",
-                  };
-                }
-                return seat;
-              }),
-            }
+            ...row,
+            seats: row.seats.map((seat) => {
+              if (seat.numberSeat === seatNumber && seat.seatTypeId) {
+                return {
+                  ...seat,
+                  seatTypeId: "",
+                };
+              }
+              return seat;
+            }),
+          }
           : row,
       );
       setFieldValue("rows", newRows);
@@ -149,9 +149,9 @@ export default function HallPlanFormContainer({
     const seatTypeIds = values?.seatTypePrices?.map((el) =>
       el.seatTypeId === seatTypeId
         ? {
-            ...el,
-            price: price,
-          }
+          ...el,
+          price: price,
+        }
         : el,
     );
     setFieldValue("seatTypePrices", seatTypeIds);
@@ -159,11 +159,13 @@ export default function HallPlanFormContainer({
 
   useEffect(() => {
     window.onresize = () => {
-      if (
-        maxWidth - 240 > window.innerWidth ||
-        window.innerWidth > maxWidth + 240
-      ) {
-        setMaxWidth(window.innerWidth);
+      if (window !== undefined) {
+        if (
+          maxWidth - 240 > window.innerWidth ||
+          window.innerWidth > maxWidth + 240
+        ) {
+          setMaxWidth(window.innerWidth);
+        }
       }
     };
   }, [maxWidth]);

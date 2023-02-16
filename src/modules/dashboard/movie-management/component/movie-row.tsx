@@ -1,4 +1,4 @@
-import { TableCell, TableRow, Avatar, Box } from "@mui/material";
+import { TableCell, TableRow, Avatar, Box, Skeleton } from "@mui/material";
 import { MovieRowComponentProps } from "@/modules/dashboard/movie-management/types/movie-row-props";
 import {
   convertMinutesToHoursWithMinutes,
@@ -36,7 +36,11 @@ export default function MovieRow({
             justifyContent: "center",
           }}
         >
-          <Avatar alt='poster' src={IMAGE_URL(movie.posterURL)} />
+          {movie?.posterURL ? (
+            <Avatar alt='poster' src={IMAGE_URL(movie.posterURL)} />
+          ) : (
+            <Skeleton variant='circular' width={50} height={50} />
+          )}
         </Box>
       </TableCell>
       <TableCell component='th' scope='row' align='left'>

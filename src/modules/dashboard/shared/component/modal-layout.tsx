@@ -18,7 +18,7 @@ export default function ModalLayout({ title, error, children }) {
           {title}
         </Typography>
       </Box>
-      <Box style={{ marginTop: "10px" }}>
+      <Box style={{ marginTop: "10px", width: "300px" }}>
         <Typography
           color='error'
           style={{

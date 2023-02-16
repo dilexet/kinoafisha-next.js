@@ -1,9 +1,8 @@
-import { Box, IconButton, Modal as MuiModal, useTheme } from "@mui/material";
+import { Box, IconButton, Modal as MuiModal } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "@/styles/modal.module.css";
 
 export default function Modal({ openModal, handleCloseModal, children }) {
-  const theme = useTheme();
   return (
     <MuiModal open={openModal} onClose={handleCloseModal}>
       <Box
@@ -16,10 +15,7 @@ export default function Modal({ openModal, handleCloseModal, children }) {
           minWidth: "400px",
           minHeight: "200px",
           background: "rgb(50, 50, 50)",
-          color:
-            theme.palette.mode === "dark"
-              ? "rgba(255, 255, 255, 0.8)"
-              : "rgba(0, 0, 0, 0.8)",
+          color: "rgba(255, 255, 255, 0.8)",
           border: "none",
           padding: "20px",
           borderRadius: "22px",

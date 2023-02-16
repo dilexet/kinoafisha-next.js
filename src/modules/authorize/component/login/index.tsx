@@ -26,6 +26,7 @@ export default function LoginComponent({
   setRememberMe,
   handleSubmitForm,
   handleNavigateToSignUp,
+  setIsSubmit,
 }: LoginComponentProps) {
   return (
     <Container component='main' sx={{ mt: 2, mb: 2 }} maxWidth='sm'>
@@ -99,8 +100,10 @@ export default function LoginComponent({
                 label='Remember me'
               />
               <AuthorizeButtonContainer
+                setIsSubmit={setIsSubmit}
                 isLoading={
-                  authorizeState?.loadingStatus === LOADING_STATUSES.LOADING
+                  authorizeState?.loadingStatus === LOADING_STATUSES.LOADING ||
+                  authorizeState?.loadingStatus === LOADING_STATUSES.IDLE
                 }
                 buttonText='Sign in'
               />

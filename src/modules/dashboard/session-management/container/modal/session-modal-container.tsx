@@ -11,7 +11,7 @@ import Loading from "@/modules/loading";
 
 export default function SessionModalContainer({ modalType, handleCloseModal }) {
   const dispatch = useAppDispatch();
-  const sessionState = useAppSelector(x => x.session_management_reducer);
+  const sessionState = useAppSelector((x) => x.session_management_reducer);
   const [loadData, setLoadData] = useState(true);
 
   const fetchData = useCallback(async () => {
@@ -28,7 +28,10 @@ export default function SessionModalContainer({ modalType, handleCloseModal }) {
     }
   }, [fetchData, loadData, modalType]);
 
-  if (loadData || sessionState?.loadingStatusGetOne === LOADING_STATUSES.LOADING) {
+  if (
+    loadData ||
+    sessionState?.loadingStatusGetOne === LOADING_STATUSES.LOADING
+  ) {
     return <Loading />;
   }
 
