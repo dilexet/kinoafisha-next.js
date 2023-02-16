@@ -10,11 +10,11 @@ import { RegisterFieldValues } from "@/modules/authorize/constants/register-fiel
 import RegisterComponent from "@/modules/authorize/component/register";
 
 export default function RegisterModalContainer({
-  confirmOrder,
-  openRegisterModal,
-  setOpenLoginModal,
-  setOpenRegisterModal,
-}) {
+                                                 confirmOrder,
+                                                 openRegisterModal,
+                                                 setOpenLoginModal,
+                                                 setOpenRegisterModal,
+                                               }) {
   const dispatch = useAppDispatch();
   const authState = useAppSelector((x) => x.authorize_reducer);
 
@@ -63,6 +63,7 @@ export default function RegisterModalContainer({
     return (
       <Modal openModal={openRegisterModal} handleCloseModal={handleCloseModal}>
         <RegisterComponent
+          setIsSubmit={setIsSubmit}
           handleSubmitForm={handleSubmitForm}
           handleNavigateToSignIn={handleNavigateToSignIn}
           rememberMe={rememberMe}
