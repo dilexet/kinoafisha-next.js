@@ -24,8 +24,11 @@ export default function Afisha() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(pageStart);
   const [fetching, setFetching] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleSearch = async (search) => {
+    setSearchQuery(search);
+    setCurrentPage(pageStart);
     await dispatch(
       moviesAfishaGetAllAsync({
         page: pageStart,
@@ -41,7 +44,7 @@ export default function Afisha() {
     (event) => {
       if (
         event?.target?.documentElement?.scrollHeight -
-          (event?.target?.documentElement?.scrollTop + window.innerHeight) <
+        (event?.target?.documentElement?.scrollTop + window.innerHeight) <
         50
       ) {
         if (
@@ -82,12 +85,15 @@ export default function Afisha() {
     if (fetching) {
       fetchData().catch(console.error);
     }
-  }, [fetchData, fetching]);
+    if (isLoading === true) {
+      setIsLoading(false);
+    }
+  }, [fetchData, fetching, isLoading]);
 
   useEffect(() => {
     document.addEventListener("scroll", onScroll, true);
 
-    return function () {
+    return function() {
       document.removeEventListener("scroll", onScroll, true);
     };
   }, [onScroll]);
@@ -98,8 +104,8 @@ export default function Afisha() {
         <title>Movie afisha</title>
       </Head>
       <main>
-        {movieState?.loadingStatusGetAll === LOADING_STATUSES.PENDING ||
-        movieState?.loadingStatusGetAll === LOADING_STATUSES.LOADING ? (
+        {(movieState?.loadingStatusGetAll === LOADING_STATUSES.PENDING ||
+          movieState?.loadingStatusGetAll === LOADING_STATUSES.LOADING) && isLoading === true ? (
           <Loading />
         ) : (
           <AfishaComponent
