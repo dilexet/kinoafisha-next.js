@@ -14,7 +14,7 @@ import { authorize } from "@/modules/shared/constants/app-routes";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
-  timeout: 10000,
+  timeout: 30000,
 });
 
 export default axiosInstance;
